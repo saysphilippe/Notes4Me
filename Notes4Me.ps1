@@ -1192,6 +1192,20 @@ function Remove-TaskLines($keys) {
         if (-not (Get-DisplayText ($n.text -replace '(?m)^=([xa]\s)?', '')).Trim()) { [void]$script:notes.Remove($n); if ($script:editId -eq $n.id) { Stop-Edit } }
     }
 }
+# Moves a task to a new date/time (when its appointment was moved in Outlook), keeping its text and tags
+function Set-TaskLineDate($noteId, $index, $date, $time) {
+    $n = Get-Note $noteId; if (-not $n) { return }
+    $lines = $n.text -split "`n"; $line = $lines[$index]
+    $m = $lineRx.Match($line)
+    $prefix = if ($m.Success) { $line.Substring(0, $m.Groups[2].Index) } else { '' }
+    $content = if ($m.Success) { $m.Groups[2].Value } else { $line }
+    $tags = @($custRx.Matches($content) | ForEach-Object { $_.Value })
+    $plain = (Split-TaskTime ($custRx.Replace($content, ''))).text
+    $plain = Clear-Spoken (($dateRx.Replace($plain, '') -replace '\s+([,.;:])', '$1'))
+    $stamp = $date.ToString($(if ($date.Year -eq (Get-Date).Year) { 'd.M' } else { 'd.M.yyyy' })) + $(if ($time) { ' kl. ' + $time.ToString('hh\:mm') } else { '' })
+    $lines[$index] = ($prefix + "$plain $stamp " + ($tags -join ' ')).TrimEnd()
+    $n.text = $lines -join "`n"; $n.updated = Now-Iso
+}
 function Sync-Outlook {
     $script:syncTimer.Stop()
     if (-not $cfg.outlookSync) { return }
@@ -1199,9 +1213,14 @@ function Sync-Outlook {
         if (-not $script:ol) { $script:ol = New-Object -ComObject Outlook.Application }
         $ns = $script:ol.GetNamespace('MAPI'); $cal = $ns.GetDefaultFolder(9); $calId = $cal.EntryID
         $map = @{}
-        if (Test-Path $syncMapPath) { (Get-Content $syncMapPath -Raw -Encoding UTF8 | ConvertFrom-Json).psobject.Properties | ForEach-Object { $map[$_.Name] = @{ id = $_.Value.id; hash = $_.Value.hash } } }
+        if (Test-Path $syncMapPath) {
+            (Get-Content $syncMapPath -Raw -Encoding UTF8 | ConvertFrom-Json).psobject.Properties | ForEach-Object {
+                $map[$_.Name] = @{ id = $_.Value.id; hash = $_.Value.hash; start = $_.Value.start; allDay = [bool]$_.Value.allDay }
+            }
+        }
         $desired = Get-SyncTasks
-        $created = 0; $updated = 0; $removed = 0; $gone = New-Object System.Collections.Generic.List[string]
+        $created = 0; $updated = 0; $removed = 0; $gone = New-Object System.Collections.Generic.List[string]; $moved = @()
+        $remember = { param($k, $item, $hash) $map[$k] = @{ id = $item.EntryID; hash = $hash; start = $item.Start.ToString('yyyy-MM-dd HH:mm'); allDay = [bool]$item.AllDayEvent } }
         foreach ($k in @($map.Keys)) {
             $item = $null; try { $item = $ns.GetItemFromID($map[$k].id) } catch {}
             if (-not $item -or $item.Parent.EntryID -ne $calId) {   # deleted (or moved away) in Outlook
@@ -1209,16 +1228,30 @@ function Sync-Outlook {
                 $map.Remove($k); continue
             }
             if (-not $desired.Contains($k)) { $item.Delete(); $map.Remove($k); $removed++; continue }   # task deleted here
-            if ($map[$k].hash -ne $desired[$k].hash) { Set-Appointment $item $desired[$k]; $map[$k].hash = $desired[$k].hash; $updated++ }
+            $olStart = $item.Start.ToString('yyyy-MM-dd HH:mm'); $olAllDay = [bool]$item.AllDayEvent
+            if (-not $map[$k].start) { $map[$k].start = $olStart; $map[$k].allDay = $olAllDay }   # entry from an older version
+            if (($olStart -ne $map[$k].start -or $olAllDay -ne $map[$k].allDay) -and $map[$k].hash -eq $desired[$k].hash) {
+                # moved in Outlook (and not changed here) -> move the task here
+                $moved += @{ key = $k; date = $item.Start.Date; time = $(if ($olAllDay) { $null } else { $item.Start.TimeOfDay }) }
+                $map[$k].start = $olStart; $map[$k].allDay = $olAllDay; continue
+            }
+            if ($map[$k].hash -ne $desired[$k].hash) { Set-Appointment $item $desired[$k]; & $remember $k $item $desired[$k].hash; $updated++ }
         }
         foreach ($k in $desired.Keys) {
             $d = $desired[$k]
             if ($map.ContainsKey($k) -or $d.done -or $gone.Contains($k)) { continue }
             $item = $cal.Items.Add(1); Set-Appointment $item $d
-            $map[$k] = @{ id = $item.EntryID; hash = $d.hash }; $created++
+            & $remember $k $item $d.hash; $created++
+        }
+        if ($moved.Count) {
+            foreach ($mv in $moved) { $d = $desired[$mv.key]; Set-TaskLineDate $d.id $d.line $mv.date $mv.time }
+            $after = Get-SyncTasks   # the appointment already has these values - only remember the new state
+            foreach ($mv in $moved) { if ($after.Contains($mv.key)) { $map[$mv.key].hash = $after[$mv.key].hash } }
+            $updated += $moved.Count
         }
         ($map | ConvertTo-Json -Depth 3) | Set-Content $syncMapPath -Encoding UTF8
-        if ($gone.Count) { Remove-TaskLines $gone; Save-Notes; Render }
+        if ($gone.Count) { Remove-TaskLines $gone }
+        if ($gone.Count -or $moved.Count) { Save-Notes; Render }
         if ($created -or $updated -or $removed) {
             # Push the change to the server now, so it shows up in new Outlook / on the phone right away
             try { $ns.SendAndReceive($false) } catch {}
@@ -1242,9 +1275,9 @@ function Set-OutlookSync([bool]$on) {
 $script:syncTimer = New-Object Windows.Threading.DispatcherTimer
 $script:syncTimer.Interval = [TimeSpan]::FromSeconds(2)
 $script:syncTimer.Add_Tick({ Sync-Outlook })
-# Check Outlook every 2 minutes, so appointments deleted there disappear here too
+# Check Outlook every 10 seconds, so appointments deleted or moved there are reflected here right away
 $script:syncPoll = New-Object Windows.Threading.DispatcherTimer
-$script:syncPoll.Interval = [TimeSpan]::FromMinutes(2)
+$script:syncPoll.Interval = [TimeSpan]::FromSeconds(10)
 $script:syncPoll.Add_Tick({ if ($cfg.outlookSync) { Sync-Outlook } })
 $script:syncPoll.Start()
 

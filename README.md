@@ -118,10 +118,11 @@ Right-click the widget and tick **Sync tasks to the Outlook calendar**. Every ta
 | Tick or archive it | The appointment gets "✓" in front and no reminder (it stays as history) |
 | Delete the task or the note | The appointment is deleted |
 | **Delete the appointment in Outlook** | **The task line is deleted in the widget** (and the note, if nothing else is left in it) |
+| **Move the appointment in Outlook** (other day or time) | **The task gets the new date and time in the widget** |
 
 - Appointments are marked with the category **Notes4Me** and the subject "Task – Customer", e.g. *Ringe Asgeir – Nordan*.
 - Sync uses **classic Outlook** in the background (it starts hidden; you can keep using new Outlook). Classic Outlook must be installed and set up with your account. Changes reach new Outlook, the web and your phone through Exchange.
-- The widget syncs right after each change and checks Outlook every 2 minutes for deleted appointments.
+- Changes in the widget are sent to Outlook (and pushed to the server) right away; Outlook is checked every 10 seconds for deleted or moved appointments.
 - Only open tasks create new appointments; tasks that were already ticked when sync was switched on are left out.
 - The link between tasks and appointments is kept in `outlook-sync.json` in the notes folder.
 

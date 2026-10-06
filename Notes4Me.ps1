@@ -9,7 +9,7 @@ $notesPath = Join-Path $dir 'notes.json'
 $utf8      = New-Object Text.UTF8Encoding $false
 
 $cfg = [ordered]@{ topmost = $true; left = 120; top = 120; language = 'en'; tab = ''; fxAmount = '100'; fxDir = 'toNok'; width = $null; height = $null
-         fxImport = $false; fxImpCur = 'EUR'; fxShip = '0'; fxDuty = '0'; fxVoec = $false; fxSeller = ''; wakeWord = $false }
+         fxImport = $false; fxImpCur = 'EUR'; fxShip = '0'; fxDuty = '0'; fxVoec = $false; fxSeller = ''; wakeWord = $false; outlookSync = $false }
 if (Test-Path $cfgPath) {
     try { (Get-Content $cfgPath -Raw | ConvertFrom-Json).psobject.Properties | ForEach-Object { $cfg[$_.Name] = $_.Value } } catch {}
 }
@@ -34,6 +34,7 @@ $strings = @{
         pvTask = 'Task'; pvNote = 'Note'; pvFor = 'for {0}'; pvLoose = '(no customer/project)'; pvAuto = 'runs in {0} s – Enter now, Esc to cancel'
         impToggle = 'Import cost via Posten (VAT and fee)'; impShip = 'Shipping'; impDuty = 'Duty %'; impVoec = 'VAT paid at checkout (VOEC, under 3000 kr per item)'
         mCorrections = 'Voice corrections…'; mWake = 'Listen for "Notater" / "Notes4Me"'; wakeTip = ' – or say "Notater" / "Notes4Me"'; wakeErr = 'Could not start listening: {0}'
+        mOutlook = 'Sync tasks to the Outlook calendar'; olDone = 'Outlook: {0} new, {1} updated, {2} removed'; olErr = 'Outlook sync failed: {0}'
         impGoods = 'Goods'; impFrom = 'from {0}'; impDutyL = 'Duty ({0} %)'; impVat = 'VAT 25 %'; impFee = 'Posten fee'; impTotal = 'Total'; pvImport = 'import, total {0}'
         impNote = 'Posten 2026: 46 kr (value 0–500), 78 kr (500–3000), 278 kr (over 3000); no fee for VOEC. VAT is 25 % of goods + shipping + duty.'
         tabFx = 'Currency'; fxAmtTo = 'Amount in foreign currency'; fxAmtFrom = 'Amount in NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Foreign'
@@ -58,6 +59,7 @@ $strings = @{
         pvTask = 'Oppgave'; pvNote = 'Notat'; pvFor = 'for {0}'; pvLoose = '(uten kunde/prosjekt)'; pvAuto = 'utføres om {0} s – Enter nå, Esc avbryter'
         impToggle = 'Importkostnad via Posten (mva og gebyr)'; impShip = 'Frakt'; impDuty = 'Toll %'; impVoec = 'Mva betalt i nettbutikken (VOEC, under 3000 kr per vare)'
         mCorrections = 'Rettelser for tale…'; mWake = 'Lytt etter «Notater» / «Notes4Me»'; wakeTip = ' – eller si «Notater» / «Notes4Me»'; wakeErr = 'Kunne ikke starte lytting: {0}'
+        mOutlook = 'Synk oppgaver til Outlook-kalenderen'; olDone = 'Outlook: {0} nye, {1} endret, {2} fjernet'; olErr = 'Outlook-synk feilet: {0}'
         impGoods = 'Varepris'; impFrom = 'fra {0}'; impDutyL = 'Toll ({0} %)'; impVat = 'Mva 25 %'; impFee = 'Postens gebyr'; impTotal = 'Sluttsum'; pvImport = 'import, sluttsum {0}'
         impNote = 'Posten 2026: 46 kr (verdi 0–500), 78 kr (500–3000), 278 kr (over 3000); ingen gebyr ved VOEC. Mva er 25 % av varepris + frakt + toll.'
         tabFx = 'Valuta'; fxAmtTo = 'Beløp i valuta'; fxAmtFrom = 'Beløp i kroner'; fxRate = '1 {0} = {1} kr'; fxNok = 'kr'; fxForeign = 'Valuta'
@@ -82,6 +84,7 @@ $strings = @{
         pvTask = 'Uppgift'; pvNote = 'Anteckning'; pvFor = 'för {0}'; pvLoose = '(utan kund/projekt)'; pvAuto = 'körs om {0} s – Enter nu, Esc avbryter'
         impToggle = 'Importkostnad via Posten (moms och avgift)'; impShip = 'Frakt'; impDuty = 'Tull %'; impVoec = 'Moms betald i webbutiken (VOEC, under 3000 kr per vara)'
         mCorrections = 'Rättelser för tal…'; mWake = 'Lyssna efter ”Notater” / ”Notes4Me”'; wakeTip = ' – eller säg ”Notater” / ”Notes4Me”'; wakeErr = 'Kunde inte börja lyssna: {0}'
+        mOutlook = 'Synka uppgifter till Outlook-kalendern'; olDone = 'Outlook: {0} nya, {1} ändrade, {2} borttagna'; olErr = 'Outlook-synk misslyckades: {0}'
         impGoods = 'Varupris'; impFrom = 'från {0}'; impDutyL = 'Tull ({0} %)'; impVat = 'Moms 25 %'; impFee = 'Postens avgift'; impTotal = 'Totalt'; pvImport = 'import, totalt {0}'
         impNote = 'Posten 2026: 46 kr (värde 0–500), 78 kr (500–3000), 278 kr (över 3000); ingen avgift vid VOEC. Momsen är 25 % av varupris + frakt + tull.'
         tabFx = 'Valuta'; fxAmtTo = 'Belopp i utländsk valuta'; fxAmtFrom = 'Belopp i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Valuta'
@@ -106,6 +109,7 @@ $strings = @{
         pvTask = 'Opgave'; pvNote = 'Note'; pvFor = 'for {0}'; pvLoose = '(uden kunde/projekt)'; pvAuto = 'udføres om {0} s – Enter nu, Esc annullerer'
         impToggle = 'Importomkostning via Posten (moms og gebyr)'; impShip = 'Fragt'; impDuty = 'Told %'; impVoec = 'Moms betalt i webshoppen (VOEC, under 3000 kr pr. vare)'
         mCorrections = 'Rettelser for tale…'; mWake = 'Lyt efter »Notater« / »Notes4Me«'; wakeTip = ' – eller sig »Notater« / »Notes4Me«'; wakeErr = 'Kunne ikke starte lytning: {0}'
+        mOutlook = 'Synk opgaver til Outlook-kalenderen'; olDone = 'Outlook: {0} nye, {1} ændret, {2} fjernet'; olErr = 'Outlook-synk fejlede: {0}'
         impGoods = 'Varepris'; impFrom = 'fra {0}'; impDutyL = 'Told ({0} %)'; impVat = 'Moms 25 %'; impFee = 'Postens gebyr'; impTotal = 'I alt'; pvImport = 'import, i alt {0}'
         impNote = 'Posten 2026: 46 kr (værdi 0–500), 78 kr (500–3000), 278 kr (over 3000); intet gebyr ved VOEC. Momsen er 25 % af varepris + fragt + told.'
         tabFx = 'Valuta'; fxAmtTo = 'Beløb i udenlandsk valuta'; fxAmtFrom = 'Beløb i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Valuta'
@@ -140,6 +144,7 @@ function Save-Notes {
     $tmp = "$notesPath.tmp"
     [IO.File]::WriteAllText($tmp, $json, $utf8)
     if (Test-Path $notesPath) { [IO.File]::Replace($tmp, $notesPath, "$notesPath.bak") } else { [IO.File]::Move($tmp, $notesPath) }
+    if ($script:syncTimer -and $cfg.outlookSync) { $script:syncTimer.Stop(); $script:syncTimer.Start() }   # sync to Outlook shortly after
 }
 function Get-Note($id) { foreach ($n in $script:notes) { if ($n.id -eq $id) { return $n } } }
 function Now-Iso { (Get-Date).ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ss.fffZ') }
@@ -1132,6 +1137,108 @@ function Save-ArchiveDone {
 $el.archBtn.Add_Click({ Save-ArchiveDone })
 $el.archLink.Add_MouseLeftButtonDown({ param($s, $e) $script:showArchive = -not $script:showArchive; Render; $e.Handled = $true })
 
+# --- Outlook calendar sync ------------------------------------------------------
+# Every task with a date becomes an appointment in the default Outlook calendar, through
+# classic Outlook (COM). It runs hidden in the background and syncs with Exchange, so the
+# appointments also show in new Outlook and on the phone.
+#   new/changed task  -> appointment created/updated (with time: 30 min + reminder; else all-day)
+#   ticked/archived   -> "✓ " in front, no reminder (kept as history)
+#   task deleted      -> appointment deleted
+#   appointment deleted in Outlook -> the task line is deleted here (and the note, if nothing is left)
+# outlook-sync.json maps a task (note id + task text without date/time) to the appointment's EntryID.
+$syncMapPath = Join-Path $dir 'outlook-sync.json'
+$script:ol = $null
+function Get-SyncCore($content) {
+    $s = Get-DisplayText (Split-TaskTime ($dateRx.Replace($content, ''))).text
+    Format-Cap (($s -replace '\s{2,}', ' ') -replace '^[\s,.:;-]+|[\s,.:;-]+$', '').Trim()
+}
+# Desired appointments: key -> subject/date/time/done
+function Get-SyncTasks {
+    $out = [ordered]@{}; $seen = @{}
+    foreach ($t in @(Get-Tasks)) {
+        $core = Get-SyncCore $t.text
+        $base = "$($t.id)|$($core.ToLower())"; $seen[$base] = [int]$seen[$base] + 1
+        $names = @($t.customers | ForEach-Object { $k = $_.ToLower(); if ($script:custNames[$k]) { $script:custNames[$k] } else { $_ } } | Sort-Object -Unique)
+        $subject = $(if ($t.checked) { [string][char]0x2713 + ' ' } else { '' }) + $core + $(if ($names.Count) { ' – ' + ($names -join ', ') } else { '' })
+        $out["$base|$($seen[$base])"] = [pscustomobject]@{ id = $t.id; line = $t.line; subject = $subject; date = $t.date; time = $t.time; done = $t.checked
+            hash = '{0}|{1:yyyy-MM-dd}|{2}|{3}' -f $subject, $t.date, $t.time, $t.checked }
+    }
+    $out
+}
+function Set-Appointment($item, $d) {
+    $item.Subject = $d.subject
+    if ($d.time) {
+        $item.AllDayEvent = $false; $item.Start = $d.date.Add($d.time); $item.Duration = 30; $item.BusyStatus = 2
+    } else {
+        $item.AllDayEvent = $true; $item.Start = $d.date; $item.End = $d.date.AddDays(1); $item.BusyStatus = 0
+    }
+    $remind = -not $d.done -and $d.time -and $d.date.Add($d.time) -gt (Get-Date)
+    $item.ReminderSet = [bool]$remind; if ($remind) { $item.ReminderMinutesBeforeStart = 15 }
+    $item.Categories = 'Notes4Me'
+    $item.Body = 'Mine notater (Notes4Me)'
+    $item.Save()
+}
+function Remove-TaskLines($keys) {
+    $desired = Get-SyncTasks
+    $mark = '::removed::' + [guid]::NewGuid().ToString('N')   # lines are marked first so other line numbers stay valid
+    foreach ($k in $keys) {
+        $d = $desired[$k]; if (-not $d) { continue }
+        $n = Get-Note $d.id; if (-not $n) { continue }
+        $lines = $n.text -split "`n"; $lines[$d.line] = $mark; $n.text = $lines -join "`n"
+    }
+    foreach ($n in $script:notes.ToArray()) {   # .ToArray(): @() on this list fails in PowerShell 5.1
+        if (-not $n.text.Contains($mark)) { continue }
+        $n.text = (@($n.text -split "`n" | Where-Object { $_ -ne $mark }) -join "`n").Trim(); $n.updated = Now-Iso
+        if (-not (Get-DisplayText ($n.text -replace '(?m)^=([xa]\s)?', '')).Trim()) { [void]$script:notes.Remove($n); if ($script:editId -eq $n.id) { Stop-Edit } }
+    }
+}
+function Sync-Outlook {
+    $script:syncTimer.Stop()
+    if (-not $cfg.outlookSync) { return }
+    try {
+        if (-not $script:ol) { $script:ol = New-Object -ComObject Outlook.Application }
+        $ns = $script:ol.GetNamespace('MAPI'); $cal = $ns.GetDefaultFolder(9); $calId = $cal.EntryID
+        $map = @{}
+        if (Test-Path $syncMapPath) { (Get-Content $syncMapPath -Raw -Encoding UTF8 | ConvertFrom-Json).psobject.Properties | ForEach-Object { $map[$_.Name] = @{ id = $_.Value.id; hash = $_.Value.hash } } }
+        $desired = Get-SyncTasks
+        $created = 0; $updated = 0; $removed = 0; $gone = New-Object System.Collections.Generic.List[string]
+        foreach ($k in @($map.Keys)) {
+            $item = $null; try { $item = $ns.GetItemFromID($map[$k].id) } catch {}
+            if (-not $item -or $item.Parent.EntryID -ne $calId) {   # deleted (or moved away) in Outlook
+                if ($desired.Contains($k)) { $gone.Add($k) }
+                $map.Remove($k); continue
+            }
+            if (-not $desired.Contains($k)) { $item.Delete(); $map.Remove($k); $removed++; continue }   # task deleted here
+            if ($map[$k].hash -ne $desired[$k].hash) { Set-Appointment $item $desired[$k]; $map[$k].hash = $desired[$k].hash; $updated++ }
+        }
+        foreach ($k in $desired.Keys) {
+            $d = $desired[$k]
+            if ($map.ContainsKey($k) -or $d.done -or $gone.Contains($k)) { continue }
+            $item = $cal.Items.Add(1); Set-Appointment $item $d
+            $map[$k] = @{ id = $item.EntryID; hash = $d.hash }; $created++
+        }
+        ($map | ConvertTo-Json -Depth 3) | Set-Content $syncMapPath -Encoding UTF8
+        if ($gone.Count) { Remove-TaskLines $gone; Save-Notes; Render }
+        if ($created -or $updated -or $removed -or $gone.Count) { Show-TitleMessage ((T 'olDone') -f $created, $updated, ($removed + $gone.Count)) }
+    } catch {
+        $script:ol = $null
+        Show-TitleMessage ((T 'olErr') -f $_.Exception.Message)
+    }
+}
+function Set-OutlookSync([bool]$on) {
+    $cfg.outlookSync = $on; Save-Config
+    $script:outlookItem.IsChecked = $on
+    if ($on) { Sync-Outlook }
+}
+$script:syncTimer = New-Object Windows.Threading.DispatcherTimer
+$script:syncTimer.Interval = [TimeSpan]::FromSeconds(2)
+$script:syncTimer.Add_Tick({ Sync-Outlook })
+# Check Outlook every 2 minutes, so appointments deleted there disappear here too
+$script:syncPoll = New-Object Windows.Threading.DispatcherTimer
+$script:syncPoll.Interval = [TimeSpan]::FromMinutes(2)
+$script:syncPoll.Add_Tick({ if ($cfg.outlookSync) { Sync-Outlook } })
+$script:syncPoll.Start()
+
 # --- Currency tab -------------------------------------------------------------
 # Daily mid rates from Norges Bank (published around 16:00 CET on business days).
 # The last rates are kept in rates.json so the tab also works offline.
@@ -1390,7 +1497,7 @@ foreach ($code in $fxCurrencies.Keys) {
     [void]$el.impCurs.Children.Add($chip)
 }
 $el.impShip.Text = [string]$cfg.fxShip; $el.impDuty.Text = [string]$cfg.fxDuty
-$el.impToggle.Add_Click({ $cfg.fxImport = [bool]$el.impToggle.IsChecked; if (-not $cfg.fxImport) { $cfg.fxSeller = ''; wakeWord = $false }; Save-Config; Render-Fx })
+$el.impToggle.Add_Click({ $cfg.fxImport = [bool]$el.impToggle.IsChecked; if (-not $cfg.fxImport) { $cfg.fxSeller = '' }; Save-Config; Render-Fx })
 $el.impVoec.Add_Click({ $cfg.fxVoec = [bool]$el.impVoec.IsChecked; Save-Config; Render-Import })
 $el.impShip.Add_TextChanged({ $cfg.fxShip = $el.impShip.Text; Render-Import })
 $el.impDuty.Add_TextChanged({ $cfg.fxDuty = $el.impDuty.Text; Render-Import })
@@ -1444,6 +1551,7 @@ AddItem 'mCorrections' { Start-Process notepad.exe "`"$correctionsPath`"" } | Ou
 $top = AddItem 'mTopmost' { $win.Topmost = -not $win.Topmost; $this.IsChecked = $win.Topmost; $cfg.topmost = $win.Topmost; Save-Config }
 $top.IsChecked = $win.Topmost
 $script:wakeItem = AddItem 'mWake' { Set-WakeWord (-not $script:wake) }
+$script:outlookItem = AddItem 'mOutlook' { Set-OutlookSync (-not $cfg.outlookSync) }
 $langMenu = AddItem 'mLanguage' {}
 $langItems = @{}
 foreach ($code in $langNames.Keys) {
@@ -1501,6 +1609,9 @@ if ($cfg.width -and $cfg.height) { Set-CustomSize ([double]$cfg.width) ([double]
 
 Set-Texts
 Set-WakeWord ([bool]$cfg.wakeWord)
+$script:outlookItem.IsChecked = [bool]$cfg.outlookSync
+$win.Add_Loaded({ if ($cfg.outlookSync) { $script:syncTimer.Start() } })   # first sync shortly after start
+$win.Add_Closed({ if ($script:ol) { try { [void][Runtime.InteropServices.Marshal]::ReleaseComObject($script:ol) } catch {} } })
 $cfg.tab = $tasksTab   # the widget always opens on the Tasks tab
 Render
 [void]$win.ShowDialog()

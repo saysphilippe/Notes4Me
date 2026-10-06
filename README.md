@@ -9,6 +9,7 @@ The tabs are, in order: **Tasks**, **Currency**, **All** and one tab per custome
 - **Checkboxes:** start a line with `=` to turn it into a checkbox. Ticking it strikes the line through.
 - **Voice commands:** click the microphone by the title and just say it, for example "Remember to send the offer to Equinor on Friday" or "How much is 100 euro".
 - **Currency tab:** today's or historical exchange rates for €, £, $, Swedish kroner (SEK) and Danish kroner (DKK) from Norges Bank, with a calculator to or from Norwegian kroner – and the full import cost via Posten (VAT and fee). "Bambu 1500 euro" gives the total.
+- **Outlook calendar:** tasks with a date can be synced both ways with your Outlook calendar.
 - **Delete a customer/project:** right-click its tab to delete it with its notes, or just remove it and keep the notes.
 - **Delete one or many:** tick the box in the top-left corner of each note (or use **Select all**), then click **Delete selected**.
 - **Edit:** double-click a note.
@@ -105,6 +106,24 @@ Any line in any note that contains a date is a task and is listed in the **Tasks
 - **Archive done (n)** moves the ticked tasks to the archive (they are stored as `=a` in the note and still show as ticked there). **Show archive** lists them; untick one to make it an open task again.
 - **Double-click** a task to edit the note it belongs to.
 - The number on the tab is the count of open tasks.
+
+## Outlook calendar sync
+
+Right-click the widget and tick **Sync tasks to the Outlook calendar**. Every task with a date then becomes an appointment in your default Outlook calendar – and it works both ways:
+
+| You do | In Outlook |
+|---|---|
+| Add a task with a date | New appointment. With a time: 30 minutes, reminder 15 minutes before. Without a time: all-day. |
+| Change its text, date or time | The appointment is updated |
+| Tick or archive it | The appointment gets "✓" in front and no reminder (it stays as history) |
+| Delete the task or the note | The appointment is deleted |
+| **Delete the appointment in Outlook** | **The task line is deleted in the widget** (and the note, if nothing else is left in it) |
+
+- Appointments are marked with the category **Notes4Me** and the subject "Task – Customer", e.g. *Ringe Asgeir – Nordan*.
+- Sync uses **classic Outlook** in the background (it starts hidden; you can keep using new Outlook). Classic Outlook must be installed and set up with your account. Changes reach new Outlook, the web and your phone through Exchange.
+- The widget syncs right after each change and checks Outlook every 2 minutes for deleted appointments.
+- Only open tasks create new appointments; tasks that were already ticked when sync was switched on are left out.
+- The link between tasks and appointments is kept in `outlook-sync.json` in the notes folder.
 
 ## Voice commands
 

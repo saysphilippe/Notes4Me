@@ -6,6 +6,7 @@ A small always-on-top Windows desktop widget for quick notes, with a tab per cus
 - **Checkboxes:** start a line with `=` to turn it into a checkbox. Ticking it strikes the line through.
 - **Voice notes:** click the microphone and speak. The first word you say becomes the customer.
 - **Currency tab:** today's or historical exchange rates for €, £, $, Swedish kroner (SEK) and Danish kroner (DKK) from Norges Bank, with a calculator to or from Norwegian kroner.
+- **Delete a customer:** right-click its tab to delete it with its notes, or just remove it and keep the notes.
 - **Delete one or many:** tick the box in the top-left corner of each note (or use **Select all**), then click **Delete selected**.
 - **Edit:** double-click a note.
 - **Resizable:** drag the corner in the bottom right. The button next to the title restores the default size.
@@ -57,6 +58,13 @@ This note appears in the **Equinor** tab, with checkboxes in front of "Send offe
 - A note can mention several customers and then shows up in each of their tabs.
 - When you edit a note (double-click), you see the full text including `(Customer)`. A ticked line is stored as `=x`; you can also type `=x` yourself to add a line that is already ticked.
 
+## Deleting a customer
+
+Right-click a customer tab, or open the tab and click **Delete customer…** above the list. You get two choices, both asking for confirmation:
+
+- **Delete customer "X" and its notes** – deletes the notes that belong only to this customer. Notes that also mention other customers are kept there; only this customer is removed from them.
+- **Remove customer "X", keep the notes** – removes the customer from its notes, so they stay under **All**. A note that contained nothing but `(X)` is removed.
+
 ## Voice notes
 
 1. Click the **microphone** next to Save. Windows voice typing (Win+H) opens and the text box is ready.
@@ -72,7 +80,7 @@ Click **€ £ $ Currency** in the tab row.
 - Choose the direction: **Foreign → NOK** or **NOK → Foreign** (in Norwegian: **Valuta → kr** / **kr → Valuta**).
 - Type an amount. The result is shown for all five currencies (EUR, GBP, USD, SEK, DKK) at once. Both `1 000,50` and `1000.50` work.
 - **Rate date** is today by default and shows the latest rates. Pick another date in the calendar to see and calculate with historical rates. Norges Bank has no rates for weekends and public holidays, so the last business day before is used; the actual date is shown at the bottom. **Latest rates** goes back to today.
-- Click a result to copy the amount.
+- Each currency is shown with its flag. Click a result to copy the amount.
 - Rates are the official daily rates from Norges Bank (published around 16:00 on business days). Norges Bank quotes SEK and DKK per 100; the widget shows them per 1 krone. The latest rates are saved, so the tab also works offline.
 
 ## Other options

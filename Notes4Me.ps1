@@ -23,6 +23,9 @@ $strings = @{
         mFolder = 'Open notes folder'; mTopmost = 'Always on top'; mLanguage = 'Language'; mClose = 'Close'
         voice = 'Dictate a note – the first word becomes the customer (Windows voice typing, Win+H)'; voiceActive = 'Dictating – the first word becomes the customer'
         resetSize = 'Restore default size'; grip = 'Drag to resize'
+        custLink = 'Delete customer…'; custTip = 'Right-click to delete the customer'; custDelAll = 'Delete customer "{0}" and its notes ({1})'; custRemoveTag = 'Remove customer "{0}", keep the notes'
+        confirmCustDel = 'Delete the customer "{0}"? {1} note(s) will be deleted. Notes that also belong to other customers are kept there. This cannot be undone.'
+        confirmCustRemove = 'Remove the customer "{0}" from {1} note(s)? The notes are kept under All.'
         tabFx = 'Currency'; fxAmtTo = 'Amount in foreign currency'; fxAmtFrom = 'Amount in NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Foreign'
         fxSource = 'Norges Bank rates, {0}'; fxFetching = 'Fetching rates…'; fxOffline = 'Could not fetch new rates – showing rates from {0}'
         fxNone = 'No rates yet – check the internet connection'; fxDate = 'Rate date'; fxLatest = 'Latest rates'; fxHistNone = 'No rates found for this date'; fxRefresh = 'Refresh'; fxCopy = 'Click to copy'; fxCopied = 'Copied {0}'
@@ -35,6 +38,9 @@ $strings = @{
         mFolder = 'Åpne notatmappen'; mTopmost = 'Alltid øverst'; mLanguage = 'Språk'; mClose = 'Lukk'
         voice = 'Diktér et notat – første ord blir kunden (Windows stemmeskriving, Win+H)'; voiceActive = 'Dikterer – første ord blir kunden'
         resetSize = 'Tilbakestill størrelse'; grip = 'Dra for å endre størrelse'
+        custLink = 'Slett kunde…'; custTip = 'Høyreklikk for å slette kunden'; custDelAll = 'Slett kunden «{0}» og notatene ({1})'; custRemoveTag = 'Fjern kunden «{0}», behold notatene'
+        confirmCustDel = 'Slette kunden «{0}»? {1} notat(er) slettes. Notater som også gjelder andre kunder, beholdes der. Dette kan ikke angres.'
+        confirmCustRemove = 'Fjerne kunden «{0}» fra {1} notat(er)? Notatene beholdes under Alle.'
         tabFx = 'Valuta'; fxAmtTo = 'Beløp i valuta'; fxAmtFrom = 'Beløp i kroner'; fxRate = '1 {0} = {1} kr'; fxNok = 'kr'; fxForeign = 'Valuta'
         fxSource = 'Kurser fra Norges Bank, {0}'; fxFetching = 'Henter kurser…'; fxOffline = 'Fikk ikke hentet nye kurser – viser kurser fra {0}'
         fxNone = 'Ingen kurser ennå – sjekk internettforbindelsen'; fxDate = 'Kursdato'; fxLatest = 'Siste kurser'; fxHistNone = 'Fant ingen kurser for denne datoen'; fxRefresh = 'Oppdater'; fxCopy = 'Klikk for å kopiere'; fxCopied = 'Kopierte {0}'
@@ -47,6 +53,9 @@ $strings = @{
         mFolder = 'Öppna anteckningsmappen'; mTopmost = 'Alltid överst'; mLanguage = 'Språk'; mClose = 'Stäng'
         voice = 'Diktera en anteckning – första ordet blir kunden (Windows röstinmatning, Win+H)'; voiceActive = 'Dikterar – första ordet blir kunden'
         resetSize = 'Återställ storlek'; grip = 'Dra för att ändra storlek'
+        custLink = 'Ta bort kund…'; custTip = 'Högerklicka för att ta bort kunden'; custDelAll = 'Ta bort kunden ”{0}” och anteckningarna ({1})'; custRemoveTag = 'Ta bort kunden ”{0}”, behåll anteckningarna'
+        confirmCustDel = 'Ta bort kunden ”{0}”? {1} anteckning(ar) tas bort. Anteckningar som även hör till andra kunder behålls där. Det går inte att ångra.'
+        confirmCustRemove = 'Ta bort kunden ”{0}” från {1} anteckning(ar)? Anteckningarna finns kvar under Alla.'
         tabFx = 'Valuta'; fxAmtTo = 'Belopp i utländsk valuta'; fxAmtFrom = 'Belopp i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Valuta'
         fxSource = 'Kurser från Norges Bank, {0}'; fxFetching = 'Hämtar kurser…'; fxOffline = 'Kunde inte hämta nya kurser – visar kurser från {0}'
         fxNone = 'Inga kurser ännu – kontrollera internetanslutningen'; fxDate = 'Kursdatum'; fxLatest = 'Senaste kurser'; fxHistNone = 'Hittade inga kurser för det datumet'; fxRefresh = 'Uppdatera'; fxCopy = 'Klicka för att kopiera'; fxCopied = 'Kopierade {0}'
@@ -59,6 +68,9 @@ $strings = @{
         mFolder = 'Åbn notemappen'; mTopmost = 'Altid øverst'; mLanguage = 'Sprog'; mClose = 'Luk'
         voice = 'Diktér en note – første ord bliver kunden (Windows stemmeskrivning, Win+H)'; voiceActive = 'Dikterer – første ord bliver kunden'
         resetSize = 'Nulstil størrelse'; grip = 'Træk for at ændre størrelse'
+        custLink = 'Slet kunde…'; custTip = 'Højreklik for at slette kunden'; custDelAll = 'Slet kunden »{0}« og noterne ({1})'; custRemoveTag = 'Fjern kunden »{0}«, behold noterne'
+        confirmCustDel = 'Slet kunden »{0}«? {1} note(r) slettes. Noter, der også hører til andre kunder, beholdes der. Det kan ikke fortrydes.'
+        confirmCustRemove = 'Fjern kunden »{0}« fra {1} note(r)? Noterne beholdes under Alle.'
         tabFx = 'Valuta'; fxAmtTo = 'Beløb i udenlandsk valuta'; fxAmtFrom = 'Beløb i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Valuta'
         fxSource = 'Kurser fra Norges Bank, {0}'; fxFetching = 'Henter kurser…'; fxOffline = 'Kunne ikke hente nye kurser – viser kurser fra {0}'
         fxNone = 'Ingen kurser endnu – tjek internetforbindelsen'; fxDate = 'Kursdato'; fxLatest = 'Seneste kurser'; fxHistNone = 'Fandt ingen kurser for denne dato'; fxRefresh = 'Opdater'; fxCopy = 'Klik for at kopiere'; fxCopied = 'Kopierede {0}'
@@ -203,7 +215,10 @@ function Set-LineChecked($id, $index, $checked) {
         </DockPanel>
         <DockPanel Name="toolbar" DockPanel.Dock="Top" Margin="0,0,0,4">
           <Button Name="delBtn" DockPanel.Dock="Right" Background="#B5523B" Padding="8,2" FontSize="11" Visibility="Collapsed"/>
-          <TextBlock Name="selAll" Foreground="#888" FontSize="11" Cursor="Hand" VerticalAlignment="Center"/>
+          <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBlock Name="selAll" Foreground="#888" FontSize="11" Cursor="Hand"/>
+            <TextBlock Name="custLink" Foreground="#888" FontSize="11" Cursor="Hand" Margin="14,0,0,0" Visibility="Collapsed"/>
+          </StackPanel>
         </DockPanel>
         <TextBlock Name="emptyLbl" DockPanel.Dock="Top" Foreground="#777" FontSize="11" Margin="0,4,0,0"/>
         <ScrollViewer Name="listScroll" MaxHeight="430" VerticalScrollBarVisibility="Auto">
@@ -228,7 +243,7 @@ $win = [Windows.Markup.XamlReader]::Load((New-Object System.Xml.XmlNodeReader $x
 $el = @{}
 'title','tabs','input','hint','cancelBtn','saveBtn','editLbl','toolbar','delBtn','selAll','list','emptyLbl','micBtn','micIcon',
 'notesPanel','fxPanel','fxDir','fxAmountLbl','fxAmount','fxResults','fxRefresh','fxStatus','fxLatest','fxDateLbl','fxDate',
-'resetSize','grip','listScroll' | ForEach-Object { $el[$_] = $win.FindName($_) }
+'resetSize','grip','listScroll','custLink' | ForEach-Object { $el[$_] = $win.FindName($_) }
 $win.Left = $cfg.left; $win.Top = $cfg.top; $win.Topmost = [bool]$cfg.topmost
 
 $brushConv = New-Object Windows.Media.BrushConverter
@@ -337,6 +352,7 @@ function Render {
         $tx.Text = $(if ($isFx) { "€ £ $  $($t.name)" } else { "$($t.name)  $($t.count)" }); $tx.FontSize = 11
         $tx.Foreground = Brush $(if ($active) { '#FFF' } elseif ($isFx) { '#9DBEE0' } else { '#BBB' })
         $chip.Child = $tx
+        if ($t.key -and -not $isFx) { $chip.ContextMenu = New-CustomerMenu $t.key; $chip.ToolTip = T 'custTip' }
         $chip.Add_MouseLeftButtonDown({
             param($s, $e)
             $cfg.tab = [string]$s.Tag; Save-Config; $script:selected.Clear(); Render; $e.Handled = $true
@@ -365,6 +381,8 @@ function Render {
     $el.selAll.Text = T $(if ($allSel) { 'clearSel' } else { 'selectAll' })
     $el.delBtn.Content = (T 'deleteSel') -f $script:selected.Count
     $el.delBtn.Visibility = $(if ($script:selected.Count) { 'Visible' } else { 'Collapsed' })
+    $el.custLink.Text = T 'custLink'
+    $el.custLink.Visibility = $(if ($cfg.tab) { 'Visible' } else { 'Collapsed' })
 }
 
 function Set-Texts {
@@ -438,6 +456,47 @@ function Remove-Selected {
     }
     $script:selected.Clear(); Save-Notes; Render
 }
+
+# --- Deleting a customer --------------------------------------------------------
+# Either delete the customer with its notes (notes shared with other customers are kept
+# there, only this customer's tag is removed), or just remove the tag and keep every note.
+function Remove-CustomerTag($text, $key) {
+    $lines = foreach ($line in $text -split "`n") {
+        $new = $custRx.Replace($line, [Text.RegularExpressions.MatchEvaluator]{ param($m) if ($m.Groups[1].Value.Trim().ToLower() -eq $key) { '' } else { $m.Value } })
+        $new = ($new -replace '\s{2,}', ' ').TrimEnd()
+        if ($line.Trim() -eq '' -or $new.Trim() -notmatch '^(=(x\s)?)?\s*$') { $new }   # drop lines that held only the tag
+    }
+    (@($lines) -join "`n").Trim()
+}
+function Remove-Customer($key, [switch]$DeleteNotes) {
+    $name = $script:custNames[$key]
+    $affected = @($script:notes | Where-Object { Test-Customer $_ $key })
+    $only = @($affected | Where-Object { @(Get-Customers $_.text | ForEach-Object { $_.ToLower() } | Sort-Object -Unique).Count -eq 1 })
+    $msg = if ($DeleteNotes) { (T 'confirmCustDel') -f $name, $only.Count } else { (T 'confirmCustRemove') -f $name, $affected.Count }
+    if ([Windows.MessageBox]::Show($win, $msg, (T 'title'), 'YesNo', 'Warning') -ne 'Yes') { return }
+    foreach ($n in $affected) {
+        $newText = Remove-CustomerTag $n.text $key
+        if (($DeleteNotes -and $only -contains $n) -or -not $newText) {
+            [void]$script:notes.Remove($n); if ($script:editId -eq $n.id) { Stop-Edit }
+        } else { $n.text = $newText; $n.updated = Now-Iso }
+    }
+    $cfg.tab = ''; Save-Config; $script:selected.Clear(); Save-Notes; Render
+}
+function New-CustomerMenu($key) {
+    $m = New-Object Windows.Controls.ContextMenu
+    $count = @($script:notes | Where-Object { Test-Customer $_ $key } | Where-Object { @(Get-Customers $_.text | ForEach-Object { $_.ToLower() } | Sort-Object -Unique).Count -eq 1 }).Count
+    $a = New-Object Windows.Controls.MenuItem; $a.Header = (T 'custDelAll') -f $script:custNames[$key], $count; $a.Tag = $key
+    $a.Add_Click({ param($s, $e) Remove-Customer $s.Tag -DeleteNotes })
+    $b = New-Object Windows.Controls.MenuItem; $b.Header = (T 'custRemoveTag') -f $script:custNames[$key]; $b.Tag = $key
+    $b.Add_Click({ param($s, $e) Remove-Customer $s.Tag })
+    [void]$m.Items.Add($a); [void]$m.Items.Add($b)
+    $m
+}
+$el.custLink.Add_MouseLeftButtonDown({
+    param($s, $e)
+    $m = New-CustomerMenu ([string]$cfg.tab); $m.PlacementTarget = $s; $m.Placement = 'Bottom'; $m.IsOpen = $true
+    $e.Handled = $true
+})
 
 # --- Currency tab -------------------------------------------------------------
 # Daily mid rates from Norges Bank (published around 16:00 CET on business days).
@@ -529,6 +588,48 @@ function Update-HistRates {
     }
 }
 
+# Small flag icons (30x20) drawn with shapes, so they look the same on every PC
+function New-FlagIcon($code) {
+    $W = 30; $H = 20
+    $cv = New-Object Windows.Controls.Canvas; $cv.Width = $W; $cv.Height = $H; $cv.ClipToBounds = $true
+    function Add-Rect($x, $y, $w, $h, $c) {
+        $r = New-Object Windows.Shapes.Rectangle; $r.Width = $w; $r.Height = $h; $r.Fill = Brush $c
+        [Windows.Controls.Canvas]::SetLeft($r, $x); [Windows.Controls.Canvas]::SetTop($r, $y); [void]$cv.Children.Add($r)
+    }
+    function Add-Line($x1, $y1, $x2, $y2, $t, $c) {
+        $l = New-Object Windows.Shapes.Line; $l.X1 = $x1; $l.Y1 = $y1; $l.X2 = $x2; $l.Y2 = $y2; $l.StrokeThickness = $t; $l.Stroke = Brush $c
+        [void]$cv.Children.Add($l)
+    }
+    switch ($code) {
+        'EUR' {
+            Add-Rect 0 0 $W $H '#003399'
+            for ($i = 0; $i -lt 12; $i++) {   # 12 stars in a circle
+                $a = $i * [math]::PI / 6; $s = New-Object Windows.Shapes.Ellipse; $s.Width = 2.6; $s.Height = 2.6; $s.Fill = Brush '#FFCC00'
+                [Windows.Controls.Canvas]::SetLeft($s, 15 + 6.2 * [math]::Cos($a) - 1.3); [Windows.Controls.Canvas]::SetTop($s, 10 + 6.2 * [math]::Sin($a) - 1.3); [void]$cv.Children.Add($s)
+            }
+        }
+        'GBP' {
+            Add-Rect 0 0 $W $H '#012169'
+            Add-Line 0 0 $W $H 4 '#FFFFFF'; Add-Line $W 0 0 $H 4 '#FFFFFF'
+            Add-Line 0 0 $W $H 1.4 '#C8102E'; Add-Line $W 0 0 $H 1.4 '#C8102E'
+            Add-Rect 12 0 6 $H '#FFFFFF'; Add-Rect 0 7 $W 6 '#FFFFFF'
+            Add-Rect 13.25 0 3.5 $H '#C8102E'; Add-Rect 0 8.25 $W 3.5 '#C8102E'
+        }
+        'USD' {
+            for ($i = 0; $i -lt 13; $i++) { Add-Rect 0 ($i * $H / 13) $W ($H / 13 + 0.2) $(if ($i % 2) { '#FFFFFF' } else { '#B22234' }) }
+            Add-Rect 0 0 13 (7 * $H / 13) '#3C3B6E'
+            foreach ($y in 1.8, 4.6, 7.4) { foreach ($x in 2, 5.5, 9) { $d = New-Object Windows.Shapes.Ellipse; $d.Width = 1.4; $d.Height = 1.4; $d.Fill = Brush '#FFFFFF'
+                [Windows.Controls.Canvas]::SetLeft($d, $x); [Windows.Controls.Canvas]::SetTop($d, $y); [void]$cv.Children.Add($d) } }
+        }
+        'SEK' { Add-Rect 0 0 $W $H '#006AA7'; Add-Rect 9 0 4 $H '#FECC00'; Add-Rect 0 8 $W 4 '#FECC00' }
+        'DKK' { Add-Rect 0 0 $W $H '#C8102E'; Add-Rect 9 0 3.5 $H '#FFFFFF'; Add-Rect 0 8.25 $W 3.5 '#FFFFFF' }
+    }
+    $cv.Clip = New-Object Windows.Media.RectangleGeometry (New-Object Windows.Rect 0, 0, $W, $H), 3, 3
+    $b = New-Object Windows.Controls.Border
+    $b.Child = $cv; $b.CornerRadius = New-Object Windows.CornerRadius 3; $b.BorderBrush = Brush '#555'; $b.BorderThickness = Thick 0.5 0.5 0.5 0.5
+    $b
+}
+
 # Accepts "1 000,50", "1000.50", "1.000" (thousands) and ignores currency signs
 function ConvertTo-Amount($s) {
     $s = $s -replace '[\s €£$]|kr|nok|eur|gbp|usd|sek|dkk', ''
@@ -570,11 +671,11 @@ function Render-Fx {
                 $e.Handled = $true
             })
             $dp = New-Object Windows.Controls.DockPanel
-            $symTb = New-Object Windows.Controls.TextBlock
-            $symTb.Text = $sym; $symTb.FontSize = $(if ($sym.Length -gt 1) { 13 } else { 20 }); $symTb.Foreground = Brush '#D97757'; $symTb.Width = 38; $symTb.VerticalAlignment = 'Center'
+            $symTb = New-FlagIcon $code
+            $symTb.Margin = Thick 0 0 12 0; $symTb.VerticalAlignment = 'Center'
             [Windows.Controls.DockPanel]::SetDock($symTb, 'Left')
             $codeTb = New-Object Windows.Controls.TextBlock
-            $codeTb.Text = $(if ($sym -ne $code) { $code } else { '' }); $codeTb.FontSize = 11; $codeTb.Foreground = Brush '#777'; $codeTb.VerticalAlignment = 'Center'
+            $codeTb.Text = $code; $codeTb.FontSize = 11; $codeTb.Foreground = Brush '#777'; $codeTb.VerticalAlignment = 'Center'
             [Windows.Controls.DockPanel]::SetDock($codeTb, 'Right')
             $mid = New-Object Windows.Controls.StackPanel
             $res = New-Object Windows.Controls.TextBlock

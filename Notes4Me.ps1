@@ -1221,27 +1221,46 @@ function Sync-Outlook {
         $desired = Get-SyncTasks
         $created = 0; $updated = 0; $removed = 0; $gone = New-Object System.Collections.Generic.List[string]; $moved = @()
         $remember = { param($k, $item, $hash) $map[$k] = @{ id = $item.EntryID; hash = $hash; start = $item.Start.ToString('yyyy-MM-dd HH:mm'); allDay = [bool]$item.AllDayEvent } }
-        # Every appointment object is released right after use (finally): Outlook does not refresh an object
-        # that is still referenced, so a kept reference would hide changes coming from the server.
+        # Our appointments are READ from the calendar's table view (filtered on the Notes4Me category). Opening
+        # an appointment can return a locally cached copy that misses a move made in new Outlook, while the
+        # table always shows the current version. Appointments are only opened to change or delete them, and
+        # every object is released right after use.
+        $rows = @{}
+        $tbl = $cal.GetTable("[Categories] = 'Notes4Me'")
+        $tbl.Columns.RemoveAll(); foreach ($c in 'EntryID', 'Start', 'AllDayEvent') { [void]$tbl.Columns.Add($c) }
+        while (-not $tbl.EndOfTable) {
+            $r = $tbl.GetNextRow()
+            $rows[[string]$r.Item('EntryID')] = @{ start = [datetime]$r.Item('Start'); allDay = [bool]$r.Item('AllDayEvent') }
+            Remove-ComRef $r
+        }
+        Remove-ComRef $tbl
+        $open = { param($id) $i = $null; try { $i = $ns.GetItemFromID($id) } catch {}; $i }
         foreach ($k in @($map.Keys)) {
-            $item = $null; $parent = $null
-            try {
-                try { $item = $ns.GetItemFromID($map[$k].id) } catch {}
-                if ($item) { $parent = $item.Parent }
-                if (-not $item -or $parent.EntryID -ne $calId) {   # deleted (or moved away) in Outlook
-                    if ($desired.Contains($k)) { $gone.Add($k) }
-                    $map.Remove($k); continue
-                }
-                if (-not $desired.Contains($k)) { $item.Delete(); $map.Remove($k); $removed++; continue }   # task deleted here
-                $olStart = $item.Start.ToString('yyyy-MM-dd HH:mm'); $olAllDay = [bool]$item.AllDayEvent
-                if (-not $map[$k].start) { $map[$k].start = $olStart; $map[$k].allDay = $olAllDay }   # entry from an older version
-                if (($olStart -ne $map[$k].start -or $olAllDay -ne $map[$k].allDay) -and $map[$k].hash -eq $desired[$k].hash) {
-                    # moved in Outlook (and not changed here) -> move the task here
-                    $moved += @{ key = $k; date = $item.Start.Date; time = $(if ($olAllDay) { $null } else { $item.Start.TimeOfDay }) }
-                    $map[$k].start = $olStart; $map[$k].allDay = $olAllDay; continue
-                }
-                if ($map[$k].hash -ne $desired[$k].hash) { Set-Appointment $item $desired[$k]; & $remember $k $item $desired[$k].hash; $updated++ }
-            } finally { Remove-ComRef $parent; Remove-ComRef $item }
+            $row = $rows[$map[$k].id]
+            if (-not $row) {   # not in the table (e.g. its category was removed): look it up directly
+                $item = & $open $map[$k].id; $parent = $null
+                if ($item) { $parent = $item.Parent; if ($parent.EntryID -eq $calId) { $row = @{ start = $item.Start; allDay = [bool]$item.AllDayEvent } } }
+                Remove-ComRef $parent; Remove-ComRef $item
+            }
+            if (-not $row) {   # deleted (or moved away) in Outlook
+                if ($desired.Contains($k)) { $gone.Add($k) }
+                $map.Remove($k); continue
+            }
+            if (-not $desired.Contains($k)) {   # task deleted here
+                $item = & $open $map[$k].id; if ($item) { try { $item.Delete() } finally { Remove-ComRef $item } }
+                $map.Remove($k); $removed++; continue
+            }
+            $olStart = $row.start.ToString('yyyy-MM-dd HH:mm'); $olAllDay = $row.allDay
+            if (-not $map[$k].start) { $map[$k].start = $olStart; $map[$k].allDay = $olAllDay }   # entry from an older version
+            if (($olStart -ne $map[$k].start -or $olAllDay -ne $map[$k].allDay) -and $map[$k].hash -eq $desired[$k].hash) {
+                # moved in Outlook (and not changed here) -> move the task here
+                $moved += @{ key = $k; date = $row.start.Date; time = $(if ($olAllDay) { $null } else { $row.start.TimeOfDay }) }
+                $map[$k].start = $olStart; $map[$k].allDay = $olAllDay; continue
+            }
+            if ($map[$k].hash -ne $desired[$k].hash) {
+                $item = & $open $map[$k].id
+                if ($item) { try { Set-Appointment $item $desired[$k]; & $remember $k $item $desired[$k].hash; $updated++ } finally { Remove-ComRef $item } }
+            }
         }
         foreach ($k in $desired.Keys) {
             $d = $desired[$k]

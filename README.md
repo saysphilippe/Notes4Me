@@ -87,7 +87,7 @@ Any line in any note that contains a date is a task and is listed in the **Tasks
 
 ## Voice commands
 
-Click the **microphone** next to the title. A command box opens and Windows voice typing (Win+H) starts. Just say what you want in your own words – there are no fixed commands. The line under the box shows how it was understood. It runs after a 3-second pause, or straight away with **Enter**. **Esc** closes the box. You can also type.
+Click the **microphone** next to the title. A command box opens and Windows voice typing (Win+H) starts. Just say what you want in your own words – there are no fixed commands. The line under the box shows how it was understood. When you have been quiet for 2.5 seconds it runs by itself (a countdown is shown), or straight away with **Enter**. **Esc** closes the box. You can also type.
 
 | You say | Result |
 |---|---|

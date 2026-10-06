@@ -29,7 +29,7 @@ $strings = @{
         tabTasks = 'Tasks'; archiveBtn = 'Archive done ({0})'; showArchive = 'Show archive ({0})'; hideArchive = 'Hide archive'; archiveHdr = 'Archive'
         tasksEmpty = 'No tasks with a date yet. Write a line with a date, e.g. "= Send offer 16.10".'; dToday = 'Today'; dTomorrow = 'Tomorrow'; dOverdue = 'Overdue'
         cmdHint = 'Just say it, e.g. "Remember to send the offer to Equinor on Friday", "Talked to Statkraft about the sensors" or "How much is 100 euro". Enter runs it, Esc closes.'; cmdRun = 'Run'
-        pvTask = 'Task'; pvNote = 'Note'; pvFor = 'for {0}'; pvLoose = '(no customer)'; pvAuto = 'runs in 3 s – Enter now, Esc to cancel'
+        pvTask = 'Task'; pvNote = 'Note'; pvFor = 'for {0}'; pvLoose = '(no customer)'; pvAuto = 'runs in {0} s – Enter now, Esc to cancel'
         tabFx = 'Currency'; fxAmtTo = 'Amount in foreign currency'; fxAmtFrom = 'Amount in NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Foreign'
         fxSource = 'Norges Bank rates, {0}'; fxFetching = 'Fetching rates…'; fxOffline = 'Could not fetch new rates – showing rates from {0}'
         fxNone = 'No rates yet – check the internet connection'; fxDate = 'Rate date'; fxLatest = 'Latest rates'; fxHistNone = 'No rates found for this date'; fxRefresh = 'Refresh'; fxCopy = 'Click to copy'; fxCopied = 'Copied {0}'
@@ -48,7 +48,7 @@ $strings = @{
         tabTasks = 'Oppgaver'; archiveBtn = 'Arkiver utførte ({0})'; showArchive = 'Vis arkiv ({0})'; hideArchive = 'Skjul arkiv'; archiveHdr = 'Arkiv'
         tasksEmpty = 'Ingen oppgaver med dato ennå. Skriv en linje med dato, f.eks. «= Sende tilbud 16.10».'; dToday = 'I dag'; dTomorrow = 'I morgen'; dOverdue = 'Forfalt'
         cmdHint = 'Si det med egne ord, f.eks. «Husk å sende tilbud til Equinor på fredag», «Snakket med Statkraft om sensorene» eller «Hvor mye er 100 euro». Enter utfører, Esc lukker.'; cmdRun = 'Utfør'
-        pvTask = 'Oppgave'; pvNote = 'Notat'; pvFor = 'for {0}'; pvLoose = '(uten kunde)'; pvAuto = 'utføres om 3 s – Enter nå, Esc avbryter'
+        pvTask = 'Oppgave'; pvNote = 'Notat'; pvFor = 'for {0}'; pvLoose = '(uten kunde)'; pvAuto = 'utføres om {0} s – Enter nå, Esc avbryter'
         tabFx = 'Valuta'; fxAmtTo = 'Beløp i valuta'; fxAmtFrom = 'Beløp i kroner'; fxRate = '1 {0} = {1} kr'; fxNok = 'kr'; fxForeign = 'Valuta'
         fxSource = 'Kurser fra Norges Bank, {0}'; fxFetching = 'Henter kurser…'; fxOffline = 'Fikk ikke hentet nye kurser – viser kurser fra {0}'
         fxNone = 'Ingen kurser ennå – sjekk internettforbindelsen'; fxDate = 'Kursdato'; fxLatest = 'Siste kurser'; fxHistNone = 'Fant ingen kurser for denne datoen'; fxRefresh = 'Oppdater'; fxCopy = 'Klikk for å kopiere'; fxCopied = 'Kopierte {0}'
@@ -67,7 +67,7 @@ $strings = @{
         tabTasks = 'Uppgifter'; archiveBtn = 'Arkivera klara ({0})'; showArchive = 'Visa arkiv ({0})'; hideArchive = 'Dölj arkiv'; archiveHdr = 'Arkiv'
         tasksEmpty = 'Inga uppgifter med datum ännu. Skriv en rad med datum, t.ex. ”= Skicka offert 16.10”.'; dToday = 'I dag'; dTomorrow = 'I morgon'; dOverdue = 'Försenad'
         cmdHint = 'Säg det med egna ord, t.ex. ”Kom ihåg att skicka offert till Equinor på fredag”, ”Pratade med Statkraft om sensorerna” eller ”Hur mycket är 100 euro”. Enter kör, Esc stänger.'; cmdRun = 'Kör'
-        pvTask = 'Uppgift'; pvNote = 'Anteckning'; pvFor = 'för {0}'; pvLoose = '(utan kund)'; pvAuto = 'körs om 3 s – Enter nu, Esc avbryter'
+        pvTask = 'Uppgift'; pvNote = 'Anteckning'; pvFor = 'för {0}'; pvLoose = '(utan kund)'; pvAuto = 'körs om {0} s – Enter nu, Esc avbryter'
         tabFx = 'Valuta'; fxAmtTo = 'Belopp i utländsk valuta'; fxAmtFrom = 'Belopp i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Valuta'
         fxSource = 'Kurser från Norges Bank, {0}'; fxFetching = 'Hämtar kurser…'; fxOffline = 'Kunde inte hämta nya kurser – visar kurser från {0}'
         fxNone = 'Inga kurser ännu – kontrollera internetanslutningen'; fxDate = 'Kursdatum'; fxLatest = 'Senaste kurser'; fxHistNone = 'Hittade inga kurser för det datumet'; fxRefresh = 'Uppdatera'; fxCopy = 'Klicka för att kopiera'; fxCopied = 'Kopierade {0}'
@@ -86,7 +86,7 @@ $strings = @{
         tabTasks = 'Opgaver'; archiveBtn = 'Arkivér udførte ({0})'; showArchive = 'Vis arkiv ({0})'; hideArchive = 'Skjul arkiv'; archiveHdr = 'Arkiv'
         tasksEmpty = 'Ingen opgaver med dato endnu. Skriv en linje med dato, f.eks. »= Send tilbud 16.10«.'; dToday = 'I dag'; dTomorrow = 'I morgen'; dOverdue = 'Forfalden'
         cmdHint = 'Sig det med dine egne ord, f.eks. »Husk at sende tilbud til Equinor på fredag«, »Talte med Statkraft om sensorerne« eller »Hvor meget er 100 euro«. Enter udfører, Esc lukker.'; cmdRun = 'Udfør'
-        pvTask = 'Opgave'; pvNote = 'Note'; pvFor = 'for {0}'; pvLoose = '(uden kunde)'; pvAuto = 'udføres om 3 s – Enter nu, Esc annullerer'
+        pvTask = 'Opgave'; pvNote = 'Note'; pvFor = 'for {0}'; pvLoose = '(uden kunde)'; pvAuto = 'udføres om {0} s – Enter nu, Esc annullerer'
         tabFx = 'Valuta'; fxAmtTo = 'Beløb i udenlandsk valuta'; fxAmtFrom = 'Beløb i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Valuta'
         fxSource = 'Kurser fra Norges Bank, {0}'; fxFetching = 'Henter kurser…'; fxOffline = 'Kunne ikke hente nye kurser – viser kurser fra {0}'
         fxNone = 'Ingen kurser endnu – tjek internetforbindelsen'; fxDate = 'Kursdato'; fxLatest = 'Seneste kurser'; fxHistNone = 'Fandt ingen kurser for denne dato'; fxRefresh = 'Opdater'; fxCopy = 'Klik for at kopiere'; fxCopied = 'Kopierede {0}'
@@ -590,7 +590,6 @@ function Get-CommandText($cmd) {
 }
 
 function Invoke-VoiceCommand {
-    $script:cmdTimer.Stop()
     $cmd = Read-VoiceCommand $el.cmdBox.Text
     if (-not $cmd -or (($cmd.kind -ne 'fx') -and -not $cmd.body)) { return }
     $done = Get-CommandText $cmd
@@ -613,13 +612,14 @@ function Invoke-VoiceCommand {
         }
     }
     Save-Config; $script:selected.Clear(); Render
-    $script:cmdDone = $true; $el.cmdBox.Text = ''
+    $script:cmdDone = $true; $el.cmdBox.Text = ''; $script:cmdLast = ''
     $el.cmdPreview.Text = [char]0x2713 + ' ' + $done; $el.cmdPreview.Foreground = Brush '#B5D19E'
     $el.cmdBox.Focus() | Out-Null
 }
 
 function Open-CommandBar {
     $el.cmdBar.Visibility = 'Visible'; $el.titleMic.Foreground = Brush '#6A9BCC'
+    $script:cmdLast = $el.cmdBox.Text; $script:cmdLastChange = Get-Date; $script:cmdTimer.Start()
     $win.Activate() | Out-Null; $el.cmdBox.Focus() | Out-Null
     # Win+H opens Windows voice typing, which types into the focused box
     [Notes4Me.Keys]::keybd_event(0x5B, 0, 0, [UIntPtr]::Zero); [Notes4Me.Keys]::keybd_event(0x48, 0, 0, [UIntPtr]::Zero)
@@ -630,20 +630,33 @@ function Close-CommandBar {
     $el.cmdBar.Visibility = 'Collapsed'; $el.titleMic.Foreground = Brush '#BBB'
 }
 
+# While the box is open, its text is checked four times a second (voice typing does not always
+# raise change events while it is still writing). When the text has not changed for 2.5 s,
+# the command runs by itself; the preview counts down until then.
+$cmdPause = 2.5
+$script:cmdLast = ''; $script:cmdLastChange = Get-Date
 $script:cmdTimer = New-Object Windows.Threading.DispatcherTimer
-$script:cmdTimer.Interval = [TimeSpan]::FromSeconds(3)
-$script:cmdTimer.Add_Tick({ Invoke-VoiceCommand })
+$script:cmdTimer.Interval = [TimeSpan]::FromMilliseconds(250)
+$script:cmdTimer.Add_Tick({
+    $text = $el.cmdBox.Text
+    if ($text -ne $script:cmdLast) { $script:cmdLast = $text; $script:cmdLastChange = Get-Date; Update-CommandPreview; return }
+    if (-not $text.Trim()) { return }
+    $left = $cmdPause - ((Get-Date) - $script:cmdLastChange).TotalSeconds
+    if ($left -le 0) { Invoke-VoiceCommand } else { Update-CommandPreview $left }
+})
+function Update-CommandPreview($left = $cmdPause) {
+    if ($script:cmdDone) { return }   # keep the "done" message until something new is said
+    $text = $el.cmdBox.Text
+    if (-not $text.Trim()) { $el.cmdPreview.Text = ''; return }
+    $el.cmdPreview.Text = (Get-CommandText (Read-VoiceCommand $text)) + '  ·  ' + ((T 'pvAuto') -f [math]::Ceiling($left))
+    $el.cmdPreview.Foreground = Brush '#9DBEE0'
+}
 $el.titleMic.Add_MouseLeftButtonDown({ param($s, $e) Open-CommandBar; $e.Handled = $true })
 $el.cmdRun.Add_Click({ Invoke-VoiceCommand })
 $el.cmdClose.Add_Click({ Close-CommandBar })
 $el.cmdBox.Add_TextChanged({
     $el.cmdHint.Visibility = $(if ($el.cmdBox.Text) { 'Collapsed' } else { 'Visible' })
-    if ($script:cmdDone) { $script:cmdDone = $false; return }   # keep the "done" message after clearing the box
-    $script:cmdTimer.Stop()
-    if ($el.cmdBox.Text.Trim()) {
-        $el.cmdPreview.Text = (Get-CommandText (Read-VoiceCommand $el.cmdBox.Text)) + '  ·  ' + (T 'pvAuto'); $el.cmdPreview.Foreground = Brush '#9DBEE0'
-        $script:cmdTimer.Start()
-    } else { $el.cmdPreview.Text = '' }
+    if ($el.cmdBox.Text) { $script:cmdDone = $false }
 })
 $el.cmdBox.Add_PreviewKeyDown({
     param($s, $e)

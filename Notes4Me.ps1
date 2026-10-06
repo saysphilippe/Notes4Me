@@ -21,13 +21,15 @@ $strings = @{
         deleteSel = 'Delete selected ({0})'; selectAll = 'Select all'; clearSel = 'Clear selection'
         confirmDel = 'Delete {0} note(s)? This cannot be undone.'; empty = 'No notes yet'; edit = 'Double-click to edit'; select = 'Select for deletion'
         mFolder = 'Open notes folder'; mTopmost = 'Always on top'; mLanguage = 'Language'; mClose = 'Close'
-        voice = 'Dictate a note – the first word becomes the customer (Windows voice typing, Win+H)'; voiceActive = 'Dictating – the first word becomes the customer'
+        voice = 'Voice command: note, task or currency (Windows voice typing, Win+H)'; voiceActive = 'Dictating – the first word becomes the customer'
         resetSize = 'Restore default size'; grip = 'Drag to resize'
         custLink = 'Delete customer…'; custTip = 'Right-click to delete the customer'; custDelAll = 'Delete customer "{0}" and its notes ({1})'; custRemoveTag = 'Remove customer "{0}", keep the notes'
         confirmCustDel = 'Delete the customer "{0}"? {1} note(s) will be deleted. Notes that also belong to other customers are kept there. This cannot be undone.'
         confirmCustRemove = 'Remove the customer "{0}" from {1} note(s)? The notes are kept under All.'
         tabTasks = 'Tasks'; archiveBtn = 'Archive done ({0})'; showArchive = 'Show archive ({0})'; hideArchive = 'Hide archive'; archiveHdr = 'Archive'
         tasksEmpty = 'No tasks with a date yet. Write a line with a date, e.g. "= Send offer 16.10".'; dToday = 'Today'; dTomorrow = 'Tomorrow'; dOverdue = 'Overdue'
+        cmdHint = 'Say or type e.g. "Task Equinor send offer on Friday", "Note Statkraft …" or "Currency 100 euro". Enter runs it, Esc closes.'; cmdRun = 'Run'
+        pvTask = 'Task'; pvNote = 'Note'; pvFor = 'for {0}'; pvLoose = '(no customer)'; pvAuto = 'runs in 3 s – Enter now, Esc to cancel'
         tabFx = 'Currency'; fxAmtTo = 'Amount in foreign currency'; fxAmtFrom = 'Amount in NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Foreign'
         fxSource = 'Norges Bank rates, {0}'; fxFetching = 'Fetching rates…'; fxOffline = 'Could not fetch new rates – showing rates from {0}'
         fxNone = 'No rates yet – check the internet connection'; fxDate = 'Rate date'; fxLatest = 'Latest rates'; fxHistNone = 'No rates found for this date'; fxRefresh = 'Refresh'; fxCopy = 'Click to copy'; fxCopied = 'Copied {0}'
@@ -38,13 +40,15 @@ $strings = @{
         deleteSel = 'Slett valgte ({0})'; selectAll = 'Velg alle'; clearSel = 'Fjern valg'
         confirmDel = 'Slette {0} notat(er)? Dette kan ikke angres.'; empty = 'Ingen notater ennå'; edit = 'Dobbeltklikk for å redigere'; select = 'Velg for sletting'
         mFolder = 'Åpne notatmappen'; mTopmost = 'Alltid øverst'; mLanguage = 'Språk'; mClose = 'Lukk'
-        voice = 'Diktér et notat – første ord blir kunden (Windows stemmeskriving, Win+H)'; voiceActive = 'Dikterer – første ord blir kunden'
+        voice = 'Talekommando: notat, oppgave eller valuta (Windows stemmeskriving, Win+H)'; voiceActive = 'Dikterer – første ord blir kunden'
         resetSize = 'Tilbakestill størrelse'; grip = 'Dra for å endre størrelse'
         custLink = 'Slett kunde…'; custTip = 'Høyreklikk for å slette kunden'; custDelAll = 'Slett kunden «{0}» og notatene ({1})'; custRemoveTag = 'Fjern kunden «{0}», behold notatene'
         confirmCustDel = 'Slette kunden «{0}»? {1} notat(er) slettes. Notater som også gjelder andre kunder, beholdes der. Dette kan ikke angres.'
         confirmCustRemove = 'Fjerne kunden «{0}» fra {1} notat(er)? Notatene beholdes under Alle.'
         tabTasks = 'Oppgaver'; archiveBtn = 'Arkiver utførte ({0})'; showArchive = 'Vis arkiv ({0})'; hideArchive = 'Skjul arkiv'; archiveHdr = 'Arkiv'
         tasksEmpty = 'Ingen oppgaver med dato ennå. Skriv en linje med dato, f.eks. «= Sende tilbud 16.10».'; dToday = 'I dag'; dTomorrow = 'I morgen'; dOverdue = 'Forfalt'
+        cmdHint = 'Si eller skriv f.eks. «Oppgave Equinor sende tilbud på fredag», «Notat Statkraft …» eller «Valuta 100 euro». Enter utfører, Esc lukker.'; cmdRun = 'Utfør'
+        pvTask = 'Oppgave'; pvNote = 'Notat'; pvFor = 'for {0}'; pvLoose = '(uten kunde)'; pvAuto = 'utføres om 3 s – Enter nå, Esc avbryter'
         tabFx = 'Valuta'; fxAmtTo = 'Beløp i valuta'; fxAmtFrom = 'Beløp i kroner'; fxRate = '1 {0} = {1} kr'; fxNok = 'kr'; fxForeign = 'Valuta'
         fxSource = 'Kurser fra Norges Bank, {0}'; fxFetching = 'Henter kurser…'; fxOffline = 'Fikk ikke hentet nye kurser – viser kurser fra {0}'
         fxNone = 'Ingen kurser ennå – sjekk internettforbindelsen'; fxDate = 'Kursdato'; fxLatest = 'Siste kurser'; fxHistNone = 'Fant ingen kurser for denne datoen'; fxRefresh = 'Oppdater'; fxCopy = 'Klikk for å kopiere'; fxCopied = 'Kopierte {0}'
@@ -55,13 +59,15 @@ $strings = @{
         deleteSel = 'Ta bort markerade ({0})'; selectAll = 'Markera alla'; clearSel = 'Avmarkera'
         confirmDel = 'Ta bort {0} anteckning(ar)? Det går inte att ångra.'; empty = 'Inga anteckningar ännu'; edit = 'Dubbelklicka för att redigera'; select = 'Markera för borttagning'
         mFolder = 'Öppna anteckningsmappen'; mTopmost = 'Alltid överst'; mLanguage = 'Språk'; mClose = 'Stäng'
-        voice = 'Diktera en anteckning – första ordet blir kunden (Windows röstinmatning, Win+H)'; voiceActive = 'Dikterar – första ordet blir kunden'
+        voice = 'Röstkommando: anteckning, uppgift eller valuta (Windows röstinmatning, Win+H)'; voiceActive = 'Dikterar – första ordet blir kunden'
         resetSize = 'Återställ storlek'; grip = 'Dra för att ändra storlek'
         custLink = 'Ta bort kund…'; custTip = 'Högerklicka för att ta bort kunden'; custDelAll = 'Ta bort kunden ”{0}” och anteckningarna ({1})'; custRemoveTag = 'Ta bort kunden ”{0}”, behåll anteckningarna'
         confirmCustDel = 'Ta bort kunden ”{0}”? {1} anteckning(ar) tas bort. Anteckningar som även hör till andra kunder behålls där. Det går inte att ångra.'
         confirmCustRemove = 'Ta bort kunden ”{0}” från {1} anteckning(ar)? Anteckningarna finns kvar under Alla.'
         tabTasks = 'Uppgifter'; archiveBtn = 'Arkivera klara ({0})'; showArchive = 'Visa arkiv ({0})'; hideArchive = 'Dölj arkiv'; archiveHdr = 'Arkiv'
         tasksEmpty = 'Inga uppgifter med datum ännu. Skriv en rad med datum, t.ex. ”= Skicka offert 16.10”.'; dToday = 'I dag'; dTomorrow = 'I morgon'; dOverdue = 'Försenad'
+        cmdHint = 'Säg eller skriv t.ex. ”Uppgift Equinor skicka offert på fredag”, ”Anteckning Statkraft …” eller ”Valuta 100 euro”. Enter kör, Esc stänger.'; cmdRun = 'Kör'
+        pvTask = 'Uppgift'; pvNote = 'Anteckning'; pvFor = 'för {0}'; pvLoose = '(utan kund)'; pvAuto = 'körs om 3 s – Enter nu, Esc avbryter'
         tabFx = 'Valuta'; fxAmtTo = 'Belopp i utländsk valuta'; fxAmtFrom = 'Belopp i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Valuta'
         fxSource = 'Kurser från Norges Bank, {0}'; fxFetching = 'Hämtar kurser…'; fxOffline = 'Kunde inte hämta nya kurser – visar kurser från {0}'
         fxNone = 'Inga kurser ännu – kontrollera internetanslutningen'; fxDate = 'Kursdatum'; fxLatest = 'Senaste kurser'; fxHistNone = 'Hittade inga kurser för det datumet'; fxRefresh = 'Uppdatera'; fxCopy = 'Klicka för att kopiera'; fxCopied = 'Kopierade {0}'
@@ -72,13 +78,15 @@ $strings = @{
         deleteSel = 'Slet valgte ({0})'; selectAll = 'Vælg alle'; clearSel = 'Fravælg'
         confirmDel = 'Slet {0} note(r)? Det kan ikke fortrydes.'; empty = 'Ingen noter endnu'; edit = 'Dobbeltklik for at redigere'; select = 'Vælg til sletning'
         mFolder = 'Åbn notemappen'; mTopmost = 'Altid øverst'; mLanguage = 'Sprog'; mClose = 'Luk'
-        voice = 'Diktér en note – første ord bliver kunden (Windows stemmeskrivning, Win+H)'; voiceActive = 'Dikterer – første ord bliver kunden'
+        voice = 'Stemmekommando: note, opgave eller valuta (Windows stemmeskrivning, Win+H)'; voiceActive = 'Dikterer – første ord bliver kunden'
         resetSize = 'Nulstil størrelse'; grip = 'Træk for at ændre størrelse'
         custLink = 'Slet kunde…'; custTip = 'Højreklik for at slette kunden'; custDelAll = 'Slet kunden »{0}« og noterne ({1})'; custRemoveTag = 'Fjern kunden »{0}«, behold noterne'
         confirmCustDel = 'Slet kunden »{0}«? {1} note(r) slettes. Noter, der også hører til andre kunder, beholdes der. Det kan ikke fortrydes.'
         confirmCustRemove = 'Fjern kunden »{0}« fra {1} note(r)? Noterne beholdes under Alle.'
         tabTasks = 'Opgaver'; archiveBtn = 'Arkivér udførte ({0})'; showArchive = 'Vis arkiv ({0})'; hideArchive = 'Skjul arkiv'; archiveHdr = 'Arkiv'
         tasksEmpty = 'Ingen opgaver med dato endnu. Skriv en linje med dato, f.eks. »= Send tilbud 16.10«.'; dToday = 'I dag'; dTomorrow = 'I morgen'; dOverdue = 'Forfalden'
+        cmdHint = 'Sig eller skriv f.eks. »Opgave Equinor send tilbud på fredag«, »Note Statkraft …« eller »Valuta 100 euro«. Enter udfører, Esc lukker.'; cmdRun = 'Udfør'
+        pvTask = 'Opgave'; pvNote = 'Note'; pvFor = 'for {0}'; pvLoose = '(uden kunde)'; pvAuto = 'udføres om 3 s – Enter nu, Esc annullerer'
         tabFx = 'Valuta'; fxAmtTo = 'Beløb i udenlandsk valuta'; fxAmtFrom = 'Beløb i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Valuta'
         fxSource = 'Kurser fra Norges Bank, {0}'; fxFetching = 'Henter kurser…'; fxOffline = 'Kunne ikke hente nye kurser – viser kurser fra {0}'
         fxNone = 'Ingen kurser endnu – tjek internetforbindelsen'; fxDate = 'Kursdato'; fxLatest = 'Seneste kurser'; fxHistNone = 'Fandt ingen kurser for denne dato'; fxRefresh = 'Opdater'; fxCopy = 'Klik for at kopiere'; fxCopied = 'Kopierede {0}'
@@ -186,9 +194,28 @@ function Set-LineChecked($id, $index, $checked) {
     <DockPanel>
       <DockPanel DockPanel.Dock="Top">
         <TextBlock Name="resetSize" DockPanel.Dock="Right" FontFamily="Segoe MDL2 Assets" Text="&#xE73F;" FontSize="12"
-                   Foreground="#888" Cursor="Hand" VerticalAlignment="Center" Visibility="Collapsed"/>
+                   Foreground="#888" Cursor="Hand" VerticalAlignment="Center" Visibility="Collapsed" Margin="10,0,0,0"/>
+        <TextBlock Name="titleMic" DockPanel.Dock="Right" FontFamily="Segoe MDL2 Assets" Text="&#xE720;" FontSize="15"
+                   Foreground="#BBB" Cursor="Hand" VerticalAlignment="Center"/>
         <TextBlock Name="title" Foreground="#D97757" FontWeight="SemiBold" FontSize="13"/>
       </DockPanel>
+      <Border Name="cmdBar" DockPanel.Dock="Top" Visibility="Collapsed" Background="#262A30" CornerRadius="6" Padding="6"
+              Margin="0,6,0,2" BorderBrush="#6A9BCC" BorderThickness="1">
+        <StackPanel>
+          <Grid>
+            <TextBox Name="cmdBox" FontSize="13" Background="#2B2B2B" Foreground="#EEE" CaretBrush="#EEE" BorderThickness="0"
+                     Padding="4,3" TextWrapping="Wrap" MinHeight="26"/>
+            <TextBlock Name="cmdHint" Foreground="#777" FontSize="11" TextWrapping="Wrap" Margin="7,4,7,0" IsHitTestVisible="False"/>
+          </Grid>
+          <DockPanel Margin="0,5,0,0">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" VerticalAlignment="Top">
+              <Button Name="cmdClose" Background="#444" Padding="8,2" FontSize="11" Margin="0,0,6,0"/>
+              <Button Name="cmdRun" Background="#6A9BCC" Padding="10,2" FontSize="11"/>
+            </StackPanel>
+            <TextBlock Name="cmdPreview" Foreground="#9DBEE0" FontSize="11" TextWrapping="Wrap" VerticalAlignment="Center"/>
+          </DockPanel>
+        </StackPanel>
+      </Border>
       <WrapPanel Name="tabs" DockPanel.Dock="Top" Margin="0,6,0,4"/>
       <StackPanel Name="fxPanel" DockPanel.Dock="Top" Visibility="Collapsed" Margin="0,2,0,0">
         <StackPanel Name="fxDir" Orientation="Horizontal" Margin="0,0,0,6"/>
@@ -218,9 +245,6 @@ function Set-LineChecked($id, $index, $checked) {
             <Button Name="cancelBtn" Background="#444" Visibility="Collapsed" Margin="0,0,6,0"/>
             <Button Name="saveBtn"/>
           </StackPanel>
-          <Button Name="micBtn" DockPanel.Dock="Left" Background="#2B2B2B" Padding="8,4" Margin="0,0,8,0">
-            <TextBlock Name="micIcon" FontFamily="Segoe MDL2 Assets" Text="&#xE720;" FontSize="13"/>
-          </Button>
           <TextBlock Name="editLbl" Foreground="#999" FontSize="11" VerticalAlignment="Center" TextWrapping="Wrap" Visibility="Collapsed"/>
         </DockPanel>
         <DockPanel Name="toolbar" DockPanel.Dock="Top" Margin="0,0,0,4">
@@ -253,7 +277,7 @@ function Set-LineChecked($id, $index, $checked) {
 '@
 $win = [Windows.Markup.XamlReader]::Load((New-Object System.Xml.XmlNodeReader $xaml))
 $el = @{}
-'title','tabs','input','hint','cancelBtn','saveBtn','editLbl','toolbar','delBtn','selAll','list','emptyLbl','micBtn','micIcon',
+'title','tabs','input','hint','cancelBtn','saveBtn','editLbl','toolbar','delBtn','selAll','list','emptyLbl','titleMic','cmdBar','cmdBox','cmdHint','cmdPreview','cmdRun','cmdClose',
 'notesPanel','fxPanel','fxDir','fxAmountLbl','fxAmount','fxResults','fxRefresh','fxStatus','fxLatest','fxDateLbl','fxDate',
 'resetSize','grip','listScroll','custLink','archBtn','archLink' | ForEach-Object { $el[$_] = $win.FindName($_) }
 $win.Left = $cfg.left; $win.Top = $cfg.top; $win.Topmost = [bool]$cfg.topmost
@@ -321,10 +345,13 @@ function New-NoteCard($note) {
             $tb.Text = Get-DisplayText $m.Groups[2].Value
             if ($checked) { $tb.TextDecorations = [Windows.TextDecorations]::Strikethrough; $tb.Foreground = Brush '#777' }
             $cb = New-Object Windows.Controls.CheckBox
-            $cb.IsChecked = $checked; $cb.Content = $tb; $cb.Margin = Thick 0 1 0 1; $cb.Foreground = Brush '#DDD'
+            # Only the box itself ticks; the text is separate so a double-click on it edits the note
+            $cb.IsChecked = $checked; $cb.Margin = Thick 0 2 6 0; $cb.VerticalAlignment = 'Top'
             $cb.Tag = @{ id = $note.id; line = $i }
             $cb.Add_Click({ param($s, $e) Set-LineChecked $s.Tag.id $s.Tag.line ([bool]$s.IsChecked) })
-            [void]$sp.Children.Add($cb)
+            $ln = New-Object Windows.Controls.DockPanel; $ln.Margin = Thick 0 1 0 1
+            [Windows.Controls.DockPanel]::SetDock($cb, 'Left'); [void]$ln.Children.Add($cb); [void]$ln.Children.Add($tb)
+            [void]$sp.Children.Add($ln)
         } elseif ($line.Trim() -eq '') {
             $tb.Height = 6; [void]$sp.Children.Add($tb)
         } else {
@@ -402,53 +429,200 @@ function Render {
 }
 
 function Set-Texts {
-    $el.title.Text = T 'title'; $el.hint.Text = T 'hint'; $el.cancelBtn.Content = T 'cancel'; $el.micBtn.ToolTip = T 'voice'
-    $el.resetSize.ToolTip = T 'resetSize'; $el.grip.ToolTip = T 'grip'
-    $el.editLbl.Text = T $(if ($script:voiceMode) { 'voiceActive' } else { 'editing' })
+    $el.title.Text = T 'title'; $el.hint.Text = T 'hint'; $el.cancelBtn.Content = T 'cancel'; $el.titleMic.ToolTip = T 'voice'
+    $el.resetSize.ToolTip = T 'resetSize'; $el.grip.ToolTip = T 'grip'; $el.editLbl.Text = T 'editing'
     $el.saveBtn.Content = T $(if ($script:editId) { 'update' } else { 'save' })
-    $el.micIcon.Foreground = Brush $(if ($script:voiceMode) { '#D97757' } else { '#BBB' })
+    $el.cmdHint.Text = T 'cmdHint'; $el.cmdRun.Content = T 'cmdRun'; $el.cmdClose.Content = T 'cancel'
 }
 
 function Start-Edit($id) {
     $note = Get-Note $id; if (-not $note) { return }
-    $script:editId = $id; $script:voiceMode = $false
+    $script:editId = $id
     $el.input.Text = $note.text -replace "`n", "`r`n"
     $el.cancelBtn.Visibility = 'Visible'; $el.editLbl.Visibility = 'Visible'; Set-Texts
     $el.input.Focus() | Out-Null; $el.input.CaretIndex = $el.input.Text.Length
 }
 function Stop-Edit {
-    $script:editId = $null; $script:voiceMode = $false; $el.input.Text = ''
+    $script:editId = $null; $el.input.Text = ''
     $el.cancelBtn.Visibility = 'Collapsed'; $el.editLbl.Visibility = 'Collapsed'; Set-Texts
 }
 
-# --- Voice notes --------------------------------------------------------------
-# Uses Windows voice typing (Win+H), which types into the focused text box. When the
-# dictated note is saved, its first word becomes the customer: "Equinor ring tilbake" -> "(Equinor) Ring tilbake".
+# --- Voice commands -------------------------------------------------------------
+# The microphone by the title opens a command box and starts Windows voice typing (Win+H).
+# What is said is read as a command and run after a 3 second pause (or Enter):
+#   "Oppgave Equinor sende tilbud på fredag"  -> task for Equinor, dated next Friday
+#   "Oppgave ringe Per i morgen"              -> task without customer
+#   "Notat Statkraft byttet sensor"            -> note for Statkraft
+#   "Valuta 100 euro"                          -> Currency tab, 100 EUR -> NOK
+# The word after Oppgave/Notat is a customer only if it is a known customer or follows "for"/"kunde".
 Add-Type -Namespace Notes4Me -Name Keys -MemberDefinition '[DllImport("user32.dll")] public static extern void keybd_event(byte vk, byte scan, uint flags, UIntPtr extra);'
-$script:voiceMode = $false
-function Start-Voice {
-    if ($script:editId) { Stop-Edit }
-    $script:voiceMode = $true
-    $el.editLbl.Visibility = 'Visible'; $el.cancelBtn.Visibility = 'Visible'; Set-Texts
-    $win.Activate() | Out-Null; $el.input.Focus() | Out-Null; $el.input.CaretIndex = $el.input.Text.Length
-    # Win+H
+$intentWords = @{
+    note = 'notat', 'note', 'notis', 'anteckning', 'memo'
+    task = 'oppgave', 'oppgåve', 'task', 'todo', 'gjøremål', 'uppgift', 'opgave', 'påminnelse', 'reminder'
+    fx   = 'valuta', 'currency', 'kurs', 'omregn', 'regn', 'veksle', 'växla'
+}
+$monthNo = @{ jan = 1; feb = 2; mar = 3; apr = 4; mai = 5; may = 5; maj = 5; jun = 6; jul = 7; aug = 8; sep = 9; okt = 10; oct = 10; nov = 11; des = 12; dec = 12 }
+$weekdayNo = @{ mandag = 1; monday = 1; 'måndag' = 1; tirsdag = 2; tuesday = 2; tisdag = 2; onsdag = 3; wednesday = 3; torsdag = 4; thursday = 4
+                fredag = 5; friday = 5; 'lørdag' = 6; saturday = 6; 'lördag' = 6; 'søndag' = 0; sunday = 0; 'söndag' = 0 }
+$datePre = '(?:\b(?:på|til|innen|senest|by|on|before|until|den|the|till|senast|inden|fra)\s+)*'
+function Format-Cap($s) { $s = $s.Trim(); if ($s) { $s.Substring(0, 1).ToUpper() + $s.Substring(1) } else { $s } }
+function Clear-Spoken($s) { (($s -replace '\s{2,}', ' ') -replace '^[\s,.:;-]+|[\s,.:;!?-]+$', '').Trim() }
+
+# Finds a spoken or written date and returns it with the phrase removed from the text
+function ConvertFrom-SpokenDate($text) {
+    $today = (Get-Date).Date
+    $found = { param($m, $date) @{ date = $date; text = $text.Remove($m.Index, $m.Length); numeric = $false } }
+    $m = [regex]::Match($text, "(?i)$datePre\b(\d{1,2})\.?\s+(?:of\s+)?(jan|feb|mar|apr|mai|may|maj|jun|jul|aug|sep|okt|oct|nov|des|dec)\p{L}*\.?(?:\s+(\d{4}))?")
+    if ($m.Success) {
+        $y = if ($m.Groups[3].Success) { [int]$m.Groups[3].Value } else { $today.Year }
+        try { $d = New-Object DateTime $y, $monthNo[$m.Groups[2].Value.ToLower()], ([int]$m.Groups[1].Value) } catch { $d = $null }
+        if ($d) { if (-not $m.Groups[3].Success -and $d -lt $today.AddDays(-180)) { $d = $d.AddYears(1) }; return & $found $m $d }
+    }
+    foreach ($rel in @(@('i\s*overmorgen|overmorgen|i\s*övermorgon|övermorgon|day after tomorrow', 2), @('i\s*morgen|i\s*morgon|imorgon|tomorrow', 1), @('i\s*dag|idag|today', 0))) {
+        $m = [regex]::Match($text, "(?i)$datePre\b(?:$($rel[0]))\b"); if ($m.Success) { return & $found $m $today.AddDays($rel[1]) }
+    }
+    $m = [regex]::Match($text, "(?i)$datePre\b(?:om|in|inom)\s+(\d+)\s+(?:dager|dagar|dage|days)\b")
+    if ($m.Success) { return & $found $m $today.AddDays([int]$m.Groups[1].Value) }
+    $m = [regex]::Match($text, "(?i)$datePre\b(?:neste|next|nästa|næste)\s+(?:uke|week|vecka|uge)\b")
+    if ($m.Success) { return & $found $m $today.AddDays(((8 - [int]$today.DayOfWeek) % 7) + $(if ($today.DayOfWeek -eq 'Monday') { 7 } else { 0 })) }
+    $m = [regex]::Match($text, "(?i)$datePre\b(?:(?:neste|next|nästa|næste|kommende)\s+)?(" + ($weekdayNo.Keys -join '|') + ")\b")
+    if ($m.Success) {
+        $add = ($weekdayNo[$m.Groups[1].Value.ToLower()] - [int]$today.DayOfWeek + 7) % 7; if ($add -eq 0) { $add = 7 }
+        return & $found $m $today.AddDays($add)
+    }
+    $d = Get-TaskDate $text
+    if ($d) { return @{ date = $d; text = $text; numeric = $true } }
+    @{ date = $null; text = $text; numeric = $false }
+}
+
+# Splits "Equinor sende tilbud" into customer + text (see rules above)
+function Split-Customer($rest) {
+    if ($rest -match '^(?i)(?:løs|loose|lös|uten kunde|ingen kunde|without customer|no customer|utan kund|uden kunde)\b[\s,:.-]*(.*)$') { return @{ customer = $null; text = $matches[1] } }
+    foreach ($name in @($script:custNames.Values | Sort-Object Length -Descending)) {
+        if ($rest -match ('^(?i)(?:(?:for|kunde|customer|kund|för)\s+)?' + [regex]::Escape($name) + '\b[\s,:.-]*(.*)$')) { return @{ customer = $name; text = $matches[1] } }
+    }
+    if ($rest -match '^(?i)(?:for|kunde|customer|kund|för)\s+([\p{L}\p{N}&''-]+)[\s,:.-]*(.*)$' -and
+        $matches[1] -notmatch '^(?i)(å|att|at|to|i|på|' + ($weekdayNo.Keys -join '|') + ')$') {
+        return @{ customer = Format-Cap $matches[1]; text = $matches[2] }
+    }
+    @{ customer = $null; text = $rest }
+}
+
+$fxWordRx = '(?i)(svenske?\s+kron(?:er|or)|svenska\s+kronor|sek|danske?\s+kron(?:er|or)|dkk|euro(?:s|er)?|eur|€|pund|pounds?|gbp|£|dollars?|usd|\$|norske?\s+kron(?:er|or)|kroner|kronor|kr|nok)'
+function Get-FxCode($word) {
+    switch -Regex ($word) {
+        '(?i)svensk|sek' { 'SEK'; break } '(?i)dansk|dkk' { 'DKK'; break } '(?i)euro|eur|€' { 'EUR'; break }
+        '(?i)pund|pound|gbp|£' { 'GBP'; break } '(?i)dollar|usd|\$' { 'USD'; break } default { 'NOK' }
+    }
+}
+
+function Read-VoiceCommand($raw) {
+    $text = Clear-Spoken $raw
+    if (-not $text) { return $null }
+    $first = ($text -split '\s+')[0].ToLower() -replace '[^\p{L}]', ''
+    $rest = Clear-Spoken ($text -replace '^\S+', '')
+    $kind = $null
+    foreach ($k in $intentWords.Keys) { if ($intentWords[$k] -contains $first) { $kind = $k } }
+    if (-not $kind) {   # no keyword: an amount with a currency is a currency question, anything else a note
+        if ($text -match '\d' -and $text -match $fxWordRx) { $kind = 'fx'; $rest = $text } else { $kind = 'note'; $rest = $text }
+    }
+    if ($kind -eq 'fx') {
+        $dt = ConvertFrom-SpokenDate $rest
+        $m = [regex]::Match($dt.text, '(\d[\d  .,]*)\s*' + $fxWordRx + '?')
+        $amount = if ($m.Success) { ConvertTo-Amount $m.Groups[1].Value } else { $null }
+        $code = if ($m.Success -and $m.Groups[2].Success) { Get-FxCode $m.Groups[2].Value } elseif ($dt.text -match $fxWordRx) { Get-FxCode $matches[1] } else { $null }
+        if ($dt.date -and $dt.date -gt (Get-Date).Date) { $dt.date = $dt.date.AddYears(-1) }   # rates only exist for past dates
+        return @{ kind = 'fx'; amount = $amount; code = $code; dir = $(if ($code -eq 'NOK') { 'fromNok' } else { 'toNok' }); date = $dt.date }
+    }
+    $c = Split-Customer $rest
+    if ($kind -eq 'task') {
+        $dt = ConvertFrom-SpokenDate $c.text
+        $date = if ($dt.date) { $dt.date } else { (Get-Date).Date }
+        $label = Format-Cap (Clear-Spoken $dt.text); $body = $label
+        if (-not $dt.numeric) { $body = "$body " + $date.ToString($(if ($date.Year -eq (Get-Date).Year) { 'd.M' } else { 'd.M.yyyy' })) }
+        return @{ kind = 'task'; customer = $c.customer; body = $body.Trim(); label = $label; date = $date }
+    }
+    @{ kind = 'note'; customer = $c.customer; body = Format-Cap (Clear-Spoken $c.text) }
+}
+
+function Get-CommandText($cmd) {
+    if (-not $cmd) { return '' }
+    $who = if ($cmd.customer) { (T 'pvFor') -f $cmd.customer } else { T 'pvLoose' }
+    switch ($cmd.kind) {
+        'task' { '{0} {1} · {2}: {3}' -f (T 'pvTask'), $who, $cmd.date.ToString('ddd d.M.'), $cmd.label }
+        'note' { '{0} {1}: {2}' -f (T 'pvNote'), $who, $cmd.body }
+        'fx'   {
+            $amt = if ($null -ne $cmd.amount) { '{0:N2} {1}' -f $cmd.amount, $(if ($cmd.code) { $cmd.code } else { '' }) } else { '' }
+            ('{0} {1}{2}' -f (T 'tabFx'), $amt, $(if ($cmd.date) { ' · ' + $cmd.date.ToString('d') } else { '' })).Trim()
+        }
+    }
+}
+
+function Invoke-VoiceCommand {
+    $script:cmdTimer.Stop()
+    $cmd = Read-VoiceCommand $el.cmdBox.Text
+    if (-not $cmd -or (($cmd.kind -ne 'fx') -and -not $cmd.body)) { return }
+    $done = Get-CommandText $cmd
+    $now = Now-Iso
+    switch ($cmd.kind) {
+        'task' {
+            $line = "= $($cmd.body)" + $(if ($cmd.customer) { " ($($cmd.customer))" } else { '' })
+            $script:notes.Add(@{ id = [guid]::NewGuid().ToString('N'); created = $now; updated = $now; text = $line }); Save-Notes
+            $cfg.tab = $tasksTab
+        }
+        'note' {
+            $txt = $(if ($cmd.customer) { "($($cmd.customer)) " } else { '' }) + $cmd.body
+            $script:notes.Add(@{ id = [guid]::NewGuid().ToString('N'); created = $now; updated = $now; text = $txt }); Save-Notes
+            $cfg.tab = $(if ($cmd.customer) { $cmd.customer.ToLower() } else { '' })
+        }
+        'fx' {
+            if ($null -ne $cmd.amount) { $cfg.fxDir = $cmd.dir; $el.fxAmount.Text = $cmd.amount.ToString('0.##') }
+            $el.fxDate.SelectedDate = $(if ($cmd.date) { $cmd.date } else { (Get-Date).Date })
+            $cfg.tab = $fxTab
+        }
+    }
+    Save-Config; $script:selected.Clear(); Render
+    $script:cmdDone = $true; $el.cmdBox.Text = ''
+    $el.cmdPreview.Text = [char]0x2713 + ' ' + $done; $el.cmdPreview.Foreground = Brush '#B5D19E'
+    $el.cmdBox.Focus() | Out-Null
+}
+
+function Open-CommandBar {
+    $el.cmdBar.Visibility = 'Visible'; $el.titleMic.Foreground = Brush '#6A9BCC'
+    $win.Activate() | Out-Null; $el.cmdBox.Focus() | Out-Null
+    # Win+H opens Windows voice typing, which types into the focused box
     [Notes4Me.Keys]::keybd_event(0x5B, 0, 0, [UIntPtr]::Zero); [Notes4Me.Keys]::keybd_event(0x48, 0, 0, [UIntPtr]::Zero)
     [Notes4Me.Keys]::keybd_event(0x48, 0, 2, [UIntPtr]::Zero); [Notes4Me.Keys]::keybd_event(0x5B, 0, 2, [UIntPtr]::Zero)
 }
-function ConvertFrom-Dictation($text) {
-    if ($custRx.IsMatch($text)) { return $text }   # customer already given
-    $m = [regex]::Match($text, '^\s*([\p{L}\p{N}&''\-]+)[\s,.:;!?]*(.*)$', 'Singleline')
-    if (-not $m.Success) { return $text }
-    $name = $m.Groups[1].Value; $rest = $m.Groups[2].Value
-    $name = $name.Substring(0, 1).ToUpper() + $name.Substring(1)
-    if ($rest) { $rest = $rest.Substring(0, 1).ToUpper() + $rest.Substring(1) }
-    "($name) $rest".Trim()
+function Close-CommandBar {
+    $script:cmdTimer.Stop(); $el.cmdBox.Text = ''; $el.cmdPreview.Text = ''
+    $el.cmdBar.Visibility = 'Collapsed'; $el.titleMic.Foreground = Brush '#BBB'
 }
+
+$script:cmdTimer = New-Object Windows.Threading.DispatcherTimer
+$script:cmdTimer.Interval = [TimeSpan]::FromSeconds(3)
+$script:cmdTimer.Add_Tick({ Invoke-VoiceCommand })
+$el.titleMic.Add_MouseLeftButtonDown({ param($s, $e) Open-CommandBar; $e.Handled = $true })
+$el.cmdRun.Add_Click({ Invoke-VoiceCommand })
+$el.cmdClose.Add_Click({ Close-CommandBar })
+$el.cmdBox.Add_TextChanged({
+    $el.cmdHint.Visibility = $(if ($el.cmdBox.Text) { 'Collapsed' } else { 'Visible' })
+    if ($script:cmdDone) { $script:cmdDone = $false; return }   # keep the "done" message after clearing the box
+    $script:cmdTimer.Stop()
+    if ($el.cmdBox.Text.Trim()) {
+        $el.cmdPreview.Text = (Get-CommandText (Read-VoiceCommand $el.cmdBox.Text)) + '  ·  ' + (T 'pvAuto'); $el.cmdPreview.Foreground = Brush '#9DBEE0'
+        $script:cmdTimer.Start()
+    } else { $el.cmdPreview.Text = '' }
+})
+$el.cmdBox.Add_PreviewKeyDown({
+    param($s, $e)
+    if ($e.Key -eq 'Return') { Invoke-VoiceCommand; $e.Handled = $true }
+    elseif ($e.Key -eq 'Escape') { Close-CommandBar; $e.Handled = $true }
+})
 
 function Save-Input {
     $text = ($el.input.Text -replace "`r`n", "`n").Trim()
     if (-not $text) { return }
-    if ($script:voiceMode -and -not $script:editId) { $text = ConvertFrom-Dictation $text }
     if ($script:editId -and ($note = Get-Note $script:editId)) {
         $note.text = $text; $note.updated = Now-Iso
     } else {
@@ -572,9 +746,10 @@ function New-TaskRow($t) {
     $tb.TextWrapping = 'Wrap'; $tb.FontSize = 12; $tb.Foreground = Brush '#DDD'; $tb.Text = Get-DisplayText $t.text
     if ($t.checked) { $tb.TextDecorations = [Windows.TextDecorations]::Strikethrough; $tb.Foreground = Brush '#777' }
     $cb = New-Object Windows.Controls.CheckBox
-    $cb.IsChecked = $t.checked; $cb.Content = $tb; $cb.VerticalAlignment = 'Center'; $cb.Tag = @{ id = $t.id; line = $t.line }
+    $cb.IsChecked = $t.checked; $cb.VerticalAlignment = 'Center'; $cb.Margin = Thick 0 0 6 0; $cb.Tag = @{ id = $t.id; line = $t.line }   # only the box ticks
     $cb.Add_Click({ param($s, $e) Set-LineChecked $s.Tag.id $s.Tag.line ([bool]$s.IsChecked) })
-    [void]$dp.Children.Add($right); [void]$dp.Children.Add($cb)
+    [Windows.Controls.DockPanel]::SetDock($cb, 'Left'); $tb.VerticalAlignment = 'Center'
+    [void]$dp.Children.Add($right); [void]$dp.Children.Add($cb); [void]$dp.Children.Add($tb)
     $row.Child = $dp
     $row
 }
@@ -836,7 +1011,6 @@ $win.Add_Loaded({ $script:loaded = $true; if ($cfg.tab -eq $fxTab) { Update-Rate
 
 $el.saveBtn.Add_Click({ Save-Input })
 $el.cancelBtn.Add_Click({ Stop-Edit })
-$el.micBtn.Add_Click({ Start-Voice })
 $el.delBtn.Add_Click({ Remove-Selected })
 $el.selAll.Add_MouseLeftButtonDown({
     param($s, $e)

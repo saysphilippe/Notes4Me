@@ -7,7 +7,7 @@ The tabs are, in order: **Tasks**, **Currency**, **All** and one tab per custome
 - **Tasks tab:** every line with a date (for example `= Send offer 16.10`) appears here, soonest first, with overdue tasks in red. Tick to strike through, then archive the ticked ones.
 - **Customer tabs:** write a customer name in parentheses in a note, for example `(Equinor)`. A tab for that customer appears automatically and lists its notes, newest first. **All** shows every note.
 - **Checkboxes:** start a line with `=` to turn it into a checkbox. Ticking it strikes the line through.
-- **Voice notes:** click the microphone and speak. The first word you say becomes the customer.
+- **Voice commands:** click the microphone by the title and say for example "Task Equinor send offer on Friday", "Note Statkraft …" or "Currency 100 euro".
 - **Currency tab:** today's or historical exchange rates for €, £, $, Swedish kroner (SEK) and Danish kroner (DKK) from Norges Bank, with a calculator to or from Norwegian kroner.
 - **Delete a customer:** right-click its tab to delete it with its notes, or just remove it and keep the notes.
 - **Delete one or many:** tick the box in the top-left corner of each note (or use **Select all**), then click **Delete selected**.
@@ -20,7 +20,7 @@ Your notes are stored locally on your PC. The only thing the widget fetches from
 ## Requirements
 
 - Windows 10 or 11 (uses the built-in Windows PowerShell 5.1 – nothing extra to install)
-- Voice notes use Windows voice typing (Win+H), which needs an internet connection and must support your language
+- Voice commands use Windows voice typing (Win+H), which needs an internet connection and must support your language
 
 ## Install
 
@@ -80,18 +80,30 @@ Any line in any note that contains a date is a task and is listed in the **Tasks
 
 - **Date formats:** `16.10`, `16.10.`, `16/10`, `16.10.2026`, `16.10.26`, `16-10-2026` and `2026-10-16`. Without a year the nearest sensible year is used (`3.1` written in October means next January). Times such as `kl 12.10` are not treated as dates. A version number like `version 1.2` is read as 1 February; write `v1.2` to avoid that.
 - **Order:** soonest first. Overdue tasks are marked in red, and **Today** and **Tomorrow** are labelled. The customer is shown under the date.
-- **Tick** a task to strike it through. A ticked plain line (without `=`) becomes a ticked checkbox in its note.
+- **Tick the box** to strike a task through (clicking the text does nothing, so double-click always edits). A ticked plain line (without `=`) becomes a ticked checkbox in its note.
 - **Archive done (n)** moves the ticked tasks to the archive (they are stored as `=a` in the note and still show as ticked there). **Show archive** lists them; untick one to make it an open task again.
 - **Double-click** a task to edit the note it belongs to.
 - The number on the tab is the count of open tasks.
 
-## Voice notes
+## Voice commands
 
-1. Click the **microphone** next to Save. Windows voice typing (Win+H) opens and the text box is ready.
-2. Say the customer first, then the note: *"Equinor, call back tomorrow about the offer"*.
-3. Click **Save** or press **Ctrl+Enter**. The note is saved as `(Equinor) Call back tomorrow about the offer`.
+Click the **microphone** next to the title. A command box opens and Windows voice typing (Win+H) starts. Say what you want; the line under the box shows how it was understood. The command runs after a 3-second pause, or straight away with **Enter**. **Esc** closes the box. You can also type commands.
 
-If the dictated text already contains `(Customer)`, it is left as it is. Voice typing is provided by Windows; if your language isn't supported there, Windows will tell you.
+| You say | Result |
+|---|---|
+| "**Task** Equinor send offer on Friday" | Task for Equinor, dated next Friday |
+| "**Task** call Per tomorrow" | Task without a customer |
+| "**Task** for Hydro order boards 16 October" | Task for a new customer Hydro |
+| "**Note** Statkraft replaced sensor on panel three" | Note for Statkraft |
+| "**Currency** 100 euro" / "Currency 500 kroner" | Currency tab with the amount and the right direction |
+
+- The command words work in all four languages: Task/Oppgave/Uppgift/Opgave, Note/Notat/Anteckning, Currency/Valuta.
+- **Customer:** the word after Task/Note is the customer only if it is a customer you already have, or if you say "for X" or "customer X". Otherwise the task or note has no customer. Say "loose"/"løs" to make sure.
+- **Dates:** today, tomorrow, the day after tomorrow, weekdays ("on Friday"), "next week", "in 3 days", "16 October" and written dates. A task without a date gets today's date.
+- **Currency:** an amount in a foreign currency gives foreign → NOK; an amount in kroner gives NOK → foreign. A date gives that day's rates. "What is 250 dollars" also works without the word Currency.
+- After a task, the widget switches to **Tasks**; after a note, to the customer's tab; after a currency command, to **Currency**. The box stays open for the next command.
+
+Voice typing is provided by Windows. If your language isn't supported there, Windows will tell you.
 
 ## Currency tab
 

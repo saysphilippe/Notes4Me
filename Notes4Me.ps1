@@ -18,19 +18,19 @@ function Save-Config { $cfg | ConvertTo-Json | Set-Content $cfgPath -Encoding UT
 $strings = @{
     en = @{
         title = 'My notes'; all = 'All'; save = 'Save'; update = 'Update'; cancel = 'Cancel'; editing = 'Editing note'
-        hint = 'Write a note…  (Customer) adds it to a customer tab, = at the start of a line makes a checkbox. Ctrl+Enter saves.'
+        hint = 'Write a note…  (Customer/project) puts it in its own tab, = at the start of a line makes a checkbox. Ctrl+Enter saves.'
         deleteSel = 'Delete selected ({0})'; selectAll = 'Select all'; clearSel = 'Clear selection'
         confirmDel = 'Delete {0} note(s)? This cannot be undone.'; empty = 'No notes yet'; edit = 'Double-click to edit'; select = 'Select for deletion'
         mFolder = 'Open notes folder'; mTopmost = 'Always on top'; mLanguage = 'Language'; mClose = 'Close'
         voice = 'Voice command: note, task or currency (Windows voice typing, Win+H)'; voiceActive = 'Dictating – the first word becomes the customer'
         resetSize = 'Restore default size'; grip = 'Drag to resize'
-        custLink = 'Delete customer…'; custTip = 'Right-click to delete the customer'; custDelAll = 'Delete customer "{0}" and its notes ({1})'; custRemoveTag = 'Remove customer "{0}", keep the notes'
-        confirmCustDel = 'Delete the customer "{0}"? {1} note(s) will be deleted. Notes that also belong to other customers are kept there. This cannot be undone.'
-        confirmCustRemove = 'Remove the customer "{0}" from {1} note(s)? The notes are kept under All.'
+        custLink = 'Delete customer/project…'; custTip = 'Right-click to delete the customer/project'; custDelAll = 'Delete customer/project "{0}" and its notes ({1})'; custRemoveTag = 'Remove customer/project "{0}", keep the notes'
+        confirmCustDel = 'Delete the customer/project "{0}"? {1} note(s) will be deleted. Notes that also belong to other customers/projects are kept there. This cannot be undone.'
+        confirmCustRemove = 'Remove the customer/project "{0}" from {1} note(s)? The notes are kept under All.'
         tabTasks = 'Tasks'; archiveBtn = 'Archive done ({0})'; showArchive = 'Show archive ({0})'; hideArchive = 'Hide archive'; archiveHdr = 'Archive'
         tasksEmpty = 'No tasks with a date yet. Write a line with a date, e.g. "= Send offer 16.10".'; dToday = 'Today'; dTomorrow = 'Tomorrow'; dOverdue = 'Overdue'
         cmdHint = 'Just say it, e.g. "Remember to send the offer to Equinor on Friday", "Talked to Statkraft about the sensors" or "How much is 100 euro". Enter runs it, Esc closes.'; cmdRun = 'Run'
-        pvTask = 'Task'; pvNote = 'Note'; pvFor = 'for {0}'; pvLoose = '(no customer)'; pvAuto = 'runs in {0} s – Enter now, Esc to cancel'
+        pvTask = 'Task'; pvNote = 'Note'; pvFor = 'for {0}'; pvLoose = '(no customer/project)'; pvAuto = 'runs in {0} s – Enter now, Esc to cancel'
         impToggle = 'Import cost via Posten (VAT and fee)'; impShip = 'Shipping'; impDuty = 'Duty %'; impVoec = 'VAT paid at checkout (VOEC, under 3000 kr per item)'
         mWake = 'Listen for "Notater" / "Notes4Me"'; wakeTip = ' – or say "Notater" / "Notes4Me"'; wakeErr = 'Could not start listening: {0}'
         impGoods = 'Goods'; impFrom = 'from {0}'; impDutyL = 'Duty ({0} %)'; impVat = 'VAT 25 %'; impFee = 'Posten fee'; impTotal = 'Total'; pvImport = 'import, total {0}'
@@ -41,19 +41,19 @@ $strings = @{
     }
     no = @{
         title = 'Mine notater'; all = 'Alle'; save = 'Lagre'; update = 'Oppdater'; cancel = 'Avbryt'; editing = 'Redigerer notat'
-        hint = 'Skriv et notat…  (Kunde) legger det i en kundefane, = først på linjen gir en sjekkboks. Ctrl+Enter lagrer.'
+        hint = 'Skriv et notat…  (Kunde/prosjekt) legger det i en egen fane, = først på linjen gir en sjekkboks. Ctrl+Enter lagrer.'
         deleteSel = 'Slett valgte ({0})'; selectAll = 'Velg alle'; clearSel = 'Fjern valg'
         confirmDel = 'Slette {0} notat(er)? Dette kan ikke angres.'; empty = 'Ingen notater ennå'; edit = 'Dobbeltklikk for å redigere'; select = 'Velg for sletting'
         mFolder = 'Åpne notatmappen'; mTopmost = 'Alltid øverst'; mLanguage = 'Språk'; mClose = 'Lukk'
         voice = 'Talekommando: notat, oppgave eller valuta (Windows stemmeskriving, Win+H)'; voiceActive = 'Dikterer – første ord blir kunden'
         resetSize = 'Tilbakestill størrelse'; grip = 'Dra for å endre størrelse'
-        custLink = 'Slett kunde…'; custTip = 'Høyreklikk for å slette kunden'; custDelAll = 'Slett kunden «{0}» og notatene ({1})'; custRemoveTag = 'Fjern kunden «{0}», behold notatene'
-        confirmCustDel = 'Slette kunden «{0}»? {1} notat(er) slettes. Notater som også gjelder andre kunder, beholdes der. Dette kan ikke angres.'
-        confirmCustRemove = 'Fjerne kunden «{0}» fra {1} notat(er)? Notatene beholdes under Alle.'
+        custLink = 'Slett kunde/prosjekt…'; custTip = 'Høyreklikk for å slette kunden/prosjektet'; custDelAll = 'Slett kunden/prosjektet «{0}» og notatene ({1})'; custRemoveTag = 'Fjern kunden/prosjektet «{0}», behold notatene'
+        confirmCustDel = 'Slette kunden/prosjektet «{0}»? {1} notat(er) slettes. Notater som også gjelder andre kunder/prosjekter, beholdes der. Dette kan ikke angres.'
+        confirmCustRemove = 'Fjerne kunden/prosjektet «{0}» fra {1} notat(er)? Notatene beholdes under Alle.'
         tabTasks = 'Oppgaver'; archiveBtn = 'Arkiver utførte ({0})'; showArchive = 'Vis arkiv ({0})'; hideArchive = 'Skjul arkiv'; archiveHdr = 'Arkiv'
         tasksEmpty = 'Ingen oppgaver med dato ennå. Skriv en linje med dato, f.eks. «= Sende tilbud 16.10».'; dToday = 'I dag'; dTomorrow = 'I morgen'; dOverdue = 'Forfalt'
         cmdHint = 'Si det med egne ord, f.eks. «Husk å sende tilbud til Equinor på fredag», «Snakket med Statkraft om sensorene» eller «Hvor mye er 100 euro». Enter utfører, Esc lukker.'; cmdRun = 'Utfør'
-        pvTask = 'Oppgave'; pvNote = 'Notat'; pvFor = 'for {0}'; pvLoose = '(uten kunde)'; pvAuto = 'utføres om {0} s – Enter nå, Esc avbryter'
+        pvTask = 'Oppgave'; pvNote = 'Notat'; pvFor = 'for {0}'; pvLoose = '(uten kunde/prosjekt)'; pvAuto = 'utføres om {0} s – Enter nå, Esc avbryter'
         impToggle = 'Importkostnad via Posten (mva og gebyr)'; impShip = 'Frakt'; impDuty = 'Toll %'; impVoec = 'Mva betalt i nettbutikken (VOEC, under 3000 kr per vare)'
         mWake = 'Lytt etter «Notater» / «Notes4Me»'; wakeTip = ' – eller si «Notater» / «Notes4Me»'; wakeErr = 'Kunne ikke starte lytting: {0}'
         impGoods = 'Varepris'; impFrom = 'fra {0}'; impDutyL = 'Toll ({0} %)'; impVat = 'Mva 25 %'; impFee = 'Postens gebyr'; impTotal = 'Sluttsum'; pvImport = 'import, sluttsum {0}'
@@ -64,19 +64,19 @@ $strings = @{
     }
     sv = @{
         title = 'Mina anteckningar'; all = 'Alla'; save = 'Spara'; update = 'Uppdatera'; cancel = 'Avbryt'; editing = 'Redigerar anteckning'
-        hint = 'Skriv en anteckning…  (Kund) lägger den i en kundflik, = först på raden ger en kryssruta. Ctrl+Enter sparar.'
+        hint = 'Skriv en anteckning…  (Kund/projekt) lägger den i en egen flik, = först på raden ger en kryssruta. Ctrl+Enter sparar.'
         deleteSel = 'Ta bort markerade ({0})'; selectAll = 'Markera alla'; clearSel = 'Avmarkera'
         confirmDel = 'Ta bort {0} anteckning(ar)? Det går inte att ångra.'; empty = 'Inga anteckningar ännu'; edit = 'Dubbelklicka för att redigera'; select = 'Markera för borttagning'
         mFolder = 'Öppna anteckningsmappen'; mTopmost = 'Alltid överst'; mLanguage = 'Språk'; mClose = 'Stäng'
         voice = 'Röstkommando: anteckning, uppgift eller valuta (Windows röstinmatning, Win+H)'; voiceActive = 'Dikterar – första ordet blir kunden'
         resetSize = 'Återställ storlek'; grip = 'Dra för att ändra storlek'
-        custLink = 'Ta bort kund…'; custTip = 'Högerklicka för att ta bort kunden'; custDelAll = 'Ta bort kunden ”{0}” och anteckningarna ({1})'; custRemoveTag = 'Ta bort kunden ”{0}”, behåll anteckningarna'
-        confirmCustDel = 'Ta bort kunden ”{0}”? {1} anteckning(ar) tas bort. Anteckningar som även hör till andra kunder behålls där. Det går inte att ångra.'
-        confirmCustRemove = 'Ta bort kunden ”{0}” från {1} anteckning(ar)? Anteckningarna finns kvar under Alla.'
+        custLink = 'Ta bort kund/projekt…'; custTip = 'Högerklicka för att ta bort kunden/projektet'; custDelAll = 'Ta bort kunden/projektet ”{0}” och anteckningarna ({1})'; custRemoveTag = 'Ta bort kunden/projektet ”{0}”, behåll anteckningarna'
+        confirmCustDel = 'Ta bort kunden/projektet ”{0}”? {1} anteckning(ar) tas bort. Anteckningar som även hör till andra kunder/projekt behålls där. Det går inte att ångra.'
+        confirmCustRemove = 'Ta bort kunden/projektet ”{0}” från {1} anteckning(ar)? Anteckningarna finns kvar under Alla.'
         tabTasks = 'Uppgifter'; archiveBtn = 'Arkivera klara ({0})'; showArchive = 'Visa arkiv ({0})'; hideArchive = 'Dölj arkiv'; archiveHdr = 'Arkiv'
         tasksEmpty = 'Inga uppgifter med datum ännu. Skriv en rad med datum, t.ex. ”= Skicka offert 16.10”.'; dToday = 'I dag'; dTomorrow = 'I morgon'; dOverdue = 'Försenad'
         cmdHint = 'Säg det med egna ord, t.ex. ”Kom ihåg att skicka offert till Equinor på fredag”, ”Pratade med Statkraft om sensorerna” eller ”Hur mycket är 100 euro”. Enter kör, Esc stänger.'; cmdRun = 'Kör'
-        pvTask = 'Uppgift'; pvNote = 'Anteckning'; pvFor = 'för {0}'; pvLoose = '(utan kund)'; pvAuto = 'körs om {0} s – Enter nu, Esc avbryter'
+        pvTask = 'Uppgift'; pvNote = 'Anteckning'; pvFor = 'för {0}'; pvLoose = '(utan kund/projekt)'; pvAuto = 'körs om {0} s – Enter nu, Esc avbryter'
         impToggle = 'Importkostnad via Posten (moms och avgift)'; impShip = 'Frakt'; impDuty = 'Tull %'; impVoec = 'Moms betald i webbutiken (VOEC, under 3000 kr per vara)'
         mWake = 'Lyssna efter ”Notater” / ”Notes4Me”'; wakeTip = ' – eller säg ”Notater” / ”Notes4Me”'; wakeErr = 'Kunde inte börja lyssna: {0}'
         impGoods = 'Varupris'; impFrom = 'från {0}'; impDutyL = 'Tull ({0} %)'; impVat = 'Moms 25 %'; impFee = 'Postens avgift'; impTotal = 'Totalt'; pvImport = 'import, totalt {0}'
@@ -87,19 +87,19 @@ $strings = @{
     }
     da = @{
         title = 'Mine noter'; all = 'Alle'; save = 'Gem'; update = 'Opdater'; cancel = 'Annuller'; editing = 'Redigerer note'
-        hint = 'Skriv en note…  (Kunde) lægger den i en kundefane, = først på linjen giver et afkrydsningsfelt. Ctrl+Enter gemmer.'
+        hint = 'Skriv en note…  (Kunde/projekt) lægger den i en egen fane, = først på linjen giver et afkrydsningsfelt. Ctrl+Enter gemmer.'
         deleteSel = 'Slet valgte ({0})'; selectAll = 'Vælg alle'; clearSel = 'Fravælg'
         confirmDel = 'Slet {0} note(r)? Det kan ikke fortrydes.'; empty = 'Ingen noter endnu'; edit = 'Dobbeltklik for at redigere'; select = 'Vælg til sletning'
         mFolder = 'Åbn notemappen'; mTopmost = 'Altid øverst'; mLanguage = 'Sprog'; mClose = 'Luk'
         voice = 'Stemmekommando: note, opgave eller valuta (Windows stemmeskrivning, Win+H)'; voiceActive = 'Dikterer – første ord bliver kunden'
         resetSize = 'Nulstil størrelse'; grip = 'Træk for at ændre størrelse'
-        custLink = 'Slet kunde…'; custTip = 'Højreklik for at slette kunden'; custDelAll = 'Slet kunden »{0}« og noterne ({1})'; custRemoveTag = 'Fjern kunden »{0}«, behold noterne'
-        confirmCustDel = 'Slet kunden »{0}«? {1} note(r) slettes. Noter, der også hører til andre kunder, beholdes der. Det kan ikke fortrydes.'
-        confirmCustRemove = 'Fjern kunden »{0}« fra {1} note(r)? Noterne beholdes under Alle.'
+        custLink = 'Slet kunde/projekt…'; custTip = 'Højreklik for at slette kunden/projektet'; custDelAll = 'Slet kunden/projektet »{0}« og noterne ({1})'; custRemoveTag = 'Fjern kunden/projektet »{0}«, behold noterne'
+        confirmCustDel = 'Slet kunden/projektet »{0}«? {1} note(r) slettes. Noter, der også hører til andre kunder/projekter, beholdes der. Det kan ikke fortrydes.'
+        confirmCustRemove = 'Fjern kunden/projektet »{0}« fra {1} note(r)? Noterne beholdes under Alle.'
         tabTasks = 'Opgaver'; archiveBtn = 'Arkivér udførte ({0})'; showArchive = 'Vis arkiv ({0})'; hideArchive = 'Skjul arkiv'; archiveHdr = 'Arkiv'
         tasksEmpty = 'Ingen opgaver med dato endnu. Skriv en linje med dato, f.eks. »= Send tilbud 16.10«.'; dToday = 'I dag'; dTomorrow = 'I morgen'; dOverdue = 'Forfalden'
         cmdHint = 'Sig det med dine egne ord, f.eks. »Husk at sende tilbud til Equinor på fredag«, »Talte med Statkraft om sensorerne« eller »Hvor meget er 100 euro«. Enter udfører, Esc lukker.'; cmdRun = 'Udfør'
-        pvTask = 'Opgave'; pvNote = 'Note'; pvFor = 'for {0}'; pvLoose = '(uden kunde)'; pvAuto = 'udføres om {0} s – Enter nu, Esc annullerer'
+        pvTask = 'Opgave'; pvNote = 'Note'; pvFor = 'for {0}'; pvLoose = '(uden kunde/projekt)'; pvAuto = 'udføres om {0} s – Enter nu, Esc annullerer'
         impToggle = 'Importomkostning via Posten (moms og gebyr)'; impShip = 'Fragt'; impDuty = 'Told %'; impVoec = 'Moms betalt i webshoppen (VOEC, under 3000 kr pr. vare)'
         mWake = 'Lyt efter »Notater« / »Notes4Me«'; wakeTip = ' – eller sig »Notater« / »Notes4Me«'; wakeErr = 'Kunne ikke starte lytning: {0}'
         impGoods = 'Varepris'; impFrom = 'fra {0}'; impDutyL = 'Told ({0} %)'; impVat = 'Moms 25 %'; impFee = 'Postens gebyr'; impTotal = 'I alt'; pvImport = 'import, i alt {0}'
@@ -547,7 +547,7 @@ $wb = '(?<![\p{L}\p{N}])'; $we = '(?![\p{L}\p{N}])'   # word boundaries that als
 $taskRx  = "(?i)$wb(?:oppgave\p{L}*|oppgåve|task|todo|to-do|gjøremål|uppgift|opgave|påminnelse|påminn\p{L}*|reminder|remind|husk\p{L}*|remember|kom ihåg|(?:jeg|vi|jag|i|we)\s+(?:må|skal|bør|ska|måste|behöver|need to|have to|must|should))$we|^(?:må|skal|ska|måste|need to|must)$we"
 $noteRx  = "(?i)$wb(?:notat|note|notis|anteckning|memo)$we"
 $fxKeyRx = "(?i)^(?:valuta|currency|kurs|omregn\p{L}*|regn om|veksle|växla)$we"
-$looseRx = "(?i)$wb(?:løs oppgave|uten kunde|ingen kunde|without (?:a )?customer|no customer|utan kund|uden kunde|løs|loose|lös)$we"
+$looseRx = "(?i)$wb(?:løs oppgave|uten kunde|ingen kunde|uten prosjekt|ingen prosjekt|without (?:a )?(?:customer|project)|no (?:customer|project)|utan kund|utan projekt|uden kunde|uden projekt|løs|loose|lös)$we"
 $stopRx  = '^(?i)(å|att|at|to|i|på|om|og|and|med|the|en|et|ei|a|an|' + ($weekdayNo.Keys -join '|') + ')$'
 # Words that are never a shop name in a currency sentence
 $fxStopRx = '^(?i)(hva|hvor|mye|mange|er|koster|kostet|blir|what|how|much|many|is|are|does|do|cost|costs|vad|hur|mycket|är|kostar|hvad|meget|' +
@@ -557,7 +557,8 @@ $fxStopRx = '^(?i)(hva|hvor|mye|mange|er|koster|kostet|blir|what|how|much|many|i
 $impWordRx = "(?i)$wb(?:fra|from|från|hos|kjøp\p{L}*|bestill\p{L}*|buy|bought|order\p{L}*|import\p{L}*|toll|tull|told|duty|frakt|fragt|shipping|posten|mva|moms|vat|inkl\p{L}*)$we"
 $fillerRx = @(
     '^(?:kan du|kunne du|could you|please|vær så snill og)\s+'
-    '^(?:ny|nytt|nye|new|lag|lage|opprett|opprette|skriv|create|make|add|legg til|sett opp)\s+(?:en|et|ei|a|an)?\s*'
+    # "lag en oppgave", "nytt notat" - only before a task/note word, so "ny tegning mottatt" keeps its "ny"
+    '^(?:ny|nytt|nye|new|lag|lage|opprett|opprette|skriv|create|make|add|legg til|sett opp)\s+(?:(?:en|et|ei|a|an)\s+)?(?=(?:oppgave|oppgåve|task|todo|gjøremål|uppgift|opgave|påminnelse|reminder|notat|note|notis|anteckning|memo)(?![\p{L}\p{N}]))'
     "^(?:oppgave\p{L}*|oppgåve|task|todo|gjøremål|uppgift|opgave|påminnelse|reminder|notat|note|notis|anteckning|memo)$we(?:\s+(?:om|on|about|to|til|på|at|att)$we)?[\s:,.-]*"
     '^(?:husk på|husk|huske|remember|kom ihåg|påminn meg om|remind me to)\s+(?:å|to|att|at)?\s*'
     '^(?:jeg|vi|jag|i|we|du|man)\s+(?:må|skal|bør|ska|måste|behöver|skulle|need to|have to|must|should)\s+(?:å|att|at)?\s*'
@@ -574,7 +575,7 @@ function Remove-Fillers($s, [switch]$NoteOnly) {
 function Find-Customer($text) {
     $m = [regex]::Match($text, $looseRx)
     if ($m.Success) { return @{ customer = $null; text = Clear-Spoken $text.Remove($m.Index, $m.Length) } }
-    $m = [regex]::Match($text, "(?i)$wb(?:for\s+|för\s+)?(?:kunde|customer|kund)\s+([\p{L}\p{N}&'-]+)")
+    $m = [regex]::Match($text, "(?i)$wb(?:for\s+|för\s+)?(?:kunde|customer|kund|prosjekt|projekt|project)\s+([\p{L}\p{N}&'-]+)")
     if ($m.Success -and $m.Groups[1].Value -notmatch $stopRx) {
         $name = $m.Groups[1].Value; $known = $script:custNames[$name.ToLower()]
         return @{ customer = $(if ($known) { $known } else { Format-Cap $name }); text = Clear-Spoken $text.Remove($m.Index, $m.Length) }

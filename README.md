@@ -5,11 +5,11 @@ A small always-on-top Windows desktop widget for quick notes, with a task overvi
 The tabs are, in order: **Tasks**, **Currency**, **All** and one tab per customer. The widget always opens on **Tasks**.
 
 - **Tasks tab:** every line with a date (for example `= Send offer 16.10`) appears here, soonest first, with overdue tasks in red. Tick to strike through, then archive the ticked ones.
-- **Customer tabs:** write a customer name in parentheses in a note, for example `(Equinor)`. A tab for that customer appears automatically and lists its notes, newest first. **All** shows every note.
+- **Customer/project tabs:** write a customer or project name in parentheses in a note, for example `(Equinor)` or `(Fjordbyen)`. A tab for it appears automatically and lists its notes, newest first. **All** shows every note.
 - **Checkboxes:** start a line with `=` to turn it into a checkbox. Ticking it strikes the line through.
 - **Voice commands:** click the microphone by the title and just say it, for example "Remember to send the offer to Equinor on Friday" or "How much is 100 euro".
 - **Currency tab:** today's or historical exchange rates for €, £, $, Swedish kroner (SEK) and Danish kroner (DKK) from Norges Bank, with a calculator to or from Norwegian kroner – and the full import cost via Posten (VAT and fee). "Bambu 1500 euro" gives the total.
-- **Delete a customer:** right-click its tab to delete it with its notes, or just remove it and keep the notes.
+- **Delete a customer/project:** right-click its tab to delete it with its notes, or just remove it and keep the notes.
 - **Delete one or many:** tick the box in the top-left corner of each note (or use **Select all**), then click **Delete selected**.
 - **Edit:** double-click a note.
 - **Resizable:** drag the corner in the bottom right. The button next to the title restores the default size.
@@ -71,7 +71,7 @@ This note appears in the **Equinor** tab, with checkboxes in front of "Send offe
 - A note can mention several customers and then shows up in each of their tabs.
 - When you edit a note (double-click), you see the full text including `(Customer)`. A ticked line is stored as `=x`; you can also type `=x` yourself to add a line that is already ticked.
 
-## Deleting a customer
+## Deleting a customer or project
 
 Right-click a customer tab, or open the tab and click **Delete customer…** above the list. You get two choices, both asking for confirmation:
 
@@ -111,7 +111,7 @@ Click the **microphone** next to the title. A command box opens and Windows voic
 
 How the sentence is read (in English, Norwegian, Swedish and Danish):
 
-- **Customer:** a customer you already have is recognised anywhere in the sentence, and the name stays where you said it. A new customer is given as "customer X" / "kunde X" (or "Task for X …"). Say "no customer" / "uten kunde" / "løs" to make sure there is none.
+- **Customer:** a customer you already have is recognised anywhere in the sentence, and the name stays where you said it. A new customer or project is given as "customer X" / "kunde X" or "project X" / "prosjekt X" (or "Task for X …"). Say "no customer" / "uten kunde" / "løs" to make sure there is none.
 - **Task or note:** it becomes a task if the sentence has a task word (task/oppgave, remember/husk, remind/påminn, "I need to"/"jeg må", "we should"/"vi skal" …) or a future date. Otherwise it is a note. "Today" on its own does not make a task ("Equinor called today" stays a note). If you start with "Note"/"Notat", it is always a note.
 - **Filler words** such as "remember to", "I need to", "create a task about", "husk å", "jeg må" are removed, so the task text is short.
 - **Dates:** today, tomorrow, the day after tomorrow, weekdays ("on Friday"), "next week", "in 3 days", "16 October" and written dates. A task without a date gets today's date.

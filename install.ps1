@@ -1,6 +1,6 @@
 # Notes4Me installer - installs the widget, adds Desktop + Startup shortcuts, and starts it.
 # From a downloaded copy:  powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
-# From GitHub (public repo only):  irm https://raw.githubusercontent.com/saysphilippe/Notes4Me/main/install.ps1 | iex
+# From GitHub:  irm https://raw.githubusercontent.com/saysphilippe/Notes4Me/main/install.ps1 | iex
 # Keep this file ASCII-only: Invoke-Expression chokes on a UTF-8 BOM, so Nordic letters are built with [char].
 $ErrorActionPreference = 'Stop'
 $base = 'https://raw.githubusercontent.com/saysphilippe/Notes4Me/main'

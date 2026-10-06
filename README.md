@@ -24,6 +24,16 @@ Your notes are stored locally on your PC. The only thing the widget fetches from
 
 ## Install
 
+### Option 1 – one-line install
+
+Open PowerShell and run:
+
+```powershell
+irm https://raw.githubusercontent.com/saysphilippe/Notes4Me/main/install.ps1 | iex
+```
+
+### Option 2 – from a downloaded copy
+
 1. Download the repository (**Code → Download ZIP**, then extract it) or clone it:
    ```powershell
    git clone https://github.com/saysphilippe/Notes4Me.git

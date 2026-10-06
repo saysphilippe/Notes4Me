@@ -216,7 +216,7 @@ function Set-LineChecked($id, $index, $checked) {
     </Style>
   </Window.Resources>
   <Grid>
-  <Border CornerRadius="10" Background="#E61E1E1E" Padding="12,10">
+  <Border CornerRadius="10" Background="#1E1E1E" BorderBrush="#3A3A3A" BorderThickness="1" Padding="12,10">
     <DockPanel>
       <DockPanel DockPanel.Dock="Top">
         <TextBlock Name="resetSize" DockPanel.Dock="Right" FontFamily="Segoe MDL2 Assets" Text="&#xE73F;" FontSize="14"

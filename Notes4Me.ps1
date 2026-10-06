@@ -1242,6 +1242,17 @@ function Sync-Outlook {
         }
         Remove-ComRef $tbl
         $open = { param($id) $i = $null; try { $i = $ns.GetItemFromID($id) } catch {}; $i }
+        # The same appointment can be reported with a differently formed EntryID (e.g. after it was edited in
+        # new Outlook). Ask Outlook whether a stored ID matches one in the table, and keep the table's form.
+        $claimed = @{}; foreach ($k in $map.Keys) { if ($rows.ContainsKey($map[$k].id)) { $claimed[$map[$k].id] = 1 } }
+        foreach ($k in @($map.Keys)) {
+            if ($rows.ContainsKey($map[$k].id)) { continue }
+            foreach ($rid in @($rows.Keys)) {
+                if ($claimed[$rid]) { continue }
+                $same = $false; try { $same = $ns.CompareEntryIDs($map[$k].id, $rid) } catch {}
+                if ($same) { $map[$k].id = $rid; $claimed[$rid] = 1; break }
+            }
+        }
         foreach ($k in @($map.Keys)) {
             $row = $rows[$map[$k].id]
             if (-not $row) {   # not in the table (e.g. its category was removed): look it up directly

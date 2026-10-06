@@ -789,7 +789,7 @@ namespace Notes4Me {
                 eng = new SpeechRecognitionEngine(ri);
                 eng.LoadGrammar(new Grammar(doc));
                 eng.SpeechRecognized += OnRecognized;
-                if (waveFile != null) eng.SetInputToWaveFile(waveFile); else eng.SetInputToDefaultAudioDevice();
+                if (!string.IsNullOrEmpty(waveFile)) eng.SetInputToWaveFile(waveFile); else eng.SetInputToDefaultAudioDevice();   // PowerShell passes $null as ""
                 eng.RecognizeAsync(RecognizeMode.Multiple);
                 return true;
             } catch (Exception ex) { Error = ex.Message; Stop(); return false; }

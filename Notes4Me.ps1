@@ -169,13 +169,13 @@ function Set-LineChecked($id, $index, $checked) {
 [xml]$xaml = @'
 <Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         WindowStyle="None" AllowsTransparency="True" Background="Transparent"
-        ShowInTaskbar="False" SizeToContent="Height" Width="340" MinWidth="300" MinHeight="220" ResizeMode="NoResize">
+        ShowInTaskbar="False" SizeToContent="Height" Width="380" MinWidth="330" MinHeight="220" ResizeMode="NoResize">
   <Window.Resources>
     <Style TargetType="Button">
       <Setter Property="Foreground" Value="White"/>
       <Setter Property="Background" Value="#D97757"/>
       <Setter Property="Padding" Value="10,3"/>
-      <Setter Property="FontSize" Value="12"/>
+      <Setter Property="FontSize" Value="14"/>
       <Setter Property="Cursor" Value="Hand"/>
       <Setter Property="Template">
         <Setter.Value>
@@ -219,26 +219,26 @@ function Set-LineChecked($id, $index, $checked) {
   <Border CornerRadius="10" Background="#E61E1E1E" Padding="12,10">
     <DockPanel>
       <DockPanel DockPanel.Dock="Top">
-        <TextBlock Name="resetSize" DockPanel.Dock="Right" FontFamily="Segoe MDL2 Assets" Text="&#xE73F;" FontSize="12"
+        <TextBlock Name="resetSize" DockPanel.Dock="Right" FontFamily="Segoe MDL2 Assets" Text="&#xE73F;" FontSize="14"
                    Foreground="#888" Cursor="Hand" VerticalAlignment="Center" Visibility="Collapsed" Margin="10,0,0,0"/>
-        <TextBlock Name="titleMic" DockPanel.Dock="Right" FontFamily="Segoe MDL2 Assets" Text="&#xE720;" FontSize="15"
+        <TextBlock Name="titleMic" DockPanel.Dock="Right" FontFamily="Segoe MDL2 Assets" Text="&#xE720;" FontSize="17"
                    Foreground="#BBB" Cursor="Hand" VerticalAlignment="Center"/>
-        <TextBlock Name="title" Foreground="#D97757" FontWeight="SemiBold" FontSize="13" TextTrimming="CharacterEllipsis"/>
+        <TextBlock Name="title" Foreground="#D97757" FontWeight="SemiBold" FontSize="15" TextTrimming="CharacterEllipsis"/>
       </DockPanel>
       <Border Name="cmdBar" DockPanel.Dock="Top" Visibility="Collapsed" Background="#262A30" CornerRadius="6" Padding="6"
               Margin="0,6,0,2" BorderBrush="#6A9BCC" BorderThickness="1">
         <StackPanel>
           <Grid>
-            <TextBox Name="cmdBox" FontSize="13" Background="#2B2B2B" Foreground="#EEE" CaretBrush="#EEE" BorderThickness="0"
+            <TextBox Name="cmdBox" FontSize="15" Background="#2B2B2B" Foreground="#EEE" CaretBrush="#EEE" BorderThickness="0"
                      Padding="4,3" TextWrapping="Wrap" MinHeight="26"/>
-            <TextBlock Name="cmdHint" Foreground="#777" FontSize="11" TextWrapping="Wrap" Margin="7,4,7,0" IsHitTestVisible="False"/>
+            <TextBlock Name="cmdHint" Foreground="#777" FontSize="13" TextWrapping="Wrap" Margin="7,4,7,0" IsHitTestVisible="False"/>
           </Grid>
           <DockPanel Margin="0,5,0,0">
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" VerticalAlignment="Top">
-              <Button Name="cmdClose" Background="#444" Padding="8,2" FontSize="11" Margin="0,0,6,0"/>
-              <Button Name="cmdRun" Background="#6A9BCC" Padding="10,2" FontSize="11"/>
+              <Button Name="cmdClose" Background="#444" Padding="8,2" FontSize="13" Margin="0,0,6,0"/>
+              <Button Name="cmdRun" Background="#6A9BCC" Padding="10,2" FontSize="13"/>
             </StackPanel>
-            <TextBlock Name="cmdPreview" Foreground="#9DBEE0" FontSize="11" TextWrapping="Wrap" VerticalAlignment="Center"/>
+            <TextBlock Name="cmdPreview" Foreground="#9DBEE0" FontSize="13" TextWrapping="Wrap" VerticalAlignment="Center"/>
           </DockPanel>
         </StackPanel>
       </Border>
@@ -246,66 +246,66 @@ function Set-LineChecked($id, $index, $checked) {
       <StackPanel Name="fxPanel" DockPanel.Dock="Top" Visibility="Collapsed" Margin="0,2,0,0">
         <StackPanel Name="fxDir" Orientation="Horizontal" Margin="0,0,0,6"/>
         <DockPanel Margin="0,0,0,8">
-          <TextBlock Name="fxLatest" DockPanel.Dock="Right" Foreground="#888" FontSize="11" Cursor="Hand" VerticalAlignment="Center"/>
-          <TextBlock Name="fxDateLbl" DockPanel.Dock="Left" Foreground="#999" FontSize="11" VerticalAlignment="Center" Margin="0,0,8,0"/>
-          <DatePicker Name="fxDate" Width="130" HorizontalAlignment="Left" FontSize="11" Foreground="#EEE" Background="#2B2B2B" BorderBrush="#444"/>
+          <TextBlock Name="fxLatest" DockPanel.Dock="Right" Foreground="#888" FontSize="13" Cursor="Hand" VerticalAlignment="Center"/>
+          <TextBlock Name="fxDateLbl" DockPanel.Dock="Left" Foreground="#999" FontSize="13" VerticalAlignment="Center" Margin="0,0,8,0"/>
+          <DatePicker Name="fxDate" Width="130" HorizontalAlignment="Left" FontSize="13" Foreground="#EEE" Background="#2B2B2B" BorderBrush="#444"/>
         </DockPanel>
-        <TextBlock Name="fxAmountLbl" Foreground="#999" FontSize="11"/>
-        <TextBox Name="fxAmount" FontSize="18" Margin="0,3,0,8" Background="#2B2B2B" Foreground="#EEE" CaretBrush="#EEE"
+        <TextBlock Name="fxAmountLbl" Foreground="#999" FontSize="13"/>
+        <TextBox Name="fxAmount" FontSize="20" Margin="0,3,0,8" Background="#2B2B2B" Foreground="#EEE" CaretBrush="#EEE"
                  BorderBrush="#444" BorderThickness="1" Padding="6,3"/>
         <StackPanel Name="fxResults"/>
         <Border Name="impCard" Background="#2B2B2B" CornerRadius="6" Padding="10,7" Margin="0,2,0,8">
           <StackPanel>
-            <CheckBox Name="impToggle" Foreground="#DDD" FontSize="12" VerticalContentAlignment="Center"/>
+            <CheckBox Name="impToggle" Foreground="#DDD" FontSize="14" VerticalContentAlignment="Center"/>
             <StackPanel Name="impBody" Visibility="Collapsed" Margin="0,8,0,0">
               <StackPanel Name="impCurs" Orientation="Horizontal" Margin="0,0,0,8"/>
               <Grid Margin="0,0,0,6">
                 <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="10"/><ColumnDefinition/></Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
-                  <TextBlock Name="impShipLbl" Foreground="#999" FontSize="11"/>
-                  <TextBox Name="impShip" FontSize="13" Background="#232323" Foreground="#EEE" CaretBrush="#EEE" BorderBrush="#444" Padding="4,2"/>
+                  <TextBlock Name="impShipLbl" Foreground="#999" FontSize="13"/>
+                  <TextBox Name="impShip" FontSize="15" Background="#232323" Foreground="#EEE" CaretBrush="#EEE" BorderBrush="#444" Padding="4,2"/>
                 </StackPanel>
                 <StackPanel Grid.Column="2">
-                  <TextBlock Name="impDutyLbl" Foreground="#999" FontSize="11"/>
-                  <TextBox Name="impDuty" FontSize="13" Background="#232323" Foreground="#EEE" CaretBrush="#EEE" BorderBrush="#444" Padding="4,2"/>
+                  <TextBlock Name="impDutyLbl" Foreground="#999" FontSize="13"/>
+                  <TextBox Name="impDuty" FontSize="15" Background="#232323" Foreground="#EEE" CaretBrush="#EEE" BorderBrush="#444" Padding="4,2"/>
                 </StackPanel>
               </Grid>
-              <CheckBox Name="impVoec" Foreground="#BBB" FontSize="11" Margin="0,0,0,8"/>
-              <TextBlock Name="impTitle" Foreground="#D97757" FontSize="12" Margin="0,0,0,3"/>
+              <CheckBox Name="impVoec" Foreground="#BBB" FontSize="13" Margin="0,0,0,8"/>
+              <TextBlock Name="impTitle" Foreground="#D97757" FontSize="14" Margin="0,0,0,3"/>
               <StackPanel Name="impLines"/>
-              <TextBlock Name="impNote" Foreground="#777" FontSize="10" TextWrapping="Wrap" Margin="0,6,0,0"/>
+              <TextBlock Name="impNote" Foreground="#777" FontSize="12" TextWrapping="Wrap" Margin="0,6,0,0"/>
             </StackPanel>
           </StackPanel>
         </Border>
         <DockPanel Margin="0,2,0,0">
-          <TextBlock Name="fxRefresh" DockPanel.Dock="Right" Foreground="#888" FontSize="11" Cursor="Hand" Margin="8,0,12,0" VerticalAlignment="Center"/>
-          <TextBlock Name="fxStatus" Foreground="#777" FontSize="10" TextWrapping="Wrap" VerticalAlignment="Center"/>
+          <TextBlock Name="fxRefresh" DockPanel.Dock="Right" Foreground="#888" FontSize="13" Cursor="Hand" Margin="8,0,12,0" VerticalAlignment="Center"/>
+          <TextBlock Name="fxStatus" Foreground="#777" FontSize="12" TextWrapping="Wrap" VerticalAlignment="Center"/>
         </DockPanel>
       </StackPanel>
       <DockPanel Name="notesPanel">
         <Grid DockPanel.Dock="Top">
           <TextBox Name="input" MinHeight="58" MaxHeight="160" AcceptsReturn="True" TextWrapping="Wrap"
                    VerticalScrollBarVisibility="Auto" Background="#2B2B2B" Foreground="#EEE" CaretBrush="#EEE"
-                   BorderBrush="#444" BorderThickness="1" Padding="4,3" FontSize="12"/>
-          <TextBlock Name="hint" Foreground="#777" FontSize="11" TextWrapping="Wrap" Margin="7,5,7,0" IsHitTestVisible="False"/>
+                   BorderBrush="#444" BorderThickness="1" Padding="4,3" FontSize="14"/>
+          <TextBlock Name="hint" Foreground="#777" FontSize="13" TextWrapping="Wrap" Margin="7,5,7,0" IsHitTestVisible="False"/>
         </Grid>
         <DockPanel DockPanel.Dock="Top" Margin="0,4,0,8">
           <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
             <Button Name="cancelBtn" Background="#444" Visibility="Collapsed" Margin="0,0,6,0"/>
             <Button Name="saveBtn"/>
           </StackPanel>
-          <TextBlock Name="editLbl" Foreground="#999" FontSize="11" VerticalAlignment="Center" TextWrapping="Wrap" Visibility="Collapsed"/>
+          <TextBlock Name="editLbl" Foreground="#999" FontSize="13" VerticalAlignment="Center" TextWrapping="Wrap" Visibility="Collapsed"/>
         </DockPanel>
         <DockPanel Name="toolbar" DockPanel.Dock="Top" Margin="0,0,0,4">
-          <Button Name="delBtn" DockPanel.Dock="Right" Background="#B5523B" Padding="8,2" FontSize="11" Visibility="Collapsed"/>
-          <Button Name="archBtn" DockPanel.Dock="Right" Background="#5E7F4A" Padding="8,2" FontSize="11" Visibility="Collapsed"/>
+          <Button Name="delBtn" DockPanel.Dock="Right" Background="#B5523B" Padding="8,2" FontSize="13" Visibility="Collapsed"/>
+          <Button Name="archBtn" DockPanel.Dock="Right" Background="#5E7F4A" Padding="8,2" FontSize="13" Visibility="Collapsed"/>
           <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-            <TextBlock Name="selAll" Foreground="#888" FontSize="11" Cursor="Hand"/>
-            <TextBlock Name="custLink" Foreground="#888" FontSize="11" Cursor="Hand" Margin="14,0,0,0" Visibility="Collapsed"/>
-            <TextBlock Name="archLink" Foreground="#888" FontSize="11" Cursor="Hand" Margin="14,0,0,0" Visibility="Collapsed"/>
+            <TextBlock Name="selAll" Foreground="#888" FontSize="13" Cursor="Hand"/>
+            <TextBlock Name="custLink" Foreground="#888" FontSize="13" Cursor="Hand" Margin="14,0,0,0" Visibility="Collapsed"/>
+            <TextBlock Name="archLink" Foreground="#888" FontSize="13" Cursor="Hand" Margin="14,0,0,0" Visibility="Collapsed"/>
           </StackPanel>
         </DockPanel>
-        <TextBlock Name="emptyLbl" DockPanel.Dock="Top" Foreground="#777" FontSize="11" Margin="0,4,0,0"/>
+        <TextBlock Name="emptyLbl" DockPanel.Dock="Top" Foreground="#777" FontSize="13" Margin="0,4,0,0"/>
         <ScrollViewer Name="listScroll" MaxHeight="430" VerticalScrollBarVisibility="Auto">
           <StackPanel Name="list" Margin="0,0,4,0"/>
         </ScrollViewer>
@@ -367,14 +367,14 @@ function New-NoteCard($note) {
     $sel.Add_Click({ param($s, $e) if ($s.IsChecked) { [void]$script:selected.Add($s.Tag) } else { [void]$script:selected.Remove($s.Tag) }; Render })
     [Windows.Controls.DockPanel]::SetDock($sel, 'Left')
     $custTb = New-Object Windows.Controls.TextBlock
-    $custTb.Foreground = Brush '#D97757'; $custTb.FontSize = 10; $custTb.VerticalAlignment = 'Center'; $custTb.TextTrimming = 'CharacterEllipsis'; $custTb.MaxWidth = 150
+    $custTb.Foreground = Brush '#D97757'; $custTb.FontSize = 12; $custTb.VerticalAlignment = 'Center'; $custTb.TextTrimming = 'CharacterEllipsis'; $custTb.MaxWidth = 150
     if (-not $cfg.tab) {   # same spelling as the tab, e.g. "Equinor" even if the note says "(equinor)"
         $custTb.Text = (@(Get-Customers $note.text | ForEach-Object { $k = $_.ToLower(); if ($script:custNames[$k]) { $script:custNames[$k] } else { $_ } }) | Sort-Object -Unique) -join ', '
     }
     [Windows.Controls.DockPanel]::SetDock($custTb, 'Right')
     $date = New-Object Windows.Controls.TextBlock
     $date.Text = ([datetime]::Parse($note.created, $null, 'RoundtripKind')).ToLocalTime().ToString('g')
-    $date.Foreground = Brush '#888'; $date.FontSize = 10; $date.VerticalAlignment = 'Center'
+    $date.Foreground = Brush '#888'; $date.FontSize = 12; $date.VerticalAlignment = 'Center'
     [void]$head.Children.Add($sel); [void]$head.Children.Add($custTb); [void]$head.Children.Add($date)
     [void]$sp.Children.Add($head)
 
@@ -387,7 +387,7 @@ function New-NoteCard($note) {
     for ($i = 0; $i -lt $lines.Count; $i++) {
         $line = $lines[$i]
         $tb = New-Object Windows.Controls.TextBlock
-        $tb.TextWrapping = 'Wrap'; $tb.FontSize = 12; $tb.Foreground = Brush '#DDD'
+        $tb.TextWrapping = 'Wrap'; $tb.FontSize = 14; $tb.Foreground = Brush '#DDD'
         $m = $lineRx.Match($line)
         if ($line.Trim() -ne '' -and -not (Get-DisplayText ($line -replace '^=([xa]\s)?', ''))) { continue }  # line held only (Customer)
         if ($m.Success -and $m.Groups[1].Value.Trim() -eq 'a') { continue }   # archived tasks are shown in the archive, not here
@@ -440,10 +440,10 @@ function Render {
     foreach ($t in $tabList) {
         $active = $t.key -eq [string]$cfg.tab; $isFx = $t.key -eq $fxTab; $isTasks = $t.key -eq $tasksTab
         $chip = New-Object Windows.Controls.Border
-        $chip.CornerRadius = New-Object Windows.CornerRadius 12; $chip.Padding = Thick 10 3 10 4; $chip.Margin = Thick 0 0 5 5; $chip.Cursor = 'Hand'
+        $chip.CornerRadius = New-Object Windows.CornerRadius 15; $chip.Padding = Thick 12 4 12 5; $chip.Margin = Thick 0 0 6 6; $chip.Cursor = 'Hand'
         $chip.Background = Brush $(if ($active -and $isFx) { '#6A9BCC' } elseif ($active -and $isTasks) { '#5E7F4A' } elseif ($active) { '#D97757' } else { '#2B2B2B' }); $chip.Tag = $t.key
         $tx = New-Object Windows.Controls.TextBlock
-        $tx.Text = $(if ($isFx) { $t.name } else { "$($t.name)  $($t.count)" }); $tx.FontSize = 13
+        $tx.Text = $(if ($isFx) { $t.name } else { "$($t.name)  $($t.count)" }); $tx.FontSize = 16
         $tx.Foreground = Brush $(if ($active) { '#FFF' } elseif ($isFx) { '#9DBEE0' } elseif ($isTasks) { '#B5D19E' } else { '#BBB' })
         $chip.Child = $tx
         if ($t.key -and -not $isFx -and -not $isTasks) { $chip.ContextMenu = New-CustomerMenu $t.key; $chip.ToolTip = T 'custTip' }
@@ -477,7 +477,7 @@ function Render {
         $done = @($lt | Where-Object { $_.checked -and -not $_.archived })
         $arch = @($lt | Where-Object { $_.archived } | Sort-Object { if ($_.date) { $_.date } else { [datetime]::MinValue } }, { $_.created } -Descending)
         if ($script:showArchive -and $arch.Count) {
-            $h = New-Object Windows.Controls.TextBlock; $h.Text = T 'archiveHdr'; $h.Foreground = Brush '#888'; $h.FontSize = 11; $h.Margin = Thick 0 8 0 4
+            $h = New-Object Windows.Controls.TextBlock; $h.Text = T 'archiveHdr'; $h.Foreground = Brush '#888'; $h.FontSize = 13; $h.Margin = Thick 0 8 0 4
             [void]$el.list.Children.Add($h)
             foreach ($t in $arch) { $r = New-TaskRow $t; $r.Opacity = 0.7; [void]$el.list.Children.Add($r) }
         }
@@ -1080,20 +1080,20 @@ function New-TaskRow($t) {
 
     $right = New-Object Windows.Controls.StackPanel; $right.Margin = Thick 8 0 0 0; $right.VerticalAlignment = 'Center'
     [Windows.Controls.DockPanel]::SetDock($right, 'Right')
-    $dl = New-Object Windows.Controls.TextBlock; $dl.FontSize = 11; $dl.HorizontalAlignment = 'Right'
+    $dl = New-Object Windows.Controls.TextBlock; $dl.FontSize = 13; $dl.HorizontalAlignment = 'Right'
     $dl.Text = if (-not $t.date) { '' } elseif (-not $t.checked -and $days -lt 0) { '{0} · {1}' -f (T 'dOverdue'), $t.date.ToString('d.M.') }
                elseif ($days -eq 0) { T 'dToday' } elseif ($days -eq 1) { T 'dTomorrow' } else { $t.date.ToString('ddd d.M.') }
     if ($t.date -and $t.time) { $dl.Text += ' ' + $t.time.ToString('hh\:mm') }
     $dl.Foreground = Brush $(if ($t.checked) { '#666' } elseif ($days -lt 0) { '#E06C5A' } elseif ($days -eq 0) { '#D97757' } else { '#999' })
     [void]$right.Children.Add($dl)
     if ($t.customers.Count -and -not ($cfg.tab -and $cfg.tab -notin $fxTab, $tasksTab)) {   # no need to repeat the customer inside its own tab
-        $ct = New-Object Windows.Controls.TextBlock; $ct.FontSize = 10; $ct.Foreground = Brush '#D97757'; $ct.HorizontalAlignment = 'Right'
+        $ct = New-Object Windows.Controls.TextBlock; $ct.FontSize = 12; $ct.Foreground = Brush '#D97757'; $ct.HorizontalAlignment = 'Right'
         $ct.Text = (@($t.customers | ForEach-Object { $k = $_.ToLower(); if ($script:custNames[$k]) { $script:custNames[$k] } else { $_ } }) | Sort-Object -Unique) -join ', '
         [void]$right.Children.Add($ct)
     }
 
     $tb = New-Object Windows.Controls.TextBlock
-    $tb.TextWrapping = 'Wrap'; $tb.FontSize = 12; $tb.Foreground = Brush '#DDD'; $tb.Text = Get-DisplayText $t.text
+    $tb.TextWrapping = 'Wrap'; $tb.FontSize = 14; $tb.Foreground = Brush '#DDD'; $tb.Text = Get-DisplayText $t.text
     if ($t.checked) { $tb.TextDecorations = [Windows.TextDecorations]::Strikethrough; $tb.Foreground = Brush '#777' }
     $cb = New-Object Windows.Controls.CheckBox
     $cb.IsChecked = $t.checked; $cb.VerticalAlignment = 'Center'; $cb.Margin = Thick 0 0 6 0; $cb.Tag = @{ id = $t.id; line = $t.line }   # only the box ticks
@@ -1111,7 +1111,7 @@ function Render-Tasks {
     $el.list.Children.Clear()
     foreach ($t in $open) { [void]$el.list.Children.Add((New-TaskRow $t)) }
     if ($script:showArchive -and $arch.Count) {
-        $h = New-Object Windows.Controls.TextBlock; $h.Text = T 'archiveHdr'; $h.Foreground = Brush '#888'; $h.FontSize = 11; $h.Margin = Thick 0 8 0 4
+        $h = New-Object Windows.Controls.TextBlock; $h.Text = T 'archiveHdr'; $h.Foreground = Brush '#888'; $h.FontSize = 13; $h.Margin = Thick 0 8 0 4
         [void]$el.list.Children.Add($h)
         foreach ($t in $arch) { $r = New-TaskRow $t; $r.Opacity = 0.7; [void]$el.list.Children.Add($r) }
     }
@@ -1488,14 +1488,14 @@ function Render-Fx {
             $symTb.Margin = Thick 0 0 12 0; $symTb.VerticalAlignment = 'Center'
             [Windows.Controls.DockPanel]::SetDock($symTb, 'Left')
             $codeTb = New-Object Windows.Controls.TextBlock
-            $codeTb.Text = $code; $codeTb.FontSize = 11; $codeTb.Foreground = Brush '#777'; $codeTb.VerticalAlignment = 'Center'
+            $codeTb.Text = $code; $codeTb.FontSize = 13; $codeTb.Foreground = Brush '#777'; $codeTb.VerticalAlignment = 'Center'
             [Windows.Controls.DockPanel]::SetDock($codeTb, 'Right')
             $mid = New-Object Windows.Controls.StackPanel
             $res = New-Object Windows.Controls.TextBlock
-            $res.FontSize = 16; $res.Foreground = Brush '#EEE'
+            $res.FontSize = 18; $res.Foreground = Brush '#EEE'
             $res.Text = if ($null -eq $value) { '–' } elseif ($toNok) { '{0:N2} {1}' -f $value, $nok } else { '{0} {1:N2}' -f $sym, $value }
             $rateTb = New-Object Windows.Controls.TextBlock
-            $rateTb.FontSize = 10; $rateTb.Foreground = Brush '#888'; $rateTb.Text = (T 'fxRate') -f $sym, $rate.ToString('0.00##')
+            $rateTb.FontSize = 12; $rateTb.Foreground = Brush '#888'; $rateTb.Text = (T 'fxRate') -f $sym, $rate.ToString('0.00##')
             [void]$mid.Children.Add($res); [void]$mid.Children.Add($rateTb)
             [void]$dp.Children.Add($symTb); [void]$dp.Children.Add($codeTb); [void]$dp.Children.Add($mid)
             $row.Child = $dp
@@ -1524,7 +1524,7 @@ function Add-ImportLine($label, $value, [switch]$Total) {
     $dp = New-Object Windows.Controls.DockPanel; $dp.Margin = Thick 0 $(if ($Total) { 5 } else { 1 }) 0 0
     $v = New-Object Windows.Controls.TextBlock; $v.Text = '{0:N2} {1}' -f $value, (T 'fxNok')
     $l = New-Object Windows.Controls.TextBlock; $l.Text = $label
-    foreach ($tb in $v, $l) { $tb.FontSize = $(if ($Total) { 15 } else { 12 }); $tb.Foreground = Brush $(if ($Total) { '#EEE' } else { '#BBB' }) }
+    foreach ($tb in $v, $l) { $tb.FontSize = $(if ($Total) { 17 } else { 14 }); $tb.Foreground = Brush $(if ($Total) { '#EEE' } else { '#BBB' }) }
     if ($Total) { $l.FontWeight = 'SemiBold'; $v.FontWeight = 'SemiBold' }
     [Windows.Controls.DockPanel]::SetDock($v, 'Right'); [void]$dp.Children.Add($v); [void]$dp.Children.Add($l)
     [void]$el.impLines.Children.Add($dp)
@@ -1563,7 +1563,7 @@ function Render-Import {
 foreach ($code in $fxCurrencies.Keys) {
     $chip = New-Object Windows.Controls.Border
     $chip.CornerRadius = New-Object Windows.CornerRadius 8; $chip.Padding = Thick 8 1 8 2; $chip.Margin = Thick 0 0 4 0; $chip.Cursor = 'Hand'; $chip.Tag = $code
-    $chip.Child = New-Object Windows.Controls.TextBlock; $chip.Child.Text = $code; $chip.Child.FontSize = 11
+    $chip.Child = New-Object Windows.Controls.TextBlock; $chip.Child.Text = $code; $chip.Child.FontSize = 13
     $chip.Add_MouseLeftButtonDown({ param($s, $e) $cfg.fxImpCur = $s.Tag; Save-Config; Render-Fx; $e.Handled = $true })
     [void]$el.impCurs.Children.Add($chip)
 }
@@ -1577,7 +1577,7 @@ $el.impShip.Add_LostFocus({ Save-Config }); $el.impDuty.Add_LostFocus({ Save-Con
 foreach ($k in 'toNok', 'fromNok') {
     $chip = New-Object Windows.Controls.Border
     $chip.CornerRadius = New-Object Windows.CornerRadius 10; $chip.Padding = Thick 10 2 10 2; $chip.Margin = Thick 0 0 4 0; $chip.Cursor = 'Hand'; $chip.Tag = $k
-    $chip.Child = New-Object Windows.Controls.TextBlock; $chip.Child.FontSize = 11
+    $chip.Child = New-Object Windows.Controls.TextBlock; $chip.Child.FontSize = 13
     $chip.Add_MouseLeftButtonDown({ param($s, $e) $cfg.fxDir = $s.Tag; Save-Config; Render-Fx; $e.Handled = $true })
     [void]$el.fxDir.Children.Add($chip)
 }
@@ -1658,7 +1658,7 @@ $win.Add_SizeChanged({ Keep-OnScreen })
 # By default the widget is 340 px wide and grows with its content (list capped at 430 px).
 # Dragging the grip in the bottom-right corner switches to a fixed size where the list fills
 # the window; the button next to the title goes back to the default.
-$defaultWidth = 340; $defaultListHeight = 430
+$defaultWidth = 380; $defaultListHeight = 430
 function Set-CustomSize($w, $h) {
     $win.SizeToContent = 'Manual'; $el.listScroll.MaxHeight = [double]::PositiveInfinity
     $win.Width = [math]::Max($win.MinWidth, $w); $win.Height = [math]::Max($win.MinHeight, $h)

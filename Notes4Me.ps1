@@ -293,7 +293,7 @@ function Set-LineChecked($id, $index, $checked) {
           <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
             <TextBlock Name="selAll" Foreground="#888" FontSize="11" Cursor="Hand"/>
             <TextBlock Name="custLink" Foreground="#888" FontSize="11" Cursor="Hand" Margin="14,0,0,0" Visibility="Collapsed"/>
-            <TextBlock Name="archLink" Foreground="#888" FontSize="11" Cursor="Hand" Visibility="Collapsed"/>
+            <TextBlock Name="archLink" Foreground="#888" FontSize="11" Cursor="Hand" Margin="14,0,0,0" Visibility="Collapsed"/>
           </StackPanel>
         </DockPanel>
         <TextBlock Name="emptyLbl" DockPanel.Dock="Top" Foreground="#777" FontSize="11" Margin="0,4,0,0"/>
@@ -374,13 +374,15 @@ function New-NoteCard($note) {
     [Windows.Controls.ToolTipService]::SetInitialShowDelay($card, 1500)
     $card.Add_MouseLeftButtonDown({ param($s, $e) if ($e.ClickCount -ge 2) { Start-Edit $s.Tag }; $e.Handled = $true })
 
-    $lines = $note.text -split "`n"
+    $lines = $note.text -split "`n"; $content = 0
     for ($i = 0; $i -lt $lines.Count; $i++) {
         $line = $lines[$i]
         $tb = New-Object Windows.Controls.TextBlock
         $tb.TextWrapping = 'Wrap'; $tb.FontSize = 12; $tb.Foreground = Brush '#DDD'
         $m = $lineRx.Match($line)
         if ($line.Trim() -ne '' -and -not (Get-DisplayText ($line -replace '^=([xa]\s)?', ''))) { continue }  # line held only (Customer)
+        if ($m.Success -and $m.Groups[1].Value.Trim() -eq 'a') { continue }   # archived tasks are shown in the archive, not here
+        if ($line.Trim()) { $content++ }
         if ($m.Success) {
             $checked = $m.Groups[1].Success
             $tb.Text = Get-DisplayText $m.Groups[2].Value
@@ -399,6 +401,7 @@ function New-NoteCard($note) {
             $tb.Text = Get-DisplayText $line; [void]$sp.Children.Add($tb)
         }
     }
+    if (-not $content) { return $null }   # nothing left but archived tasks
     $card.Child = $sp
     $card
 }
@@ -451,16 +454,33 @@ function Render {
     if ($cfg.tab -eq $tasksTab) { Render-Tasks; return }
     $el.selAll.Visibility = 'Visible'; $el.archBtn.Visibility = 'Collapsed'; $el.archLink.Visibility = 'Collapsed'
 
-    # Notes in the active tab, newest first
-    $vis = if ($cfg.tab) { @($sorted | Where-Object { Test-Customer $_ ([string]$cfg.tab) }) } else { $sorted }
+    # Notes in the active tab, newest first (a note with only archived tasks left is not shown)
+    $tabNotes = if ($cfg.tab) { @($sorted | Where-Object { Test-Customer $_ ([string]$cfg.tab) }) } else { $sorted }
+    $el.list.Children.Clear()
+    $vis = @(foreach ($n in $tabNotes) { $c = New-NoteCard $n; if ($c) { [void]$el.list.Children.Add($c); $n } })
     $script:visible = @($vis | ForEach-Object { $_.id })
     foreach ($id in @($script:selected)) { if ($id -notin $script:visible) { [void]$script:selected.Remove($id) } }
-    $el.list.Children.Clear()
-    foreach ($n in $vis) { [void]$el.list.Children.Add((New-NoteCard $n)) }
+
+    # Customer/project tabs have their own task archive, like the Tasks tab
+    $done = @(); $arch = @()
+    if ($cfg.tab) {
+        $lt = @(Get-LineTasks $tabNotes)
+        $done = @($lt | Where-Object { $_.checked -and -not $_.archived })
+        $arch = @($lt | Where-Object { $_.archived } | Sort-Object { if ($_.date) { $_.date } else { [datetime]::MinValue } }, { $_.created } -Descending)
+        if ($script:showArchive -and $arch.Count) {
+            $h = New-Object Windows.Controls.TextBlock; $h.Text = T 'archiveHdr'; $h.Foreground = Brush '#888'; $h.FontSize = 11; $h.Margin = Thick 0 8 0 4
+            [void]$el.list.Children.Add($h)
+            foreach ($t in $arch) { $r = New-TaskRow $t; $r.Opacity = 0.7; [void]$el.list.Children.Add($r) }
+        }
+    }
+    $el.archLink.Text = $(if ($script:showArchive) { T 'hideArchive' } else { (T 'showArchive') -f $arch.Count }); $el.archLink.Margin = Thick 14 0 0 0
+    $el.archLink.Visibility = $(if ($arch.Count) { 'Visible' } else { 'Collapsed' })
+    $el.archBtn.Content = (T 'archiveBtn') -f $done.Count
+    $el.archBtn.Visibility = $(if ($done.Count) { 'Visible' } else { 'Collapsed' })
 
     $el.emptyLbl.Text = T 'empty'
-    $el.emptyLbl.Visibility = $(if ($vis.Count) { 'Collapsed' } else { 'Visible' })
-    $el.toolbar.Visibility = $(if ($vis.Count) { 'Visible' } else { 'Collapsed' })
+    $el.emptyLbl.Visibility = $(if ($vis.Count -or ($script:showArchive -and $arch.Count)) { 'Collapsed' } else { 'Visible' })
+    $el.toolbar.Visibility = $(if ($vis.Count -or $arch.Count) { 'Visible' } else { 'Collapsed' })
     $allSel = $vis.Count -gt 0 -and $script:selected.Count -eq $vis.Count
     $el.selAll.Text = T $(if ($allSel) { 'clearSel' } else { 'selectAll' })
     $el.delBtn.Content = (T 'deleteSel') -f $script:selected.Count
@@ -968,8 +988,20 @@ function Get-Tasks {
         }
     }
 }
+# Every checkbox line in the given notes, dated or not (used for the customer/project archive)
+function Get-LineTasks($notes) {
+    foreach ($n in $notes) {
+        $lines = $n.text -split "`n"
+        for ($i = 0; $i -lt $lines.Count; $i++) {
+            $m = $lineRx.Match($lines[$i]); if (-not $m.Success) { continue }
+            $flag = $m.Groups[1].Value.Trim()
+            [pscustomobject]@{ id = $n.id; line = $i; text = $m.Groups[2].Value; date = (Get-TaskDate $m.Groups[2].Value); checked = [bool]$flag
+                               archived = $flag -eq 'a'; created = $n.created; customers = @(Get-Customers $n.text) }
+        }
+    }
+}
 function New-TaskRow($t) {
-    $today = (Get-Date).Date; $days = ($t.date - $today).Days
+    $today = (Get-Date).Date; $days = if ($t.date) { ($t.date - $today).Days } else { 0 }
     $row = New-Object Windows.Controls.Border
     $row.CornerRadius = New-Object Windows.CornerRadius 6; $row.Padding = Thick 8 5 8 6; $row.Margin = Thick 0 0 0 5
     $row.Background = Brush '#2B2B2B'; $row.Tag = $t.id; $row.ToolTip = T 'edit'
@@ -980,11 +1012,11 @@ function New-TaskRow($t) {
     $right = New-Object Windows.Controls.StackPanel; $right.Margin = Thick 8 0 0 0; $right.VerticalAlignment = 'Center'
     [Windows.Controls.DockPanel]::SetDock($right, 'Right')
     $dl = New-Object Windows.Controls.TextBlock; $dl.FontSize = 11; $dl.HorizontalAlignment = 'Right'
-    $dl.Text = if (-not $t.checked -and $days -lt 0) { '{0} · {1}' -f (T 'dOverdue'), $t.date.ToString('d.M.') }
+    $dl.Text = if (-not $t.date) { '' } elseif (-not $t.checked -and $days -lt 0) { '{0} · {1}' -f (T 'dOverdue'), $t.date.ToString('d.M.') }
                elseif ($days -eq 0) { T 'dToday' } elseif ($days -eq 1) { T 'dTomorrow' } else { $t.date.ToString('ddd d.M.') }
     $dl.Foreground = Brush $(if ($t.checked) { '#666' } elseif ($days -lt 0) { '#E06C5A' } elseif ($days -eq 0) { '#D97757' } else { '#999' })
     [void]$right.Children.Add($dl)
-    if ($t.customers.Count) {
+    if ($t.customers.Count -and -not ($cfg.tab -and $cfg.tab -notin $fxTab, $tasksTab)) {   # no need to repeat the customer inside its own tab
         $ct = New-Object Windows.Controls.TextBlock; $ct.FontSize = 10; $ct.Foreground = Brush '#D97757'; $ct.HorizontalAlignment = 'Right'
         $ct.Text = (@($t.customers | ForEach-Object { $k = $_.ToLower(); if ($script:custNames[$k]) { $script:custNames[$k] } else { $_ } }) | Sort-Object -Unique) -join ', '
         [void]$right.Children.Add($ct)
@@ -1016,14 +1048,16 @@ function Render-Tasks {
     $el.emptyLbl.Text = T 'tasksEmpty'
     $el.emptyLbl.Visibility = $(if ($open.Count -or ($script:showArchive -and $arch.Count)) { 'Collapsed' } else { 'Visible' })
     $el.toolbar.Visibility = $(if ($done.Count -or $arch.Count) { 'Visible' } else { 'Collapsed' })
-    $el.selAll.Visibility = 'Collapsed'; $el.custLink.Visibility = 'Collapsed'; $el.delBtn.Visibility = 'Collapsed'
+    $el.selAll.Visibility = 'Collapsed'; $el.custLink.Visibility = 'Collapsed'; $el.delBtn.Visibility = 'Collapsed'; $el.archLink.Margin = Thick 0 0 0 0
     $el.archLink.Text = $(if ($script:showArchive) { T 'hideArchive' } else { (T 'showArchive') -f $arch.Count })
     $el.archLink.Visibility = $(if ($arch.Count) { 'Visible' } else { 'Collapsed' })
     $el.archBtn.Content = (T 'archiveBtn') -f $done.Count
     $el.archBtn.Visibility = $(if ($done.Count) { 'Visible' } else { 'Collapsed' })
 }
 function Save-ArchiveDone {
-    foreach ($t in @(Get-Tasks | Where-Object { $_.checked -and -not $_.archived })) {
+    # In a customer/project tab: every ticked task of that customer; in the Tasks tab: every ticked dated task
+    $source = if ($cfg.tab -and $cfg.tab -notin $fxTab, $tasksTab) { Get-LineTasks @($script:notes | Where-Object { Test-Customer $_ ([string]$cfg.tab) }) } else { Get-Tasks }
+    foreach ($t in @($source | Where-Object { $_.checked -and -not $_.archived })) {
         $n = Get-Note $t.id; $lines = $n.text -split "`n"
         $lines[$t.line] = '=a ' + $lineRx.Match($lines[$t.line]).Groups[2].Value
         $n.text = $lines -join "`n"; $n.updated = Now-Iso

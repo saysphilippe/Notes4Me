@@ -71,6 +71,15 @@ This note appears in the **Equinor** tab, with checkboxes in front of "Send offe
 - A note can mention several customers and then shows up in each of their tabs.
 - When you edit a note (double-click), you see the full text including `(Customer)`. A ticked line is stored as `=x`; you can also type `=x` yourself to add a line that is already ticked.
 
+### Task archive per customer/project
+
+Each customer/project tab has its own archive for the checkbox tasks in its notes – with or without a date:
+
+- **Archive done (n)** above the list moves the ticked tasks of that customer/project to the archive (stored as `=a`).
+- Archived tasks are hidden from the notes. A note that has nothing left but archived tasks disappears from the list.
+- **Show archive (n)** lists the archived tasks at the bottom; untick one to make it an open task again.
+- Other customers/projects are not affected.
+
 ## Deleting a customer or project
 
 Right-click a customer tab, or open the tab and click **Delete customer…** above the list. You get two choices, both asking for confirmation:

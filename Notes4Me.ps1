@@ -1147,6 +1147,7 @@ $el.archLink.Add_MouseLeftButtonDown({ param($s, $e) $script:showArchive = -not 
 #   appointment deleted in Outlook -> the task line is deleted here (and the note, if nothing is left)
 # outlook-sync.json maps a task (note id + task text without date/time) to the appointment's EntryID.
 $syncMapPath = Join-Path $dir 'outlook-sync.json'
+$script:syncMissing = @{}   # map key -> number of checks in a row the appointment was missing
 $script:ol = $null
 function Get-SyncCore($content) {
     $s = Get-DisplayText (Split-TaskTime ($dateRx.Replace($content, ''))).text
@@ -1234,10 +1235,10 @@ function Sync-Outlook {
         # every object is released right after use.
         $rows = @{}
         $tbl = $cal.GetTable("[Categories] = 'Notes4Me'")
-        $tbl.Columns.RemoveAll(); foreach ($c in 'EntryID', 'Start', 'AllDayEvent') { [void]$tbl.Columns.Add($c) }
+        $tbl.Columns.RemoveAll(); foreach ($c in 'EntryID', 'Start', 'AllDayEvent', 'Subject') { [void]$tbl.Columns.Add($c) }
         while (-not $tbl.EndOfTable) {
             $r = $tbl.GetNextRow()
-            $rows[[string]$r.Item('EntryID')] = @{ start = [datetime]$r.Item('Start'); allDay = [bool]$r.Item('AllDayEvent') }
+            $rows[[string]$r.Item('EntryID')] = @{ start = [datetime]$r.Item('Start'); allDay = [bool]$r.Item('AllDayEvent'); subject = [string]$r.Item('Subject') }
             Remove-ComRef $r
         }
         Remove-ComRef $tbl
@@ -1252,6 +1253,13 @@ function Sync-Outlook {
                 $same = $false; try { $same = $ns.CompareEntryIDs($map[$k].id, $rid) } catch {}
                 if ($same) { $map[$k].id = $rid; $claimed[$rid] = 1; break }
             }
+            if ($rows.ContainsKey($map[$k].id)) { continue }
+            # Still unknown: recognise it by its subject (the ID can change completely, e.g. when Outlook
+            # switches between cached and online mode)
+            $subj = ($map[$k].hash -split '\|')[0]
+            foreach ($rid in @($rows.Keys)) {
+                if (-not $claimed[$rid] -and $rows[$rid].subject -eq $subj) { $map[$k].id = $rid; $claimed[$rid] = 1; break }
+            }
         }
         foreach ($k in @($map.Keys)) {
             $row = $rows[$map[$k].id]
@@ -1261,9 +1269,16 @@ function Sync-Outlook {
                 Remove-ComRef $parent; Remove-ComRef $item
             }
             if (-not $row) {   # deleted (or moved away) in Outlook
+                # Safety: never on the first miss, and never when Outlook returned no appointments at all.
+                # Only when it is still missing at the next check is the task deleted here.
+                if ($rows.Count -eq 0) { continue }
+                $script:syncMissing[$k] = [int]$script:syncMissing[$k] + 1
+                if ($script:syncMissing[$k] -lt 2) { continue }
+                $script:syncMissing.Remove($k)
                 if ($desired.Contains($k)) { $gone.Add($k) }
                 $map.Remove($k); continue
             }
+            $script:syncMissing.Remove($k)
             if (-not $desired.Contains($k)) {   # task deleted here
                 $item = & $open $map[$k].id; if ($item) { try { $item.Delete() } finally { Remove-ComRef $item } }
                 $map.Remove($k); $removed++; continue

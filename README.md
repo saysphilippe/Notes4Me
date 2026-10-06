@@ -7,7 +7,7 @@ The tabs are, in order: **Tasks**, **Currency**, **All** and one tab per custome
 - **Tasks tab:** every line with a date (for example `= Send offer 16.10`) appears here, soonest first, with overdue tasks in red. Tick to strike through, then archive the ticked ones.
 - **Customer tabs:** write a customer name in parentheses in a note, for example `(Equinor)`. A tab for that customer appears automatically and lists its notes, newest first. **All** shows every note.
 - **Checkboxes:** start a line with `=` to turn it into a checkbox. Ticking it strikes the line through.
-- **Voice commands:** click the microphone by the title and say for example "Task Equinor send offer on Friday", "Note Statkraft …" or "Currency 100 euro".
+- **Voice commands:** click the microphone by the title and just say it, for example "Remember to send the offer to Equinor on Friday" or "How much is 100 euro".
 - **Currency tab:** today's or historical exchange rates for €, £, $, Swedish kroner (SEK) and Danish kroner (DKK) from Norges Bank, with a calculator to or from Norwegian kroner.
 - **Delete a customer:** right-click its tab to delete it with its notes, or just remove it and keep the notes.
 - **Delete one or many:** tick the box in the top-left corner of each note (or use **Select all**), then click **Delete selected**.
@@ -87,21 +87,26 @@ Any line in any note that contains a date is a task and is listed in the **Tasks
 
 ## Voice commands
 
-Click the **microphone** next to the title. A command box opens and Windows voice typing (Win+H) starts. Say what you want; the line under the box shows how it was understood. The command runs after a 3-second pause, or straight away with **Enter**. **Esc** closes the box. You can also type commands.
+Click the **microphone** next to the title. A command box opens and Windows voice typing (Win+H) starts. Just say what you want in your own words – there are no fixed commands. The line under the box shows how it was understood. It runs after a 3-second pause, or straight away with **Enter**. **Esc** closes the box. You can also type.
 
 | You say | Result |
 |---|---|
-| "**Task** Equinor send offer on Friday" | Task for Equinor, dated next Friday |
-| "**Task** call Per tomorrow" | Task without a customer |
-| "**Task** for Hydro order boards 16 October" | Task for a new customer Hydro |
-| "**Note** Statkraft replaced sensor on panel three" | Note for Statkraft |
-| "**Currency** 100 euro" / "Currency 500 kroner" | Currency tab with the amount and the right direction |
+| "Remember to send the offer to Equinor on Friday" | Task for Equinor, next Friday: "Send the offer to Equinor" |
+| "I need to call Per tomorrow" | Task without a customer, tomorrow |
+| "Equinor wants a demo next week" | Task for Equinor, next Monday |
+| "Talked to Statkraft about the sensors" | Note for Statkraft |
+| "Equinor called today and wants a new offer" | Note for Equinor |
+| "Create a task for customer Hydro: order new boards 16 October" | Task for a new customer Hydro |
+| "How much is 100 euro" / "Currency 500 kroner" | Currency tab with the amount and the right direction |
 
-- The command words work in all four languages: Task/Oppgave/Uppgift/Opgave, Note/Notat/Anteckning, Currency/Valuta.
-- **Customer:** the word after Task/Note is the customer only if it is a customer you already have, or if you say "for X" or "customer X". Otherwise the task or note has no customer. Say "loose"/"løs" to make sure.
+How the sentence is read (in English, Norwegian, Swedish and Danish):
+
+- **Customer:** a customer you already have is recognised anywhere in the sentence, and the name stays where you said it. A new customer is given as "customer X" / "kunde X" (or "Task for X …"). Say "no customer" / "uten kunde" / "løs" to make sure there is none.
+- **Task or note:** it becomes a task if the sentence has a task word (task/oppgave, remember/husk, remind/påminn, "I need to"/"jeg må", "we should"/"vi skal" …) or a future date. Otherwise it is a note. "Today" on its own does not make a task ("Equinor called today" stays a note). If you start with "Note"/"Notat", it is always a note.
+- **Filler words** such as "remember to", "I need to", "create a task about", "husk å", "jeg må" are removed, so the task text is short.
 - **Dates:** today, tomorrow, the day after tomorrow, weekdays ("on Friday"), "next week", "in 3 days", "16 October" and written dates. A task without a date gets today's date.
-- **Currency:** an amount in a foreign currency gives foreign → NOK; an amount in kroner gives NOK → foreign. A date gives that day's rates. "What is 250 dollars" also works without the word Currency.
-- After a task, the widget switches to **Tasks**; after a note, to the customer's tab; after a currency command, to **Currency**. The box stays open for the next command.
+- **Currency:** an amount with a currency ("100 euro", "250 dollars") or a sentence starting with "Currency"/"Valuta". An amount in a foreign currency gives foreign → NOK, an amount in kroner gives NOK → foreign. A date gives that day's rates.
+- After a task, the widget switches to **Tasks**; after a note, to the customer's tab; after a currency question, to **Currency**. The box stays open for the next command.
 
 Voice typing is provided by Windows. If your language isn't supported there, Windows will tell you.
 

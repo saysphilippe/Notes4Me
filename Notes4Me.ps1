@@ -28,7 +28,7 @@ $strings = @{
         confirmCustRemove = 'Remove the customer "{0}" from {1} note(s)? The notes are kept under All.'
         tabTasks = 'Tasks'; archiveBtn = 'Archive done ({0})'; showArchive = 'Show archive ({0})'; hideArchive = 'Hide archive'; archiveHdr = 'Archive'
         tasksEmpty = 'No tasks with a date yet. Write a line with a date, e.g. "= Send offer 16.10".'; dToday = 'Today'; dTomorrow = 'Tomorrow'; dOverdue = 'Overdue'
-        cmdHint = 'Say or type e.g. "Task Equinor send offer on Friday", "Note Statkraft …" or "Currency 100 euro". Enter runs it, Esc closes.'; cmdRun = 'Run'
+        cmdHint = 'Just say it, e.g. "Remember to send the offer to Equinor on Friday", "Talked to Statkraft about the sensors" or "How much is 100 euro". Enter runs it, Esc closes.'; cmdRun = 'Run'
         pvTask = 'Task'; pvNote = 'Note'; pvFor = 'for {0}'; pvLoose = '(no customer)'; pvAuto = 'runs in 3 s – Enter now, Esc to cancel'
         tabFx = 'Currency'; fxAmtTo = 'Amount in foreign currency'; fxAmtFrom = 'Amount in NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Foreign'
         fxSource = 'Norges Bank rates, {0}'; fxFetching = 'Fetching rates…'; fxOffline = 'Could not fetch new rates – showing rates from {0}'
@@ -47,7 +47,7 @@ $strings = @{
         confirmCustRemove = 'Fjerne kunden «{0}» fra {1} notat(er)? Notatene beholdes under Alle.'
         tabTasks = 'Oppgaver'; archiveBtn = 'Arkiver utførte ({0})'; showArchive = 'Vis arkiv ({0})'; hideArchive = 'Skjul arkiv'; archiveHdr = 'Arkiv'
         tasksEmpty = 'Ingen oppgaver med dato ennå. Skriv en linje med dato, f.eks. «= Sende tilbud 16.10».'; dToday = 'I dag'; dTomorrow = 'I morgen'; dOverdue = 'Forfalt'
-        cmdHint = 'Si eller skriv f.eks. «Oppgave Equinor sende tilbud på fredag», «Notat Statkraft …» eller «Valuta 100 euro». Enter utfører, Esc lukker.'; cmdRun = 'Utfør'
+        cmdHint = 'Si det med egne ord, f.eks. «Husk å sende tilbud til Equinor på fredag», «Snakket med Statkraft om sensorene» eller «Hvor mye er 100 euro». Enter utfører, Esc lukker.'; cmdRun = 'Utfør'
         pvTask = 'Oppgave'; pvNote = 'Notat'; pvFor = 'for {0}'; pvLoose = '(uten kunde)'; pvAuto = 'utføres om 3 s – Enter nå, Esc avbryter'
         tabFx = 'Valuta'; fxAmtTo = 'Beløp i valuta'; fxAmtFrom = 'Beløp i kroner'; fxRate = '1 {0} = {1} kr'; fxNok = 'kr'; fxForeign = 'Valuta'
         fxSource = 'Kurser fra Norges Bank, {0}'; fxFetching = 'Henter kurser…'; fxOffline = 'Fikk ikke hentet nye kurser – viser kurser fra {0}'
@@ -66,7 +66,7 @@ $strings = @{
         confirmCustRemove = 'Ta bort kunden ”{0}” från {1} anteckning(ar)? Anteckningarna finns kvar under Alla.'
         tabTasks = 'Uppgifter'; archiveBtn = 'Arkivera klara ({0})'; showArchive = 'Visa arkiv ({0})'; hideArchive = 'Dölj arkiv'; archiveHdr = 'Arkiv'
         tasksEmpty = 'Inga uppgifter med datum ännu. Skriv en rad med datum, t.ex. ”= Skicka offert 16.10”.'; dToday = 'I dag'; dTomorrow = 'I morgon'; dOverdue = 'Försenad'
-        cmdHint = 'Säg eller skriv t.ex. ”Uppgift Equinor skicka offert på fredag”, ”Anteckning Statkraft …” eller ”Valuta 100 euro”. Enter kör, Esc stänger.'; cmdRun = 'Kör'
+        cmdHint = 'Säg det med egna ord, t.ex. ”Kom ihåg att skicka offert till Equinor på fredag”, ”Pratade med Statkraft om sensorerna” eller ”Hur mycket är 100 euro”. Enter kör, Esc stänger.'; cmdRun = 'Kör'
         pvTask = 'Uppgift'; pvNote = 'Anteckning'; pvFor = 'för {0}'; pvLoose = '(utan kund)'; pvAuto = 'körs om 3 s – Enter nu, Esc avbryter'
         tabFx = 'Valuta'; fxAmtTo = 'Belopp i utländsk valuta'; fxAmtFrom = 'Belopp i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Valuta'
         fxSource = 'Kurser från Norges Bank, {0}'; fxFetching = 'Hämtar kurser…'; fxOffline = 'Kunde inte hämta nya kurser – visar kurser från {0}'
@@ -85,7 +85,7 @@ $strings = @{
         confirmCustRemove = 'Fjern kunden »{0}« fra {1} note(r)? Noterne beholdes under Alle.'
         tabTasks = 'Opgaver'; archiveBtn = 'Arkivér udførte ({0})'; showArchive = 'Vis arkiv ({0})'; hideArchive = 'Skjul arkiv'; archiveHdr = 'Arkiv'
         tasksEmpty = 'Ingen opgaver med dato endnu. Skriv en linje med dato, f.eks. »= Send tilbud 16.10«.'; dToday = 'I dag'; dTomorrow = 'I morgen'; dOverdue = 'Forfalden'
-        cmdHint = 'Sig eller skriv f.eks. »Opgave Equinor send tilbud på fredag«, »Note Statkraft …« eller »Valuta 100 euro«. Enter udfører, Esc lukker.'; cmdRun = 'Udfør'
+        cmdHint = 'Sig det med dine egne ord, f.eks. »Husk at sende tilbud til Equinor på fredag«, »Talte med Statkraft om sensorerne« eller »Hvor meget er 100 euro«. Enter udfører, Esc lukker.'; cmdRun = 'Udfør'
         pvTask = 'Opgave'; pvNote = 'Note'; pvFor = 'for {0}'; pvLoose = '(uden kunde)'; pvAuto = 'udføres om 3 s – Enter nu, Esc annullerer'
         tabFx = 'Valuta'; fxAmtTo = 'Beløb i udenlandsk valuta'; fxAmtFrom = 'Beløb i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Valuta'
         fxSource = 'Kurser fra Norges Bank, {0}'; fxFetching = 'Henter kurser…'; fxOffline = 'Kunne ikke hente nye kurser – viser kurser fra {0}'
@@ -449,18 +449,16 @@ function Stop-Edit {
 
 # --- Voice commands -------------------------------------------------------------
 # The microphone by the title opens a command box and starts Windows voice typing (Win+H).
-# What is said is read as a command and run after a 3 second pause (or Enter):
-#   "Oppgave Equinor sende tilbud på fredag"  -> task for Equinor, dated next Friday
-#   "Oppgave ringe Per i morgen"              -> task without customer
-#   "Notat Statkraft byttet sensor"            -> note for Statkraft
-#   "Valuta 100 euro"                          -> Currency tab, 100 EUR -> NOK
-# The word after Oppgave/Notat is a customer only if it is a known customer or follows "for"/"kunde".
+# The whole sentence is analysed - no fixed command word is needed - and run after a
+# 3 second pause (or Enter):
+#   "Husk å sende tilbud til Equinor på fredag"  -> task for Equinor, dated next Friday
+#   "Jeg må ringe Per i morgen"                   -> task without customer
+#   "Snakket med Statkraft om sensorene"          -> note for Statkraft
+#   "Hvor mye er 100 euro"                        -> Currency tab, 100 EUR -> NOK
+# Known customers are found anywhere in the sentence; a new one is given as "kunde X"
+# (or "Oppgave for X ..."). Task words (oppgave, husk, jeg må, ...) or a future date make a
+# task, everything else becomes a note.
 Add-Type -Namespace Notes4Me -Name Keys -MemberDefinition '[DllImport("user32.dll")] public static extern void keybd_event(byte vk, byte scan, uint flags, UIntPtr extra);'
-$intentWords = @{
-    note = 'notat', 'note', 'notis', 'anteckning', 'memo'
-    task = 'oppgave', 'oppgåve', 'task', 'todo', 'gjøremål', 'uppgift', 'opgave', 'påminnelse', 'reminder'
-    fx   = 'valuta', 'currency', 'kurs', 'omregn', 'regn', 'veksle', 'växla'
-}
 $monthNo = @{ jan = 1; feb = 2; mar = 3; apr = 4; mai = 5; may = 5; maj = 5; jun = 6; jul = 7; aug = 8; sep = 9; okt = 10; oct = 10; nov = 11; des = 12; dec = 12 }
 $weekdayNo = @{ mandag = 1; monday = 1; 'måndag' = 1; tirsdag = 2; tuesday = 2; tisdag = 2; onsdag = 3; wednesday = 3; torsdag = 4; thursday = 4
                 fredag = 5; friday = 5; 'lørdag' = 6; saturday = 6; 'lördag' = 6; 'søndag' = 0; sunday = 0; 'söndag' = 0 }
@@ -495,19 +493,6 @@ function ConvertFrom-SpokenDate($text) {
     @{ date = $null; text = $text; numeric = $false }
 }
 
-# Splits "Equinor sende tilbud" into customer + text (see rules above)
-function Split-Customer($rest) {
-    if ($rest -match '^(?i)(?:løs|loose|lös|uten kunde|ingen kunde|without customer|no customer|utan kund|uden kunde)\b[\s,:.-]*(.*)$') { return @{ customer = $null; text = $matches[1] } }
-    foreach ($name in @($script:custNames.Values | Sort-Object Length -Descending)) {
-        if ($rest -match ('^(?i)(?:(?:for|kunde|customer|kund|för)\s+)?' + [regex]::Escape($name) + '\b[\s,:.-]*(.*)$')) { return @{ customer = $name; text = $matches[1] } }
-    }
-    if ($rest -match '^(?i)(?:for|kunde|customer|kund|för)\s+([\p{L}\p{N}&''-]+)[\s,:.-]*(.*)$' -and
-        $matches[1] -notmatch '^(?i)(å|att|at|to|i|på|' + ($weekdayNo.Keys -join '|') + ')$') {
-        return @{ customer = Format-Cap $matches[1]; text = $matches[2] }
-    }
-    @{ customer = $null; text = $rest }
-}
-
 $fxWordRx = '(?i)(svenske?\s+kron(?:er|or)|svenska\s+kronor|sek|danske?\s+kron(?:er|or)|dkk|euro(?:s|er)?|eur|€|pund|pounds?|gbp|£|dollars?|usd|\$|norske?\s+kron(?:er|or)|kroner|kronor|kr|nok)'
 function Get-FxCode($word) {
     switch -Regex ($word) {
@@ -516,33 +501,79 @@ function Get-FxCode($word) {
     }
 }
 
+$wb = '(?<![\p{L}\p{N}])'; $we = '(?![\p{L}\p{N}])'   # word boundaries that also work for æøå
+$taskRx  = "(?i)$wb(?:oppgave\p{L}*|oppgåve|task|todo|to-do|gjøremål|uppgift|opgave|påminnelse|påminn\p{L}*|reminder|remind|husk\p{L}*|remember|kom ihåg|(?:jeg|vi|jag|i|we)\s+(?:må|skal|bør|ska|måste|behöver|need to|have to|must|should))$we|^(?:må|skal|ska|måste|need to|must)$we"
+$noteRx  = "(?i)$wb(?:notat|note|notis|anteckning|memo)$we"
+$fxKeyRx = "(?i)^(?:valuta|currency|kurs|omregn\p{L}*|regn om|veksle|växla)$we"
+$looseRx = "(?i)$wb(?:løs oppgave|uten kunde|ingen kunde|without (?:a )?customer|no customer|utan kund|uden kunde|løs|loose|lös)$we"
+$stopRx  = '^(?i)(å|att|at|to|i|på|om|og|and|med|the|en|et|ei|a|an|' + ($weekdayNo.Keys -join '|') + ')$'
+$fillerRx = @(
+    '^(?:kan du|kunne du|could you|please|vær så snill og)\s+'
+    '^(?:ny|nytt|nye|new|lag|lage|opprett|opprette|skriv|create|make|add|legg til|sett opp)\s+(?:en|et|ei|a|an)?\s*'
+    "^(?:oppgave\p{L}*|oppgåve|task|todo|gjøremål|uppgift|opgave|påminnelse|reminder|notat|note|notis|anteckning|memo)$we(?:\s+(?:om|on|about|to|til|på|at|att)$we)?[\s:,.-]*"
+    '^(?:husk på|husk|huske|remember|kom ihåg|påminn meg om|remind me to)\s+(?:å|to|att|at)?\s*'
+    '^(?:jeg|vi|jag|i|we|du|man)\s+(?:må|skal|bør|ska|måste|behöver|skulle|need to|have to|must|should)\s+(?:å|att|at)?\s*'
+    '^(?:må|skal|ska|måste|need to|must)\s+(?:å\s+)?'
+    '^(?:å|to|att|at)\s+'
+)
+function Remove-Fillers($s, [switch]$NoteOnly) {
+    $list = if ($NoteOnly) { $fillerRx[0..2] } else { $fillerRx }
+    do { $before = $s; foreach ($f in $list) { $s = Clear-Spoken ([regex]::Replace($s, "(?i)$f", '')) } } while ($s -ne $before)
+    $s
+}
+
+# Finds the customer anywhere in the sentence (see rules above)
+function Find-Customer($text) {
+    $m = [regex]::Match($text, $looseRx)
+    if ($m.Success) { return @{ customer = $null; text = Clear-Spoken $text.Remove($m.Index, $m.Length) } }
+    $m = [regex]::Match($text, "(?i)$wb(?:for\s+|för\s+)?(?:kunde|customer|kund)\s+([\p{L}\p{N}&'-]+)")
+    if ($m.Success -and $m.Groups[1].Value -notmatch $stopRx) {
+        $name = $m.Groups[1].Value; $known = $script:custNames[$name.ToLower()]
+        return @{ customer = $(if ($known) { $known } else { Format-Cap $name }); text = Clear-Spoken $text.Remove($m.Index, $m.Length) }
+    }
+    foreach ($name in @($script:custNames.Values | Sort-Object Length -Descending)) {
+        $m = [regex]::Match($text, "(?i)$wb$([regex]::Escape($name))$we")
+        if ($m.Success) {
+            # "Equinor: send offer" -> the name is a label and is removed; inside a sentence it stays
+            $after = [regex]::Match($text.Substring($m.Index + $m.Length), '^\s*[:,]')
+            if ($after.Success) { $text = Clear-Spoken $text.Remove($m.Index, $m.Length + $after.Length) }
+            return @{ customer = $name; text = $text }
+        }
+    }
+    # "Oppgave for Hydro bestille kort" -> new customer Hydro; the keyword stays for Remove-Fillers
+    $m = [regex]::Match($text, "(?i)^((?:oppgave\p{L}*|task|todo|uppgift|opgave|notat|note|anteckning)\s+)(?:for|för)\s+([\p{L}\p{N}&'-]+)")
+    if ($m.Success -and $m.Groups[2].Value -notmatch $stopRx) {
+        return @{ customer = Format-Cap $m.Groups[2].Value; text = Clear-Spoken ($m.Groups[1].Value + $text.Substring($m.Length)) }
+    }
+    @{ customer = $null; text = $text }
+}
+
 function Read-VoiceCommand($raw) {
     $text = Clear-Spoken $raw
     if (-not $text) { return $null }
-    $first = ($text -split '\s+')[0].ToLower() -replace '[^\p{L}]', ''
-    $rest = Clear-Spoken ($text -replace '^\S+', '')
-    $kind = $null
-    foreach ($k in $intentWords.Keys) { if ($intentWords[$k] -contains $first) { $kind = $k } }
-    if (-not $kind) {   # no keyword: an amount with a currency is a currency question, anything else a note
-        if ($text -match '\d' -and $text -match $fxWordRx) { $kind = 'fx'; $rest = $text } else { $kind = 'note'; $rest = $text }
-    }
-    if ($kind -eq 'fx') {
-        $dt = ConvertFrom-SpokenDate $rest
+    $hasTask = [regex]::Match($text, $taskRx); $hasNote = [regex]::Match($text, $noteRx)
+    # Currency: starts with Valuta/Currency, or an amount with a currency and no task/note words
+    if ($text -match $fxKeyRx -or (-not $hasTask.Success -and -not $hasNote.Success -and $text -match '\d' -and $text -match $fxWordRx)) {
+        $dt = ConvertFrom-SpokenDate $text
         $m = [regex]::Match($dt.text, '(\d[\d  .,]*)\s*' + $fxWordRx + '?')
         $amount = if ($m.Success) { ConvertTo-Amount $m.Groups[1].Value } else { $null }
         $code = if ($m.Success -and $m.Groups[2].Success) { Get-FxCode $m.Groups[2].Value } elseif ($dt.text -match $fxWordRx) { Get-FxCode $matches[1] } else { $null }
         if ($dt.date -and $dt.date -gt (Get-Date).Date) { $dt.date = $dt.date.AddYears(-1) }   # rates only exist for past dates
         return @{ kind = 'fx'; amount = $amount; code = $code; dir = $(if ($code -eq 'NOK') { 'fromNok' } else { 'toNok' }); date = $dt.date }
     }
-    $c = Split-Customer $rest
-    if ($kind -eq 'task') {
-        $dt = ConvertFrom-SpokenDate $c.text
+    $c = Find-Customer $text
+    $dt = ConvertFrom-SpokenDate $c.text
+    # A task: task words, or a date that is not just "today" ("Equinor ringte i dag" stays a note).
+    # A note word before any task word wins ("Notat: husk at ...").
+    $noteFirst = $hasNote.Success -and (-not $hasTask.Success -or $hasNote.Index -lt $hasTask.Index)
+    $isTask = -not $noteFirst -and ($hasTask.Success -or ($dt.date -and $dt.date -ne (Get-Date).Date))
+    if ($isTask) {
         $date = if ($dt.date) { $dt.date } else { (Get-Date).Date }
-        $label = Format-Cap (Clear-Spoken $dt.text); $body = $label
+        $label = Format-Cap (Remove-Fillers $dt.text); $body = $label
         if (-not $dt.numeric) { $body = "$body " + $date.ToString($(if ($date.Year -eq (Get-Date).Year) { 'd.M' } else { 'd.M.yyyy' })) }
         return @{ kind = 'task'; customer = $c.customer; body = $body.Trim(); label = $label; date = $date }
     }
-    @{ kind = 'note'; customer = $c.customer; body = Format-Cap (Clear-Spoken $c.text) }
+    @{ kind = 'note'; customer = $c.customer; body = Format-Cap (Remove-Fillers $c.text -NoteOnly) }
 }
 
 function Get-CommandText($cmd) {

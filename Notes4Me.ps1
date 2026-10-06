@@ -8,7 +8,8 @@ $cfgPath   = Join-Path $dir 'config.json'
 $notesPath = Join-Path $dir 'notes.json'
 $utf8      = New-Object Text.UTF8Encoding $false
 
-$cfg = [ordered]@{ topmost = $true; left = 120; top = 120; language = 'en'; tab = ''; fxAmount = '100'; fxDir = 'toNok'; width = $null; height = $null }
+$cfg = [ordered]@{ topmost = $true; left = 120; top = 120; language = 'en'; tab = ''; fxAmount = '100'; fxDir = 'toNok'; width = $null; height = $null
+         fxImport = $false; fxImpCur = 'EUR'; fxShip = '0'; fxDuty = '0'; fxVoec = $false; fxSeller = '' }
 if (Test-Path $cfgPath) {
     try { (Get-Content $cfgPath -Raw | ConvertFrom-Json).psobject.Properties | ForEach-Object { $cfg[$_.Name] = $_.Value } } catch {}
 }
@@ -30,6 +31,9 @@ $strings = @{
         tasksEmpty = 'No tasks with a date yet. Write a line with a date, e.g. "= Send offer 16.10".'; dToday = 'Today'; dTomorrow = 'Tomorrow'; dOverdue = 'Overdue'
         cmdHint = 'Just say it, e.g. "Remember to send the offer to Equinor on Friday", "Talked to Statkraft about the sensors" or "How much is 100 euro". Enter runs it, Esc closes.'; cmdRun = 'Run'
         pvTask = 'Task'; pvNote = 'Note'; pvFor = 'for {0}'; pvLoose = '(no customer)'; pvAuto = 'runs in {0} s – Enter now, Esc to cancel'
+        impToggle = 'Import cost via Posten (VAT and fee)'; impShip = 'Shipping'; impDuty = 'Duty %'; impVoec = 'VAT paid at checkout (VOEC, under 3000 kr per item)'
+        impGoods = 'Goods'; impFrom = 'from {0}'; impDutyL = 'Duty ({0} %)'; impVat = 'VAT 25 %'; impFee = 'Posten fee'; impTotal = 'Total'; pvImport = 'import, total {0}'
+        impNote = 'Posten 2026: 46 kr (value 0–500), 78 kr (500–3000), 278 kr (over 3000); no fee for VOEC. VAT is 25 % of goods + shipping + duty.'
         tabFx = 'Currency'; fxAmtTo = 'Amount in foreign currency'; fxAmtFrom = 'Amount in NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Foreign'
         fxSource = 'Norges Bank rates, {0}'; fxFetching = 'Fetching rates…'; fxOffline = 'Could not fetch new rates – showing rates from {0}'
         fxNone = 'No rates yet – check the internet connection'; fxDate = 'Rate date'; fxLatest = 'Latest rates'; fxHistNone = 'No rates found for this date'; fxRefresh = 'Refresh'; fxCopy = 'Click to copy'; fxCopied = 'Copied {0}'
@@ -49,6 +53,9 @@ $strings = @{
         tasksEmpty = 'Ingen oppgaver med dato ennå. Skriv en linje med dato, f.eks. «= Sende tilbud 16.10».'; dToday = 'I dag'; dTomorrow = 'I morgen'; dOverdue = 'Forfalt'
         cmdHint = 'Si det med egne ord, f.eks. «Husk å sende tilbud til Equinor på fredag», «Snakket med Statkraft om sensorene» eller «Hvor mye er 100 euro». Enter utfører, Esc lukker.'; cmdRun = 'Utfør'
         pvTask = 'Oppgave'; pvNote = 'Notat'; pvFor = 'for {0}'; pvLoose = '(uten kunde)'; pvAuto = 'utføres om {0} s – Enter nå, Esc avbryter'
+        impToggle = 'Importkostnad via Posten (mva og gebyr)'; impShip = 'Frakt'; impDuty = 'Toll %'; impVoec = 'Mva betalt i nettbutikken (VOEC, under 3000 kr per vare)'
+        impGoods = 'Varepris'; impFrom = 'fra {0}'; impDutyL = 'Toll ({0} %)'; impVat = 'Mva 25 %'; impFee = 'Postens gebyr'; impTotal = 'Sluttsum'; pvImport = 'import, sluttsum {0}'
+        impNote = 'Posten 2026: 46 kr (verdi 0–500), 78 kr (500–3000), 278 kr (over 3000); ingen gebyr ved VOEC. Mva er 25 % av varepris + frakt + toll.'
         tabFx = 'Valuta'; fxAmtTo = 'Beløp i valuta'; fxAmtFrom = 'Beløp i kroner'; fxRate = '1 {0} = {1} kr'; fxNok = 'kr'; fxForeign = 'Valuta'
         fxSource = 'Kurser fra Norges Bank, {0}'; fxFetching = 'Henter kurser…'; fxOffline = 'Fikk ikke hentet nye kurser – viser kurser fra {0}'
         fxNone = 'Ingen kurser ennå – sjekk internettforbindelsen'; fxDate = 'Kursdato'; fxLatest = 'Siste kurser'; fxHistNone = 'Fant ingen kurser for denne datoen'; fxRefresh = 'Oppdater'; fxCopy = 'Klikk for å kopiere'; fxCopied = 'Kopierte {0}'
@@ -68,6 +75,9 @@ $strings = @{
         tasksEmpty = 'Inga uppgifter med datum ännu. Skriv en rad med datum, t.ex. ”= Skicka offert 16.10”.'; dToday = 'I dag'; dTomorrow = 'I morgon'; dOverdue = 'Försenad'
         cmdHint = 'Säg det med egna ord, t.ex. ”Kom ihåg att skicka offert till Equinor på fredag”, ”Pratade med Statkraft om sensorerna” eller ”Hur mycket är 100 euro”. Enter kör, Esc stänger.'; cmdRun = 'Kör'
         pvTask = 'Uppgift'; pvNote = 'Anteckning'; pvFor = 'för {0}'; pvLoose = '(utan kund)'; pvAuto = 'körs om {0} s – Enter nu, Esc avbryter'
+        impToggle = 'Importkostnad via Posten (moms och avgift)'; impShip = 'Frakt'; impDuty = 'Tull %'; impVoec = 'Moms betald i webbutiken (VOEC, under 3000 kr per vara)'
+        impGoods = 'Varupris'; impFrom = 'från {0}'; impDutyL = 'Tull ({0} %)'; impVat = 'Moms 25 %'; impFee = 'Postens avgift'; impTotal = 'Totalt'; pvImport = 'import, totalt {0}'
+        impNote = 'Posten 2026: 46 kr (värde 0–500), 78 kr (500–3000), 278 kr (över 3000); ingen avgift vid VOEC. Momsen är 25 % av varupris + frakt + tull.'
         tabFx = 'Valuta'; fxAmtTo = 'Belopp i utländsk valuta'; fxAmtFrom = 'Belopp i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Valuta'
         fxSource = 'Kurser från Norges Bank, {0}'; fxFetching = 'Hämtar kurser…'; fxOffline = 'Kunde inte hämta nya kurser – visar kurser från {0}'
         fxNone = 'Inga kurser ännu – kontrollera internetanslutningen'; fxDate = 'Kursdatum'; fxLatest = 'Senaste kurser'; fxHistNone = 'Hittade inga kurser för det datumet'; fxRefresh = 'Uppdatera'; fxCopy = 'Klicka för att kopiera'; fxCopied = 'Kopierade {0}'
@@ -87,6 +97,9 @@ $strings = @{
         tasksEmpty = 'Ingen opgaver med dato endnu. Skriv en linje med dato, f.eks. »= Send tilbud 16.10«.'; dToday = 'I dag'; dTomorrow = 'I morgen'; dOverdue = 'Forfalden'
         cmdHint = 'Sig det med dine egne ord, f.eks. »Husk at sende tilbud til Equinor på fredag«, »Talte med Statkraft om sensorerne« eller »Hvor meget er 100 euro«. Enter udfører, Esc lukker.'; cmdRun = 'Udfør'
         pvTask = 'Opgave'; pvNote = 'Note'; pvFor = 'for {0}'; pvLoose = '(uden kunde)'; pvAuto = 'udføres om {0} s – Enter nu, Esc annullerer'
+        impToggle = 'Importomkostning via Posten (moms og gebyr)'; impShip = 'Fragt'; impDuty = 'Told %'; impVoec = 'Moms betalt i webshoppen (VOEC, under 3000 kr pr. vare)'
+        impGoods = 'Varepris'; impFrom = 'fra {0}'; impDutyL = 'Told ({0} %)'; impVat = 'Moms 25 %'; impFee = 'Postens gebyr'; impTotal = 'I alt'; pvImport = 'import, i alt {0}'
+        impNote = 'Posten 2026: 46 kr (værdi 0–500), 78 kr (500–3000), 278 kr (over 3000); intet gebyr ved VOEC. Momsen er 25 % af varepris + fragt + told.'
         tabFx = 'Valuta'; fxAmtTo = 'Beløb i udenlandsk valuta'; fxAmtFrom = 'Beløb i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Valuta'
         fxSource = 'Kurser fra Norges Bank, {0}'; fxFetching = 'Henter kurser…'; fxOffline = 'Kunne ikke hente nye kurser – viser kurser fra {0}'
         fxNone = 'Ingen kurser endnu – tjek internetforbindelsen'; fxDate = 'Kursdato'; fxLatest = 'Seneste kurser'; fxHistNone = 'Fandt ingen kurser for denne dato'; fxRefresh = 'Opdater'; fxCopy = 'Klik for at kopiere'; fxCopied = 'Kopierede {0}'
@@ -228,6 +241,29 @@ function Set-LineChecked($id, $index, $checked) {
         <TextBox Name="fxAmount" FontSize="18" Margin="0,3,0,8" Background="#2B2B2B" Foreground="#EEE" CaretBrush="#EEE"
                  BorderBrush="#444" BorderThickness="1" Padding="6,3"/>
         <StackPanel Name="fxResults"/>
+        <Border Name="impCard" Background="#2B2B2B" CornerRadius="6" Padding="10,7" Margin="0,2,0,8">
+          <StackPanel>
+            <CheckBox Name="impToggle" Foreground="#DDD" FontSize="12" VerticalContentAlignment="Center"/>
+            <StackPanel Name="impBody" Visibility="Collapsed" Margin="0,8,0,0">
+              <StackPanel Name="impCurs" Orientation="Horizontal" Margin="0,0,0,8"/>
+              <Grid Margin="0,0,0,6">
+                <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="10"/><ColumnDefinition/></Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
+                  <TextBlock Name="impShipLbl" Foreground="#999" FontSize="11"/>
+                  <TextBox Name="impShip" FontSize="13" Background="#232323" Foreground="#EEE" CaretBrush="#EEE" BorderBrush="#444" Padding="4,2"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2">
+                  <TextBlock Name="impDutyLbl" Foreground="#999" FontSize="11"/>
+                  <TextBox Name="impDuty" FontSize="13" Background="#232323" Foreground="#EEE" CaretBrush="#EEE" BorderBrush="#444" Padding="4,2"/>
+                </StackPanel>
+              </Grid>
+              <CheckBox Name="impVoec" Foreground="#BBB" FontSize="11" Margin="0,0,0,8"/>
+              <TextBlock Name="impTitle" Foreground="#D97757" FontSize="12" Margin="0,0,0,3"/>
+              <StackPanel Name="impLines"/>
+              <TextBlock Name="impNote" Foreground="#777" FontSize="10" TextWrapping="Wrap" Margin="0,6,0,0"/>
+            </StackPanel>
+          </StackPanel>
+        </Border>
         <DockPanel Margin="0,2,0,0">
           <TextBlock Name="fxRefresh" DockPanel.Dock="Right" Foreground="#888" FontSize="11" Cursor="Hand" Margin="8,0,12,0" VerticalAlignment="Center"/>
           <TextBlock Name="fxStatus" Foreground="#777" FontSize="10" TextWrapping="Wrap" VerticalAlignment="Center"/>
@@ -279,7 +315,8 @@ $win = [Windows.Markup.XamlReader]::Load((New-Object System.Xml.XmlNodeReader $x
 $el = @{}
 'title','tabs','input','hint','cancelBtn','saveBtn','editLbl','toolbar','delBtn','selAll','list','emptyLbl','titleMic','cmdBar','cmdBox','cmdHint','cmdPreview','cmdRun','cmdClose',
 'notesPanel','fxPanel','fxDir','fxAmountLbl','fxAmount','fxResults','fxRefresh','fxStatus','fxLatest','fxDateLbl','fxDate',
-'resetSize','grip','listScroll','custLink','archBtn','archLink' | ForEach-Object { $el[$_] = $win.FindName($_) }
+'resetSize','grip','listScroll','custLink','archBtn','archLink',
+'impCard','impToggle','impBody','impCurs','impShipLbl','impShip','impDutyLbl','impDuty','impVoec','impTitle','impLines','impNote' | ForEach-Object { $el[$_] = $win.FindName($_) }
 $win.Left = $cfg.left; $win.Top = $cfg.top; $win.Topmost = [bool]$cfg.topmost
 
 $brushConv = New-Object Windows.Media.BrushConverter
@@ -507,6 +544,12 @@ $noteRx  = "(?i)$wb(?:notat|note|notis|anteckning|memo)$we"
 $fxKeyRx = "(?i)^(?:valuta|currency|kurs|omregn\p{L}*|regn om|veksle|växla)$we"
 $looseRx = "(?i)$wb(?:løs oppgave|uten kunde|ingen kunde|without (?:a )?customer|no customer|utan kund|uden kunde|løs|loose|lös)$we"
 $stopRx  = '^(?i)(å|att|at|to|i|på|om|og|and|med|the|en|et|ei|a|an|' + ($weekdayNo.Keys -join '|') + ')$'
+# Words that are never a shop name in a currency sentence
+$fxStopRx = '^(?i)(hva|hvor|mye|mange|er|koster|kostet|blir|what|how|much|many|is|are|does|do|cost|costs|vad|hur|mycket|är|kostar|hvad|meget|' +
+            'valuta|currency|kurs|omregn\p{L}*|regn|regne|om|i|til|in|to|into|på|for|en|et|ei|a|an|the|det|it|this|dette|og|and|med|with|' +
+            'kjøp\p{L}*|bestill\p{L}*|buy|bought|order\p{L}*|inkl\p{L}*|mva|moms|vat|import\p{L}*|posten|kroner|kronor|kr|nok|norske|' +
+            'euro\p{L}*|eur|dollar\p{L}*|usd|pund|pounds?|gbp|sek|dkk|svenske?|svenska|danske?|\d.*)$'
+$impWordRx = "(?i)$wb(?:fra|from|från|hos|kjøp\p{L}*|bestill\p{L}*|buy|bought|order\p{L}*|import\p{L}*|toll|tull|told|duty|frakt|fragt|shipping|posten|mva|moms|vat|inkl\p{L}*)$we"
 $fillerRx = @(
     '^(?:kan du|kunne du|could you|please|vær så snill og)\s+'
     '^(?:ny|nytt|nye|new|lag|lage|opprett|opprette|skriv|create|make|add|legg til|sett opp)\s+(?:en|et|ei|a|an)?\s*'
@@ -554,12 +597,31 @@ function Read-VoiceCommand($raw) {
     $hasTask = [regex]::Match($text, $taskRx); $hasNote = [regex]::Match($text, $noteRx)
     # Currency: starts with Valuta/Currency, or an amount with a currency and no task/note words
     if ($text -match $fxKeyRx -or (-not $hasTask.Success -and -not $hasNote.Success -and $text -match '\d' -and $text -match $fxWordRx)) {
-        $dt = ConvertFrom-SpokenDate $text
-        $m = [regex]::Match($dt.text, '(\d[\d  .,]*)\s*' + $fxWordRx + '?')
+        $dt = ConvertFrom-SpokenDate $text; $t2 = $dt.text
+        # "… med frakt 30 euro" / "… toll 10 prosent" for the import calculation
+        $ship = $null; $duty = $null
+        $m = [regex]::Match($t2, '(?i)(?:frakt|fragt|shipping)\s+(?:på\s+|of\s+|er\s+|is\s+)?(\d[\d  .,]*)\s*' + ($fxWordRx -replace '^\(\?i\)', '') + '?')
+        if ($m.Success) { $ship = ConvertTo-Amount $m.Groups[1].Value; $t2 = $t2.Remove($m.Index, $m.Length) }
+        $m = [regex]::Match($t2, '(?i)(?:toll|tull|told|duty)\s+(?:på\s+|of\s+)?(\d+(?:[.,]\d+)?)\s*(?:%|prosent|procent|percent)')
+        if ($m.Success) { $duty = ConvertTo-Amount $m.Groups[1].Value; $t2 = $t2.Remove($m.Index, $m.Length) }
+        $m = [regex]::Match($t2, '(\d[\d  .,]*)\s*' + $fxWordRx + '?')
         $amount = if ($m.Success) { ConvertTo-Amount $m.Groups[1].Value } else { $null }
-        $code = if ($m.Success -and $m.Groups[2].Success) { Get-FxCode $m.Groups[2].Value } elseif ($dt.text -match $fxWordRx) { Get-FxCode $matches[1] } else { $null }
+        $code = if ($m.Success -and $m.Groups[2].Success) { Get-FxCode $m.Groups[2].Value } elseif ($t2 -match $fxWordRx) { Get-FxCode $matches[1] } else { $null }
         if ($dt.date -and $dt.date -gt (Get-Date).Date) { $dt.date = $dt.date.AddYears(-1) }   # rates only exist for past dates
-        return @{ kind = 'fx'; amount = $amount; code = $code; dir = $(if ($code -eq 'NOK') { 'fromNok' } else { 'toNok' }); date = $dt.date }
+        # A shop name makes it a purchase: "Bambu 1500 euro", "1500 euro fra Bambu Lab". Question words
+        # ("hvor mye er 100 euro") are not a shop, so that stays a plain conversion.
+        $seller = $null
+        $sm = [regex]::Match($t2, "(?i)$wb(?:fra|from|från|hos)\s+([\p{L}\p{N}&'.-]+(?:\s+[\p{Lu}\p{N}][\p{L}\p{N}&'.-]*)?)")
+        if ($sm.Success) { $seller = $sm.Groups[1].Value }
+        else {
+            $rest = if ($m.Success) { $t2.Remove($m.Index, $m.Length) } else { $t2 }
+            $words = @($rest -split '[\s,.:;!?]+' | Where-Object { $_ -and $_ -notmatch $fxStopRx })
+            if ($words.Count) { $seller = ($words | Select-Object -First 3) -join ' ' }
+        }
+        if ($seller) { $seller = Format-Cap $seller }
+        $import = [bool]$seller -or $t2 -match $impWordRx -or $null -ne $ship -or $null -ne $duty
+        return @{ kind = 'fx'; amount = $amount; code = $code; dir = $(if ($code -eq 'NOK' -and -not $import) { 'fromNok' } else { 'toNok' }); date = $dt.date
+                  import = $import; seller = $seller; ship = $ship; duty = $duty }
     }
     $c = Find-Customer $text
     $dt = ConvertFrom-SpokenDate $c.text
@@ -584,7 +646,8 @@ function Get-CommandText($cmd) {
         'note' { '{0} {1}: {2}' -f (T 'pvNote'), $who, $cmd.body }
         'fx'   {
             $amt = if ($null -ne $cmd.amount) { '{0:N2} {1}' -f $cmd.amount, $(if ($cmd.code) { $cmd.code } else { '' }) } else { '' }
-            ('{0} {1}{2}' -f (T 'tabFx'), $amt, $(if ($cmd.date) { ' · ' + $cmd.date.ToString('d') } else { '' })).Trim()
+            $imp = if ($cmd.seller) { ' · ' + ((T 'impFrom') -f $cmd.seller) } elseif ($cmd.import) { ' · import' } else { '' }
+            ('{0} {1}{2}{3}' -f (T 'tabFx'), $amt, $imp, $(if ($cmd.date) { ' · ' + $cmd.date.ToString('d') } else { '' })).Trim()
         }
     }
 }
@@ -608,10 +671,17 @@ function Invoke-VoiceCommand {
         'fx' {
             if ($null -ne $cmd.amount) { $cfg.fxDir = $cmd.dir; $el.fxAmount.Text = $cmd.amount.ToString('0.##') }
             $el.fxDate.SelectedDate = $(if ($cmd.date) { $cmd.date } else { (Get-Date).Date })
+            $cfg.fxImport = [bool]$cmd.import; $cfg.fxSeller = [string]$cmd.seller
+            if ($cmd.import) {   # a purchase: fill in the import calculator
+                if ($cmd.code -and $cmd.code -ne 'NOK') { $cfg.fxImpCur = $cmd.code }
+                $el.impShip.Text = $(if ($null -ne $cmd.ship) { $cmd.ship.ToString('0.##') } else { '0' })
+                $el.impDuty.Text = $(if ($null -ne $cmd.duty) { $cmd.duty.ToString('0.##') } else { '0' })
+            }
             $cfg.tab = $fxTab
         }
     }
     Save-Config; $script:selected.Clear(); Render
+    if ($cmd.kind -eq 'fx' -and $cmd.import -and $null -ne $script:impTotal) { $done += ' · ' + ((T 'pvImport') -f ('{0:N2} {1}' -f $script:impTotal, (T 'fxNok'))) }
     $script:cmdDone = $true; $el.cmdBox.Text = ''; $script:cmdLast = ''
     $el.cmdPreview.Text = [char]0x2713 + ' ' + $done; $el.cmdPreview.Foreground = Brush '#B5D19E'
     $el.cmdBox.Focus() | Out-Null
@@ -990,6 +1060,7 @@ function Render-Fx {
     if ($r) {
         foreach ($code in $fxCurrencies.Keys) {
             if (-not $r.$code) { continue }   # e.g. rates saved before this currency was added
+            if ($cfg.fxImport -and $toNok -and $code -ne $cfg.fxImpCur) { continue }   # import calculation: only the purchase currency
             $rate = [double]$r.$code; $sym = $fxCurrencies[$code]
             $value = if ($null -eq $amount) { $null } elseif ($toNok) { $amount * $rate } else { $amount / $rate }
             $row = New-Object Windows.Controls.Border
@@ -1027,7 +1098,70 @@ function Render-Fx {
     } elseif ($fetching) { T 'fxFetching' } elseif ($script:histDate) { T 'fxHistNone' } else { T 'fxNone' }
     if ($script:fxNote) { $status = $script:fxNote; $script:fxNote = $null }
     $el.fxStatus.Text = $status
+    Render-Import
 }
+
+# --- Import cost via Posten -----------------------------------------------------
+# Posten's customs fee 2026 (posten.no/priser): 46 kr for a value of 0-500 kr, 78 kr for 500-3000 kr,
+# 278 kr over 3000 kr; no fee when VAT was paid at checkout (VOEC, under 3000 kr per item).
+# Norwegian import VAT is 25 % of goods + shipping + duty.
+function Get-PostenFee($valueNok, $voec) {
+    if ($voec -and $valueNok -lt 3000) { 0 } elseif ($valueNok -le 500) { 46 } elseif ($valueNok -le 3000) { 78 } else { 278 }
+}
+$script:impTotal = $null
+function Add-ImportLine($label, $value, [switch]$Total) {
+    $dp = New-Object Windows.Controls.DockPanel; $dp.Margin = Thick 0 $(if ($Total) { 5 } else { 1 }) 0 0
+    $v = New-Object Windows.Controls.TextBlock; $v.Text = '{0:N2} {1}' -f $value, (T 'fxNok')
+    $l = New-Object Windows.Controls.TextBlock; $l.Text = $label
+    foreach ($tb in $v, $l) { $tb.FontSize = $(if ($Total) { 15 } else { 12 }); $tb.Foreground = Brush $(if ($Total) { '#EEE' } else { '#BBB' }) }
+    if ($Total) { $l.FontWeight = 'SemiBold'; $v.FontWeight = 'SemiBold' }
+    [Windows.Controls.DockPanel]::SetDock($v, 'Right'); [void]$dp.Children.Add($v); [void]$dp.Children.Add($l)
+    [void]$el.impLines.Children.Add($dp)
+}
+function Render-Import {
+    $script:impTotal = $null
+    $el.impCard.Visibility = $(if ($cfg.fxDir -eq 'fromNok') { 'Collapsed' } else { 'Visible' })
+    $el.impToggle.Content = T 'impToggle'; $el.impToggle.IsChecked = [bool]$cfg.fxImport
+    $el.impBody.Visibility = $(if ($cfg.fxImport) { 'Visible' } else { 'Collapsed' })
+    $el.impShipLbl.Text = T 'impShip'; $el.impDutyLbl.Text = T 'impDuty'; $el.impVoec.Content = T 'impVoec'; $el.impNote.Text = T 'impNote'
+    $el.impVoec.IsChecked = [bool]$cfg.fxVoec
+    foreach ($c in $el.impCurs.Children) {
+        $on = $c.Tag -eq $cfg.fxImpCur
+        $c.Background = Brush $(if ($on) { '#6A9BCC' } else { '#232323' }); $c.Child.Foreground = Brush $(if ($on) { '#FFF' } else { '#BBB' })
+    }
+    $el.impLines.Children.Clear()
+    $r = Get-ActiveRates; $amount = ConvertTo-Amount $el.fxAmount.Text
+    if (-not $cfg.fxImport -or -not $r -or $null -eq $amount -or -not $r.($cfg.fxImpCur)) { $el.impTitle.Text = ''; return }
+    $rate = [double]$r.($cfg.fxImpCur)
+    $ship = ConvertTo-Amount $el.impShip.Text; if ($null -eq $ship) { $ship = 0 }
+    $dutyPct = ConvertTo-Amount $el.impDuty.Text; if ($null -eq $dutyPct) { $dutyPct = 0 }
+    $goods = $amount * $rate; $shipNok = $ship * $rate
+    $duty = ($goods + $shipNok) * $dutyPct / 100
+    $vat = 0.25 * ($goods + $shipNok + $duty)
+    $fee = Get-PostenFee ($goods + $shipNok) $cfg.fxVoec
+    $total = $goods + $shipNok + $duty + $vat + $fee
+    $el.impTitle.Text = ('{0:N2} {1}' -f $amount, $cfg.fxImpCur) + $(if ($cfg.fxSeller) { '  ' + ((T 'impFrom') -f $cfg.fxSeller) } else { '' })
+    Add-ImportLine (T 'impGoods') $goods
+    if ($shipNok) { Add-ImportLine (T 'impShip') $shipNok }
+    if ($dutyPct) { Add-ImportLine ((T 'impDutyL') -f $dutyPct) $duty }
+    Add-ImportLine (T 'impVat') $vat
+    Add-ImportLine (T 'impFee') $fee
+    Add-ImportLine (T 'impTotal') $total -Total
+    $script:impTotal = $total
+}
+foreach ($code in $fxCurrencies.Keys) {
+    $chip = New-Object Windows.Controls.Border
+    $chip.CornerRadius = New-Object Windows.CornerRadius 8; $chip.Padding = Thick 8 1 8 2; $chip.Margin = Thick 0 0 4 0; $chip.Cursor = 'Hand'; $chip.Tag = $code
+    $chip.Child = New-Object Windows.Controls.TextBlock; $chip.Child.Text = $code; $chip.Child.FontSize = 11
+    $chip.Add_MouseLeftButtonDown({ param($s, $e) $cfg.fxImpCur = $s.Tag; Save-Config; Render-Fx; $e.Handled = $true })
+    [void]$el.impCurs.Children.Add($chip)
+}
+$el.impShip.Text = [string]$cfg.fxShip; $el.impDuty.Text = [string]$cfg.fxDuty
+$el.impToggle.Add_Click({ $cfg.fxImport = [bool]$el.impToggle.IsChecked; if (-not $cfg.fxImport) { $cfg.fxSeller = '' }; Save-Config; Render-Fx })
+$el.impVoec.Add_Click({ $cfg.fxVoec = [bool]$el.impVoec.IsChecked; Save-Config; Render-Import })
+$el.impShip.Add_TextChanged({ $cfg.fxShip = $el.impShip.Text; Render-Import })
+$el.impDuty.Add_TextChanged({ $cfg.fxDuty = $el.impDuty.Text; Render-Import })
+$el.impShip.Add_LostFocus({ Save-Config }); $el.impDuty.Add_LostFocus({ Save-Config })
 
 foreach ($k in 'toNok', 'fromNok') {
     $chip = New-Object Windows.Controls.Border

@@ -8,7 +8,7 @@ The tabs are, in order: **Tasks**, **Currency**, **All** and one tab per custome
 - **Customer tabs:** write a customer name in parentheses in a note, for example `(Equinor)`. A tab for that customer appears automatically and lists its notes, newest first. **All** shows every note.
 - **Checkboxes:** start a line with `=` to turn it into a checkbox. Ticking it strikes the line through.
 - **Voice commands:** click the microphone by the title and just say it, for example "Remember to send the offer to Equinor on Friday" or "How much is 100 euro".
-- **Currency tab:** today's or historical exchange rates for €, £, $, Swedish kroner (SEK) and Danish kroner (DKK) from Norges Bank, with a calculator to or from Norwegian kroner.
+- **Currency tab:** today's or historical exchange rates for €, £, $, Swedish kroner (SEK) and Danish kroner (DKK) from Norges Bank, with a calculator to or from Norwegian kroner – and the full import cost via Posten (VAT and fee). "Bambu 1500 euro" gives the total.
 - **Delete a customer:** right-click its tab to delete it with its notes, or just remove it and keep the notes.
 - **Delete one or many:** tick the box in the top-left corner of each note (or use **Select all**), then click **Delete selected**.
 - **Edit:** double-click a note.
@@ -119,6 +119,25 @@ Click **Currency** (Valuta) in the tab row.
 - **Rate date** is today by default and shows the latest rates. Pick another date in the calendar to see and calculate with historical rates. Norges Bank has no rates for weekends and public holidays, so the last business day before is used; the actual date is shown at the bottom. **Latest rates** goes back to today.
 - Each currency is shown with its flag. Click a result to copy the amount.
 - Rates are the official daily rates from Norges Bank (published around 16:00 on business days). Norges Bank quotes SEK and DKK per 100; the widget shows them per 1 krone. The latest rates are saved, so the tab also works offline.
+
+### Import cost via Posten
+
+Tick **Import cost via Posten (VAT and fee)** under the results to see what a purchase from abroad really costs, delivered by Posten:
+
+| | |
+|---|---|
+| Goods | the amount in the chosen currency (EUR, GBP, USD, SEK or DKK) converted to NOK |
+| Shipping | optional, in the same currency |
+| Duty % | optional – 0 % for most goods (for example 3D printers and electronics); clothing and some other goods have duty |
+| VAT 25 % | of goods + shipping + duty |
+| Posten fee | 46 kr for a value of 0–500 kr, 78 kr for 500–3000 kr, 278 kr over 3000 kr (Posten's 2026 prices) |
+| **Total** | everything above |
+
+Tick **VAT paid at checkout (VOEC)** when the shop already charged Norwegian VAT (VOEC scheme, items under 3000 kr). Posten then charges no fee.
+
+While the calculator is on, only the purchase currency is shown, to keep the widget compact.
+
+**By voice or typing**, a shop name with an amount is enough: *"Bambu 1500 euro"* or *"1500 euro from Bambu Lab"* switches on the calculator and shows the total straight away (1500 € → **20 486,75 kr** with the rate of 6.10.2026). You can add *"with shipping 30 euro"* or *"duty 10 percent"*. A plain question such as *"How much is 100 euro"* is just a conversion.
 
 ## Other options
 

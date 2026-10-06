@@ -349,7 +349,7 @@ function Render {
         $chip.CornerRadius = New-Object Windows.CornerRadius 10; $chip.Padding = Thick 8 2 8 2; $chip.Margin = Thick 0 0 4 4; $chip.Cursor = 'Hand'
         $chip.Background = Brush $(if ($active -and $isFx) { '#6A9BCC' } elseif ($active) { '#D97757' } else { '#2B2B2B' }); $chip.Tag = $t.key
         $tx = New-Object Windows.Controls.TextBlock
-        $tx.Text = $(if ($isFx) { "€ £ $  $($t.name)" } else { "$($t.name)  $($t.count)" }); $tx.FontSize = 11
+        $tx.Text = $(if ($isFx) { $t.name } else { "$($t.name)  $($t.count)" }); $tx.FontSize = 11
         $tx.Foreground = Brush $(if ($active) { '#FFF' } elseif ($isFx) { '#9DBEE0' } else { '#BBB' })
         $chip.Child = $tx
         if ($t.key -and -not $isFx) { $chip.ContextMenu = New-CustomerMenu $t.key; $chip.ToolTip = T 'custTip' }

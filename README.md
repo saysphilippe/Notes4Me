@@ -75,7 +75,7 @@ If the dictated text already contains `(Customer)`, it is left as it is. Voice t
 
 ## Currency tab
 
-Click **€ £ $ Currency** in the tab row.
+Click **Currency** (Valuta) in the tab row.
 
 - Choose the direction: **Foreign → NOK** or **NOK → Foreign** (in Norwegian: **Valuta → kr** / **kr → Valuta**).
 - Type an amount. The result is shown for all five currencies (EUR, GBP, USD, SEK, DKK) at once. Both `1 000,50` and `1000.50` work.

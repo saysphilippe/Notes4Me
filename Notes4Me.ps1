@@ -340,9 +340,9 @@ function Render {
 
     # Tabs
     $el.tabs.Children.Clear()
-    $tabList = @(@{ key = ''; name = T 'all'; count = $sorted.Count }) +
-               @($cust.Keys | Sort-Object { $cust[$_] } | ForEach-Object { @{ key = $_; name = $cust[$_]; count = $counts[$_] } }) +
-               @(@{ key = $fxTab; name = T 'tabFx'; count = $null })
+    $tabList = @(@{ key = $fxTab; name = T 'tabFx'; count = $null }) +
+               @(@{ key = ''; name = T 'all'; count = $sorted.Count }) +
+               @($cust.Keys | Sort-Object { $cust[$_] } | ForEach-Object { @{ key = $_; name = $cust[$_]; count = $counts[$_] } })
     foreach ($t in $tabList) {
         $active = $t.key -eq [string]$cfg.tab; $isFx = $t.key -eq $fxTab
         $chip = New-Object Windows.Controls.Border

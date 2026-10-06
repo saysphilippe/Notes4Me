@@ -16,28 +16,28 @@ function Save-Config { $cfg | ConvertTo-Json | Set-Content $cfgPath -Encoding UT
 
 $strings = @{
     en = @{
-        title = 'Notes4Me'; all = 'All'; save = 'Save'; update = 'Update'; cancel = 'Cancel'; editing = 'Editing note'
+        title = 'My notes'; all = 'All'; save = 'Save'; update = 'Update'; cancel = 'Cancel'; editing = 'Editing note'
         hint = 'Write a note…  (Customer) adds it to a customer tab, = at the start of a line makes a checkbox. Ctrl+Enter saves.'
         deleteSel = 'Delete selected ({0})'; selectAll = 'Select all'; clearSel = 'Clear selection'
         confirmDel = 'Delete {0} note(s)? This cannot be undone.'; empty = 'No notes yet'; edit = 'Edit'; select = 'Select for deletion'
         mFolder = 'Open notes folder'; mTopmost = 'Always on top'; mLanguage = 'Language'; mClose = 'Close'
     }
     no = @{
-        title = 'Notes4Me'; all = 'Alle'; save = 'Lagre'; update = 'Oppdater'; cancel = 'Avbryt'; editing = 'Redigerer notat'
+        title = 'Mine notater'; all = 'Alle'; save = 'Lagre'; update = 'Oppdater'; cancel = 'Avbryt'; editing = 'Redigerer notat'
         hint = 'Skriv et notat…  (Kunde) legger det i en kundefane, = først på linjen gir en sjekkboks. Ctrl+Enter lagrer.'
         deleteSel = 'Slett valgte ({0})'; selectAll = 'Velg alle'; clearSel = 'Fjern valg'
         confirmDel = 'Slette {0} notat(er)? Dette kan ikke angres.'; empty = 'Ingen notater ennå'; edit = 'Rediger'; select = 'Velg for sletting'
         mFolder = 'Åpne notatmappen'; mTopmost = 'Alltid øverst'; mLanguage = 'Språk'; mClose = 'Lukk'
     }
     sv = @{
-        title = 'Notes4Me'; all = 'Alla'; save = 'Spara'; update = 'Uppdatera'; cancel = 'Avbryt'; editing = 'Redigerar anteckning'
+        title = 'Mina anteckningar'; all = 'Alla'; save = 'Spara'; update = 'Uppdatera'; cancel = 'Avbryt'; editing = 'Redigerar anteckning'
         hint = 'Skriv en anteckning…  (Kund) lägger den i en kundflik, = först på raden ger en kryssruta. Ctrl+Enter sparar.'
         deleteSel = 'Ta bort markerade ({0})'; selectAll = 'Markera alla'; clearSel = 'Avmarkera'
         confirmDel = 'Ta bort {0} anteckning(ar)? Det går inte att ångra.'; empty = 'Inga anteckningar ännu'; edit = 'Redigera'; select = 'Markera för borttagning'
         mFolder = 'Öppna anteckningsmappen'; mTopmost = 'Alltid överst'; mLanguage = 'Språk'; mClose = 'Stäng'
     }
     da = @{
-        title = 'Notes4Me'; all = 'Alle'; save = 'Gem'; update = 'Opdater'; cancel = 'Annuller'; editing = 'Redigerer note'
+        title = 'Mine noter'; all = 'Alle'; save = 'Gem'; update = 'Opdater'; cancel = 'Annuller'; editing = 'Redigerer note'
         hint = 'Skriv en note…  (Kunde) lægger den i en kundefane, = først på linjen giver et afkrydsningsfelt. Ctrl+Enter gemmer.'
         deleteSel = 'Slet valgte ({0})'; selectAll = 'Vælg alle'; clearSel = 'Fravælg'
         confirmDel = 'Slet {0} note(r)? Det kan ikke fortrydes.'; empty = 'Ingen noter endnu'; edit = 'Rediger'; select = 'Vælg til sletning'

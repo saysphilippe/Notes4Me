@@ -65,7 +65,7 @@ Next meeting in week 42
 
 This note appears in the **Equinor** tab, with checkboxes in front of "Send offer" and "Check price with Ola".
 
-- **The easiest way:** open the customer's tab first and just write. A note written in a customer tab that doesn't name a customer is added to that customer automatically.
+- **The easiest way:** open the customer/project tab first and just write or speak – no need to mention the customer. Notes, tasks and voice commands in a customer/project tab belong to it automatically (unless you name another customer, or say "no customer"). The hint in the text box shows which tab you are writing to.
 - In the list, `(Customer)` is hidden – the tab already tells you who the note is about. A name at the start or end of a line disappears; inside a sentence only the parentheses go ("Meeting with Equinor about…"). In **All**, the customer is shown next to the date.
 - Customer names are matched regardless of case: `(Equinor)` and `(equinor)` belong to the same tab.
 - A note can mention several customers and then shows up in each of their tabs.

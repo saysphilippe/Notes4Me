@@ -19,6 +19,7 @@ $strings = @{
     en = @{
         title = 'My notes'; all = 'All'; save = 'Save'; update = 'Update'; cancel = 'Cancel'; editing = 'Editing note'
         hint = 'Write a note…  (Customer/project) puts it in its own tab, = at the start of a line makes a checkbox. Ctrl+Enter saves.'
+        hintTab = 'Write a note for {0}…  = at the start of a line makes a checkbox. Ctrl+Enter saves.'
         deleteSel = 'Delete selected ({0})'; selectAll = 'Select all'; clearSel = 'Clear selection'
         confirmDel = 'Delete {0} note(s)? This cannot be undone.'; empty = 'No notes yet'; edit = 'Double-click to edit'; select = 'Select for deletion'
         mFolder = 'Open notes folder'; mTopmost = 'Always on top'; mLanguage = 'Language'; mClose = 'Close'
@@ -42,6 +43,7 @@ $strings = @{
     no = @{
         title = 'Mine notater'; all = 'Alle'; save = 'Lagre'; update = 'Oppdater'; cancel = 'Avbryt'; editing = 'Redigerer notat'
         hint = 'Skriv et notat…  (Kunde/prosjekt) legger det i en egen fane, = først på linjen gir en sjekkboks. Ctrl+Enter lagrer.'
+        hintTab = 'Skriv et notat for {0}…  = først på linjen gir en sjekkboks. Ctrl+Enter lagrer.'
         deleteSel = 'Slett valgte ({0})'; selectAll = 'Velg alle'; clearSel = 'Fjern valg'
         confirmDel = 'Slette {0} notat(er)? Dette kan ikke angres.'; empty = 'Ingen notater ennå'; edit = 'Dobbeltklikk for å redigere'; select = 'Velg for sletting'
         mFolder = 'Åpne notatmappen'; mTopmost = 'Alltid øverst'; mLanguage = 'Språk'; mClose = 'Lukk'
@@ -65,6 +67,7 @@ $strings = @{
     sv = @{
         title = 'Mina anteckningar'; all = 'Alla'; save = 'Spara'; update = 'Uppdatera'; cancel = 'Avbryt'; editing = 'Redigerar anteckning'
         hint = 'Skriv en anteckning…  (Kund/projekt) lägger den i en egen flik, = först på raden ger en kryssruta. Ctrl+Enter sparar.'
+        hintTab = 'Skriv en anteckning för {0}…  = först på raden ger en kryssruta. Ctrl+Enter sparar.'
         deleteSel = 'Ta bort markerade ({0})'; selectAll = 'Markera alla'; clearSel = 'Avmarkera'
         confirmDel = 'Ta bort {0} anteckning(ar)? Det går inte att ångra.'; empty = 'Inga anteckningar ännu'; edit = 'Dubbelklicka för att redigera'; select = 'Markera för borttagning'
         mFolder = 'Öppna anteckningsmappen'; mTopmost = 'Alltid överst'; mLanguage = 'Språk'; mClose = 'Stäng'
@@ -88,6 +91,7 @@ $strings = @{
     da = @{
         title = 'Mine noter'; all = 'Alle'; save = 'Gem'; update = 'Opdater'; cancel = 'Annuller'; editing = 'Redigerer note'
         hint = 'Skriv en note…  (Kunde/projekt) lægger den i en egen fane, = først på linjen giver et afkrydsningsfelt. Ctrl+Enter gemmer.'
+        hintTab = 'Skriv en note til {0}…  = først på linjen giver et afkrydsningsfelt. Ctrl+Enter gemmer.'
         deleteSel = 'Slet valgte ({0})'; selectAll = 'Vælg alle'; clearSel = 'Fravælg'
         confirmDel = 'Slet {0} note(r)? Det kan ikke fortrydes.'; empty = 'Ingen noter endnu'; edit = 'Dobbeltklik for at redigere'; select = 'Vælg til sletning'
         mFolder = 'Åbn notemappen'; mTopmost = 'Altid øverst'; mLanguage = 'Sprog'; mClose = 'Luk'
@@ -478,6 +482,8 @@ function Render {
     $el.archBtn.Content = (T 'archiveBtn') -f $done.Count
     $el.archBtn.Visibility = $(if ($done.Count) { 'Visible' } else { 'Collapsed' })
 
+    # In a customer/project tab there is no need to write (Customer) - the hint says so
+    $el.hint.Text = $(if ($cfg.tab -and $script:custNames[[string]$cfg.tab]) { (T 'hintTab') -f $script:custNames[[string]$cfg.tab] } else { T 'hint' })
     $el.emptyLbl.Text = T 'empty'
     $el.emptyLbl.Visibility = $(if ($vis.Count -or ($script:showArchive -and $arch.Count)) { 'Collapsed' } else { 'Visible' })
     $el.toolbar.Visibility = $(if ($vis.Count -or $arch.Count) { 'Visible' } else { 'Collapsed' })
@@ -594,7 +600,7 @@ function Remove-Fillers($s, [switch]$NoteOnly) {
 # Finds the customer anywhere in the sentence (see rules above)
 function Find-Customer($text) {
     $m = [regex]::Match($text, $looseRx)
-    if ($m.Success) { return @{ customer = $null; text = Clear-Spoken $text.Remove($m.Index, $m.Length) } }
+    if ($m.Success) { return @{ customer = $null; loose = $true; text = Clear-Spoken $text.Remove($m.Index, $m.Length) } }
     $m = [regex]::Match($text, "(?i)$wb(?:for\s+|för\s+)?(?:kunde|customer|kund|prosjekt|projekt|project)\s+([\p{L}\p{N}&'-]+)")
     if ($m.Success -and $m.Groups[1].Value -notmatch $stopRx) {
         $name = $m.Groups[1].Value; $known = $script:custNames[$name.ToLower()]
@@ -682,6 +688,10 @@ function Read-VoiceCommand($raw) {
                   import = $import; seller = $seller; ship = $ship; duty = $duty }
     }
     $c = Find-Customer $text
+    # In a customer/project tab, a command that names no customer belongs to that tab ("uten kunde" opts out)
+    if (-not $c.customer -and -not $c.loose -and $cfg.tab -and $cfg.tab -notin $fxTab, $tasksTab -and $script:custNames[[string]$cfg.tab]) {
+        $c.customer = $script:custNames[[string]$cfg.tab]
+    }
     $dt = ConvertFrom-SpokenDate $c.text
     # A task: task words, or a date that is not just "today" ("Equinor ringte i dag" stays a note).
     # A note word before any task word wins ("Notat: husk at ...").
@@ -719,7 +729,9 @@ function Invoke-VoiceCommand {
         'task' {
             $line = "= $($cmd.body)" + $(if ($cmd.customer) { " ($($cmd.customer))" } else { '' })
             $script:notes.Add(@{ id = [guid]::NewGuid().ToString('N'); created = $now; updated = $now; text = $line }); Save-Notes
-            $cfg.tab = $tasksTab
+            # Stay in the customer/project tab when the task is for it; otherwise show it under Tasks
+            $inOwnTab = $cmd.customer -and $cfg.tab -eq $cmd.customer.ToLower()
+            if (-not $inOwnTab) { $cfg.tab = $tasksTab }
         }
         'note' {
             $txt = $(if ($cmd.customer) { "($($cmd.customer)) " } else { '' }) + $cmd.body

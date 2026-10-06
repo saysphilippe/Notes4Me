@@ -23,7 +23,7 @@ $strings = @{
         mFolder = 'Open notes folder'; mTopmost = 'Always on top'; mLanguage = 'Language'; mClose = 'Close'
         voice = 'Dictate a note – the first word becomes the customer (Windows voice typing, Win+H)'; voiceActive = 'Dictating – the first word becomes the customer'
         resetSize = 'Restore default size'; grip = 'Drag to resize'
-        tabFx = 'Currency'; fxAmtTo = 'Amount in foreign currency'; fxAmtFrom = 'Amount in NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'
+        tabFx = 'Currency'; fxAmtTo = 'Amount in foreign currency'; fxAmtFrom = 'Amount in NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Foreign'
         fxSource = 'Norges Bank rates, {0}'; fxFetching = 'Fetching rates…'; fxOffline = 'Could not fetch new rates – showing rates from {0}'
         fxNone = 'No rates yet – check the internet connection'; fxDate = 'Rate date'; fxLatest = 'Latest rates'; fxHistNone = 'No rates found for this date'; fxRefresh = 'Refresh'; fxCopy = 'Click to copy'; fxCopied = 'Copied {0}'
     }
@@ -35,7 +35,7 @@ $strings = @{
         mFolder = 'Åpne notatmappen'; mTopmost = 'Alltid øverst'; mLanguage = 'Språk'; mClose = 'Lukk'
         voice = 'Diktér et notat – første ord blir kunden (Windows stemmeskriving, Win+H)'; voiceActive = 'Dikterer – første ord blir kunden'
         resetSize = 'Tilbakestill størrelse'; grip = 'Dra for å endre størrelse'
-        tabFx = 'Valuta'; fxAmtTo = 'Beløp i valuta'; fxAmtFrom = 'Beløp i kroner'; fxRate = '1 {0} = {1} kr'; fxNok = 'kr'
+        tabFx = 'Valuta'; fxAmtTo = 'Beløp i valuta'; fxAmtFrom = 'Beløp i kroner'; fxRate = '1 {0} = {1} kr'; fxNok = 'kr'; fxForeign = 'Valuta'
         fxSource = 'Kurser fra Norges Bank, {0}'; fxFetching = 'Henter kurser…'; fxOffline = 'Fikk ikke hentet nye kurser – viser kurser fra {0}'
         fxNone = 'Ingen kurser ennå – sjekk internettforbindelsen'; fxDate = 'Kursdato'; fxLatest = 'Siste kurser'; fxHistNone = 'Fant ingen kurser for denne datoen'; fxRefresh = 'Oppdater'; fxCopy = 'Klikk for å kopiere'; fxCopied = 'Kopierte {0}'
     }
@@ -47,7 +47,7 @@ $strings = @{
         mFolder = 'Öppna anteckningsmappen'; mTopmost = 'Alltid överst'; mLanguage = 'Språk'; mClose = 'Stäng'
         voice = 'Diktera en anteckning – första ordet blir kunden (Windows röstinmatning, Win+H)'; voiceActive = 'Dikterar – första ordet blir kunden'
         resetSize = 'Återställ storlek'; grip = 'Dra för att ändra storlek'
-        tabFx = 'Valuta'; fxAmtTo = 'Belopp i utländsk valuta'; fxAmtFrom = 'Belopp i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'
+        tabFx = 'Valuta'; fxAmtTo = 'Belopp i utländsk valuta'; fxAmtFrom = 'Belopp i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Valuta'
         fxSource = 'Kurser från Norges Bank, {0}'; fxFetching = 'Hämtar kurser…'; fxOffline = 'Kunde inte hämta nya kurser – visar kurser från {0}'
         fxNone = 'Inga kurser ännu – kontrollera internetanslutningen'; fxDate = 'Kursdatum'; fxLatest = 'Senaste kurser'; fxHistNone = 'Hittade inga kurser för det datumet'; fxRefresh = 'Uppdatera'; fxCopy = 'Klicka för att kopiera'; fxCopied = 'Kopierade {0}'
     }
@@ -59,7 +59,7 @@ $strings = @{
         mFolder = 'Åbn notemappen'; mTopmost = 'Altid øverst'; mLanguage = 'Sprog'; mClose = 'Luk'
         voice = 'Diktér en note – første ord bliver kunden (Windows stemmeskrivning, Win+H)'; voiceActive = 'Dikterer – første ord bliver kunden'
         resetSize = 'Nulstil størrelse'; grip = 'Træk for at ændre størrelse'
-        tabFx = 'Valuta'; fxAmtTo = 'Beløb i udenlandsk valuta'; fxAmtFrom = 'Beløb i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'
+        tabFx = 'Valuta'; fxAmtTo = 'Beløb i udenlandsk valuta'; fxAmtFrom = 'Beløb i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Valuta'
         fxSource = 'Kurser fra Norges Bank, {0}'; fxFetching = 'Henter kurser…'; fxOffline = 'Kunne ikke hente nye kurser – viser kurser fra {0}'
         fxNone = 'Ingen kurser endnu – tjek internetforbindelsen'; fxDate = 'Kursdato'; fxLatest = 'Seneste kurser'; fxHistNone = 'Fandt ingen kurser for denne dato'; fxRefresh = 'Opdater'; fxCopy = 'Klik for at kopiere'; fxCopied = 'Kopierede {0}'
     }
@@ -443,8 +443,8 @@ function Remove-Selected {
 # Daily mid rates from Norges Bank (published around 16:00 CET on business days).
 # The last rates are kept in rates.json so the tab also works offline.
 $fxTab = '::fx'
-$fxCurrencies = [ordered]@{ EUR = '€'; GBP = '£'; USD = '$' }
-$fxUrl = 'https://data.norges-bank.no/api/data/EXR/B.EUR+GBP+USD.NOK.SP?format=sdmx-json&lastNObservations=1'
+$fxCurrencies = [ordered]@{ EUR = '€'; GBP = '£'; USD = '$'; SEK = 'SEK'; DKK = 'DKK' }
+$fxUrl = 'https://data.norges-bank.no/api/data/EXR/B.EUR+GBP+USD+SEK+DKK.NOK.SP?format=sdmx-json&lastNObservations=1'
 $ratesPath = Join-Path $dir 'rates.json'
 $inv = [Globalization.CultureInfo]::InvariantCulture
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
@@ -496,6 +496,7 @@ function Start-Download($url, $key, $done) {
 function Update-Rates([switch]$Force) {
     if ($script:fxFetching -or -not $script:loaded) { return }
     if (-not $Force -and $script:rates -and
+        @($fxCurrencies.Keys | Where-Object { -not $script:rates.$_ }).Count -eq 0 -and
         ((Get-Date).ToUniversalTime() - [datetime]::Parse($script:rates.fetched, $null, 'RoundtripKind').ToUniversalTime()).TotalMinutes -lt 60) { return }
     $script:fxFetching = $true; $script:fxError = $false
     Start-Download $fxUrl $null {
@@ -530,7 +531,7 @@ function Update-HistRates {
 
 # Accepts "1 000,50", "1000.50", "1.000" (thousands) and ignores currency signs
 function ConvertTo-Amount($s) {
-    $s = $s -replace '[\s €£$]|kr|nok|eur|gbp|usd', ''
+    $s = $s -replace '[\s €£$]|kr|nok|eur|gbp|usd|sek|dkk', ''
     if (-not $s) { return $null }
     $i = [math]::Max($s.LastIndexOf(','), $s.LastIndexOf('.'))
     if ($i -ge 0 -and -not ($s[$i] -eq '.' -and $s.Length - $i - 1 -eq 3)) { $s = ($s.Substring(0, $i) -replace '[,.]', '') + '.' + $s.Substring($i + 1) }
@@ -541,7 +542,7 @@ function ConvertTo-Amount($s) {
 
 function Render-Fx {
     $dirKey = $(if ($cfg.fxDir -eq 'fromNok') { 'fromNok' } else { 'toNok' }); $toNok = $dirKey -eq 'toNok'
-    $nok = T 'fxNok'; $syms = ($fxCurrencies.Values -join ' ')
+    $nok = T 'fxNok'; $syms = T 'fxForeign'
     foreach ($c in $el.fxDir.Children) {
         $on = $c.Tag -eq $dirKey
         $c.Child.Text = $(if ($c.Tag -eq 'toNok') { "$syms  →  $nok" } else { "$nok  →  $syms" })
@@ -556,6 +557,7 @@ function Render-Fx {
     $r = Get-ActiveRates
     if ($r) {
         foreach ($code in $fxCurrencies.Keys) {
+            if (-not $r.$code) { continue }   # e.g. rates saved before this currency was added
             $rate = [double]$r.$code; $sym = $fxCurrencies[$code]
             $value = if ($null -eq $amount) { $null } elseif ($toNok) { $amount * $rate } else { $amount / $rate }
             $row = New-Object Windows.Controls.Border
@@ -569,10 +571,10 @@ function Render-Fx {
             })
             $dp = New-Object Windows.Controls.DockPanel
             $symTb = New-Object Windows.Controls.TextBlock
-            $symTb.Text = $sym; $symTb.FontSize = 20; $symTb.Foreground = Brush '#D97757'; $symTb.Width = 28; $symTb.VerticalAlignment = 'Center'
+            $symTb.Text = $sym; $symTb.FontSize = $(if ($sym.Length -gt 1) { 13 } else { 20 }); $symTb.Foreground = Brush '#D97757'; $symTb.Width = 38; $symTb.VerticalAlignment = 'Center'
             [Windows.Controls.DockPanel]::SetDock($symTb, 'Left')
             $codeTb = New-Object Windows.Controls.TextBlock
-            $codeTb.Text = $code; $codeTb.FontSize = 11; $codeTb.Foreground = Brush '#777'; $codeTb.VerticalAlignment = 'Center'
+            $codeTb.Text = $(if ($sym -ne $code) { $code } else { '' }); $codeTb.FontSize = 11; $codeTb.Foreground = Brush '#777'; $codeTb.VerticalAlignment = 'Center'
             [Windows.Controls.DockPanel]::SetDock($codeTb, 'Right')
             $mid = New-Object Windows.Controls.StackPanel
             $res = New-Object Windows.Controls.TextBlock

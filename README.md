@@ -5,7 +5,7 @@ A small always-on-top Windows desktop widget for quick notes, with a tab per cus
 - **Customer tabs:** write a customer name in parentheses in a note, for example `(Equinor)`. A tab for that customer appears automatically and lists its notes, newest first. **All** shows every note.
 - **Checkboxes:** start a line with `=` to turn it into a checkbox. Ticking it strikes the line through.
 - **Voice notes:** click the microphone and speak. The first word you say becomes the customer.
-- **Currency tab:** today's or historical exchange rates for €, £ and $ from Norges Bank, with a calculator to or from Norwegian kroner.
+- **Currency tab:** today's or historical exchange rates for €, £, $, Swedish kroner (SEK) and Danish kroner (DKK) from Norges Bank, with a calculator to or from Norwegian kroner.
 - **Delete one or many:** tick the box in the top-left corner of each note (or use **Select all**), then click **Delete selected**.
 - **Edit:** double-click a note.
 - **Resizable:** drag the corner in the bottom right. The button next to the title restores the default size.
@@ -69,11 +69,11 @@ If the dictated text already contains `(Customer)`, it is left as it is. Voice t
 
 Click **€ £ $ Currency** in the tab row.
 
-- Choose the direction: **€ £ $ → kr** (foreign currency to Norwegian kroner) or **kr → € £ $**.
-- Type an amount. The result is shown for all three currencies at once. Both `1 000,50` and `1000.50` work.
+- Choose the direction: **Foreign → NOK** or **NOK → Foreign** (in Norwegian: **Valuta → kr** / **kr → Valuta**).
+- Type an amount. The result is shown for all five currencies (EUR, GBP, USD, SEK, DKK) at once. Both `1 000,50` and `1000.50` work.
 - **Rate date** is today by default and shows the latest rates. Pick another date in the calendar to see and calculate with historical rates. Norges Bank has no rates for weekends and public holidays, so the last business day before is used; the actual date is shown at the bottom. **Latest rates** goes back to today.
 - Click a result to copy the amount.
-- Rates are the official daily rates from Norges Bank (published around 16:00 on business days). The latest rates are saved, so the tab also works offline.
+- Rates are the official daily rates from Norges Bank (published around 16:00 on business days). Norges Bank quotes SEK and DKK per 100; the widget shows them per 1 krone. The latest rates are saved, so the tab also works offline.
 
 ## Other options
 

@@ -173,7 +173,7 @@ function Set-LineChecked($id, $index, $checked) {
   <Window.Resources>
     <Style TargetType="Button">
       <Setter Property="Foreground" Value="White"/>
-      <Setter Property="Background" Value="#D97757"/>
+      <Setter Property="Background" Value="#5E7F4A"/>
       <Setter Property="Padding" Value="10,3"/>
       <Setter Property="FontSize" Value="14"/>
       <Setter Property="Cursor" Value="Hand"/>
@@ -367,7 +367,7 @@ function New-NoteCard($note) {
     $sel.Add_Click({ param($s, $e) if ($s.IsChecked) { [void]$script:selected.Add($s.Tag) } else { [void]$script:selected.Remove($s.Tag) }; Render })
     [Windows.Controls.DockPanel]::SetDock($sel, 'Left')
     $custTb = New-Object Windows.Controls.TextBlock
-    $custTb.Foreground = Brush '#D97757'; $custTb.FontSize = 12; $custTb.VerticalAlignment = 'Center'; $custTb.TextTrimming = 'CharacterEllipsis'; $custTb.MaxWidth = 150
+    $custTb.Foreground = Brush '#5E7F4A'; $custTb.FontSize = 12; $custTb.VerticalAlignment = 'Center'; $custTb.TextTrimming = 'CharacterEllipsis'; $custTb.MaxWidth = 150
     if (-not $cfg.tab) {   # same spelling as the tab, e.g. "Equinor" even if the note says "(equinor)"
         $custTb.Text = (@(Get-Customers $note.text | ForEach-Object { $k = $_.ToLower(); if ($script:custNames[$k]) { $script:custNames[$k] } else { $_ } }) | Sort-Object -Unique) -join ', '
     }
@@ -1087,7 +1087,7 @@ function New-TaskRow($t) {
     $dl.Foreground = Brush $(if ($t.checked) { '#666' } elseif ($days -lt 0) { '#E06C5A' } elseif ($days -eq 0) { '#D97757' } else { '#999' })
     [void]$right.Children.Add($dl)
     if ($t.customers.Count -and -not ($cfg.tab -and $cfg.tab -notin $fxTab, $tasksTab)) {   # no need to repeat the customer inside its own tab
-        $ct = New-Object Windows.Controls.TextBlock; $ct.FontSize = 12; $ct.Foreground = Brush '#D97757'; $ct.HorizontalAlignment = 'Right'
+        $ct = New-Object Windows.Controls.TextBlock; $ct.FontSize = 12; $ct.Foreground = Brush '#5E7F4A'; $ct.HorizontalAlignment = 'Right'
         $ct.Text = (@($t.customers | ForEach-Object { $k = $_.ToLower(); if ($script:custNames[$k]) { $script:custNames[$k] } else { $_ } }) | Sort-Object -Unique) -join ', '
         [void]$right.Children.Add($ct)
     }

@@ -34,7 +34,7 @@ $strings = @{
         pvTask = 'Task'; pvNote = 'Note'; pvFor = 'for {0}'; pvLoose = '(no customer/project)'; pvAuto = 'runs in {0} s – Enter now, Esc to cancel'
         impToggle = 'Import cost via Posten (VAT and fee)'; impShip = 'Shipping'; impDuty = 'Duty %'; impVoec = 'VAT paid at checkout (VOEC, under 3000 kr per item)'
         mCorrections = 'Voice corrections…'; mWake = 'Listen for "Notater" / "Notes4Me"'; wakeTip = ' – or say "Notater" / "Notes4Me"'; wakeErr = 'Could not start listening: {0}'
-        mOutlook = 'Sync tasks to the Outlook calendar'; olDone = 'Outlook: {0} new, {1} updated, {2} removed'; olErr = 'Outlook sync failed: {0}'
+        mOutlook = 'Sync tasks to the Outlook calendar'; olDone = 'Outlook: {0} new, {1} updated, {2} removed'; olErr = 'Outlook sync failed: {0}'; olOffline = 'Outlook is offline – sent when it reconnects'
         impGoods = 'Goods'; impFrom = 'from {0}'; impDutyL = 'Duty ({0} %)'; impVat = 'VAT 25 %'; impFee = 'Posten fee'; impTotal = 'Total'; pvImport = 'import, total {0}'
         impNote = 'Posten 2026: 46 kr (value 0–500), 78 kr (500–3000), 278 kr (over 3000); no fee for VOEC. VAT is 25 % of goods + shipping + duty.'
         tabFx = 'Currency'; fxAmtTo = 'Amount in foreign currency'; fxAmtFrom = 'Amount in NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Foreign'
@@ -59,7 +59,7 @@ $strings = @{
         pvTask = 'Oppgave'; pvNote = 'Notat'; pvFor = 'for {0}'; pvLoose = '(uten kunde/prosjekt)'; pvAuto = 'utføres om {0} s – Enter nå, Esc avbryter'
         impToggle = 'Importkostnad via Posten (mva og gebyr)'; impShip = 'Frakt'; impDuty = 'Toll %'; impVoec = 'Mva betalt i nettbutikken (VOEC, under 3000 kr per vare)'
         mCorrections = 'Rettelser for tale…'; mWake = 'Lytt etter «Notater» / «Notes4Me»'; wakeTip = ' – eller si «Notater» / «Notes4Me»'; wakeErr = 'Kunne ikke starte lytting: {0}'
-        mOutlook = 'Synk oppgaver til Outlook-kalenderen'; olDone = 'Outlook: {0} nye, {1} endret, {2} fjernet'; olErr = 'Outlook-synk feilet: {0}'
+        mOutlook = 'Synk oppgaver til Outlook-kalenderen'; olDone = 'Outlook: {0} nye, {1} endret, {2} fjernet'; olErr = 'Outlook-synk feilet: {0}'; olOffline = 'Outlook er frakoblet – sendes når den får kontakt'
         impGoods = 'Varepris'; impFrom = 'fra {0}'; impDutyL = 'Toll ({0} %)'; impVat = 'Mva 25 %'; impFee = 'Postens gebyr'; impTotal = 'Sluttsum'; pvImport = 'import, sluttsum {0}'
         impNote = 'Posten 2026: 46 kr (verdi 0–500), 78 kr (500–3000), 278 kr (over 3000); ingen gebyr ved VOEC. Mva er 25 % av varepris + frakt + toll.'
         tabFx = 'Valuta'; fxAmtTo = 'Beløp i valuta'; fxAmtFrom = 'Beløp i kroner'; fxRate = '1 {0} = {1} kr'; fxNok = 'kr'; fxForeign = 'Valuta'
@@ -84,7 +84,7 @@ $strings = @{
         pvTask = 'Uppgift'; pvNote = 'Anteckning'; pvFor = 'för {0}'; pvLoose = '(utan kund/projekt)'; pvAuto = 'körs om {0} s – Enter nu, Esc avbryter'
         impToggle = 'Importkostnad via Posten (moms och avgift)'; impShip = 'Frakt'; impDuty = 'Tull %'; impVoec = 'Moms betald i webbutiken (VOEC, under 3000 kr per vara)'
         mCorrections = 'Rättelser för tal…'; mWake = 'Lyssna efter ”Notater” / ”Notes4Me”'; wakeTip = ' – eller säg ”Notater” / ”Notes4Me”'; wakeErr = 'Kunde inte börja lyssna: {0}'
-        mOutlook = 'Synka uppgifter till Outlook-kalendern'; olDone = 'Outlook: {0} nya, {1} ändrade, {2} borttagna'; olErr = 'Outlook-synk misslyckades: {0}'
+        mOutlook = 'Synka uppgifter till Outlook-kalendern'; olDone = 'Outlook: {0} nya, {1} ändrade, {2} borttagna'; olErr = 'Outlook-synk misslyckades: {0}'; olOffline = 'Outlook är offline – skickas när den får kontakt'
         impGoods = 'Varupris'; impFrom = 'från {0}'; impDutyL = 'Tull ({0} %)'; impVat = 'Moms 25 %'; impFee = 'Postens avgift'; impTotal = 'Totalt'; pvImport = 'import, totalt {0}'
         impNote = 'Posten 2026: 46 kr (värde 0–500), 78 kr (500–3000), 278 kr (över 3000); ingen avgift vid VOEC. Momsen är 25 % av varupris + frakt + tull.'
         tabFx = 'Valuta'; fxAmtTo = 'Belopp i utländsk valuta'; fxAmtFrom = 'Belopp i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Valuta'
@@ -109,7 +109,7 @@ $strings = @{
         pvTask = 'Opgave'; pvNote = 'Note'; pvFor = 'for {0}'; pvLoose = '(uden kunde/projekt)'; pvAuto = 'udføres om {0} s – Enter nu, Esc annullerer'
         impToggle = 'Importomkostning via Posten (moms og gebyr)'; impShip = 'Fragt'; impDuty = 'Told %'; impVoec = 'Moms betalt i webshoppen (VOEC, under 3000 kr pr. vare)'
         mCorrections = 'Rettelser for tale…'; mWake = 'Lyt efter »Notater« / »Notes4Me«'; wakeTip = ' – eller sig »Notater« / »Notes4Me«'; wakeErr = 'Kunne ikke starte lytning: {0}'
-        mOutlook = 'Synk opgaver til Outlook-kalenderen'; olDone = 'Outlook: {0} nye, {1} ændret, {2} fjernet'; olErr = 'Outlook-synk fejlede: {0}'
+        mOutlook = 'Synk opgaver til Outlook-kalenderen'; olDone = 'Outlook: {0} nye, {1} ændret, {2} fjernet'; olErr = 'Outlook-synk fejlede: {0}'; olOffline = 'Outlook er offline – sendes når den får forbindelse'
         impGoods = 'Varepris'; impFrom = 'fra {0}'; impDutyL = 'Told ({0} %)'; impVat = 'Moms 25 %'; impFee = 'Postens gebyr'; impTotal = 'I alt'; pvImport = 'import, i alt {0}'
         impNote = 'Posten 2026: 46 kr (værdi 0–500), 78 kr (500–3000), 278 kr (over 3000); intet gebyr ved VOEC. Momsen er 25 % af varepris + fragt + told.'
         tabFx = 'Valuta'; fxAmtTo = 'Beløb i udenlandsk valuta'; fxAmtFrom = 'Beløb i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Valuta'
@@ -1219,7 +1219,16 @@ function Sync-Outlook {
         }
         ($map | ConvertTo-Json -Depth 3) | Set-Content $syncMapPath -Encoding UTF8
         if ($gone.Count) { Remove-TaskLines $gone; Save-Notes; Render }
-        if ($created -or $updated -or $removed -or $gone.Count) { Show-TitleMessage ((T 'olDone') -f $created, $updated, ($removed + $gone.Count)) }
+        if ($created -or $updated -or $removed) {
+            # Push the change to the server now, so it shows up in new Outlook / on the phone right away
+            try { $ns.SendAndReceive($false) } catch {}
+        }
+        if ($created -or $updated -or $removed -or $gone.Count) {
+            $msg = (T 'olDone') -f $created, $updated, ($removed + $gone.Count)
+            # 100-400 = offline/disconnected: the change waits in classic Outlook until it reconnects
+            if ([int]$ns.ExchangeConnectionMode -lt 500 -and [int]$ns.ExchangeConnectionMode -ne 0) { $msg += ' · ' + (T 'olOffline') }
+            Show-TitleMessage $msg
+        }
     } catch {
         $script:ol = $null
         Show-TitleMessage ((T 'olErr') -f $_.Exception.Message)

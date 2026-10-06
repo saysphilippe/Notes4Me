@@ -561,7 +561,8 @@ function ConvertFrom-SpokenDate($text) {
     @{ date = $null; text = $text; numeric = $false }
 }
 
-$fxWordRx = '(?i)(svenske?\s+kron(?:er|or)|svenska\s+kronor|sek|danske?\s+kron(?:er|or)|dkk|euro(?:s|er)?|eur|€|pund|pounds?|gbp|£|dollars?|usd|\$|norske?\s+kron(?:er|or)|kroner|kronor|kr|nok)'
+# Currency words must be whole words ("kr" inside "Statkraft" is not kroner); group 1 is the currency
+$fxWordRx = '(?i)(?:(?<!\p{L})(svenske?\s+kron(?:er|or)|svenska\s+kronor|sek|danske?\s+kron(?:er|or)|dkk|euro(?:s|er)?|eur|€|pund|pounds?|gbp|£|dollars?|usd|\$|norske?\s+kron(?:er|or)|kroner|kronor|kr|nok)(?!\p{L}))'
 function Get-FxCode($word) {
     switch -Regex ($word) {
         '(?i)svensk|sek' { 'SEK'; break } '(?i)dansk|dkk' { 'DKK'; break } '(?i)euro|eur|€' { 'EUR'; break }
@@ -590,11 +591,57 @@ $fillerRx = @(
     '^(?:jeg|vi|jag|i|we|du|man)\s+(?:må|skal|bør|ska|måste|behöver|skulle|need to|have to|must|should)\s+(?:å|att|at)?\s*'
     '^(?:må|skal|ska|måste|need to|must)\s+(?:å\s+)?'
     '^(?:å|to|att|at)\s+'
+    '^(?:om|about)\s+(?:at|att|that)\s+'   # "om at jeg må ringe ..."
 )
 function Remove-Fillers($s, [switch]$NoteOnly) {
     $list = if ($NoteOnly) { $fillerRx[0..2] } else { $fillerRx }
     do { $before = $s; foreach ($f in $list) { $s = Clear-Spoken ([regex]::Replace($s, "(?i)$f", '')) } } while ($s -ne $before)
     $s
+}
+
+# Times: "kl. 12", "kl 12:30", "kl 12.30", "klokka 9", "klockan 14", "at 3", "12:30" -> stored as "kl. 12:00"
+$timeRx = [regex]'(?i)(?:(?<!\p{L})(?:kl\.?|klokka|klokken|klockan)\s*|(?<!\p{L})at\s+(?=\d))(\d{1,2})(?:[:.](\d{2}))?(?!\d)|(?<![\w./:-])(\d{1,2}):(\d{2})(?![\d:])'
+function Split-TaskTime($text) {
+    foreach ($m in $timeRx.Matches($text)) {
+        $h = [int]$(if ($m.Groups[1].Success) { $m.Groups[1].Value } else { $m.Groups[3].Value })
+        $mi = if ($m.Groups[2].Success) { [int]$m.Groups[2].Value } elseif ($m.Groups[4].Success) { [int]$m.Groups[4].Value } else { 0 }
+        if ($h -le 23 -and $mi -le 59) { return @{ time = (New-Object TimeSpan $h, $mi, 0); text = Clear-Spoken $text.Remove($m.Index, $m.Length) } }
+    }
+    @{ time = $null; text = $text }
+}
+function Get-TaskTime($text) { (Split-TaskTime $text).time }
+# "for Nordan ringe Asgeir" -> "ringe Asgeir" (the customer is already the task's tab)
+function Remove-LeadingCustomer($s, $customer) {
+    if (-not $customer) { return $s }
+    Clear-Spoken ([regex]::Replace($s, "(?i)^(?:(?:for|på|til|hos|om|med|with|to|at|för|till)\s+)?$([regex]::Escape($customer))$we[\s,:.-]*", ''))
+}
+# Builds the text of a task line from free text: "Oppgave - ringe Asgeir i morgen kl. 12" -> "Ringe Asgeir 7.10 kl. 12:00"
+function Build-Task($text, $customer) {
+    $dt = ConvertFrom-SpokenDate $text
+    $tm = Split-TaskTime $dt.text
+    $date = if ($dt.date) { $dt.date } else { (Get-Date).Date }
+    $label = Format-Cap (Remove-Fillers (Remove-LeadingCustomer (Remove-Fillers $tm.text) $customer))
+    $stamp = @()
+    if (-not $dt.numeric) { $stamp += $date.ToString($(if ($date.Year -eq (Get-Date).Year) { 'd.M' } else { 'd.M.yyyy' })) }
+    if ($tm.time) { $stamp += 'kl. ' + $tm.time.ToString('hh\:mm') }
+    @{ label = $label; body = ("$label " + ($stamp -join ' ')).Trim(); date = $date; time = $tm.time }
+}
+# A line typed in the note box that is a task ("Oppgave: ...", "husk å ...", "... i morgen") becomes
+# a checkbox line with a date the Tasks tab understands. Plain lines and ticked lines stay as typed.
+function Convert-TypedLine($line) {
+    $m = $lineRx.Match($line)
+    if ($m.Success -and $m.Groups[1].Success) { return $line }
+    $core = if ($m.Success) { $m.Groups[2].Value } else { $line }
+    if (-not $core.Trim()) { return $line }
+    $tags = @($custRx.Matches($core) | ForEach-Object { $_.Value })
+    $plain = Clear-Spoken $custRx.Replace($core, '')
+    $task = [regex]::Match($plain, $taskRx); $note = [regex]::Match($plain, $noteRx)
+    if ($note.Success -and (-not $task.Success -or $note.Index -lt $task.Index)) { return $line }
+    $dt = ConvertFrom-SpokenDate $plain
+    $spoken = $dt.date -and -not $dt.numeric
+    if (-not $task.Success -and -not ($spoken -and ($m.Success -or $dt.date -gt (Get-Date).Date))) { return $line }
+    $t = Build-Task $plain $null
+    ("= $($t.body) " + ($tags -join ' ')).Trim()
 }
 
 # Finds the customer anywhere in the sentence (see rules above)
@@ -659,8 +706,12 @@ function Read-VoiceCommand($raw) {
     $text = Clear-Spoken (Repair-Spoken $raw)
     if (-not $text) { return $null }
     $hasTask = [regex]::Match($text, $taskRx); $hasNote = [regex]::Match($text, $noteRx)
-    # Currency: starts with Valuta/Currency, or an amount with a currency and no task/note words
-    if ($text -match $fxKeyRx -or (-not $hasTask.Success -and -not $hasNote.Success -and $text -match '\d' -and $text -match $fxWordRx)) {
+    # Currency: starts with Valuta/Currency, or an amount with a currency and no task/note words,
+    # no known customer and no future date ("Betale Statkraft 500 kr på fredag" is a task)
+    $preDate = ConvertFrom-SpokenDate $text
+    $future = $preDate.date -and -not $preDate.numeric -and $preDate.date -gt (Get-Date).Date
+    $knownCust = @($script:custNames.Values | Where-Object { $text -match "(?i)$wb$([regex]::Escape($_))$we" }).Count -gt 0
+    if ($text -match $fxKeyRx -or (-not $hasTask.Success -and -not $hasNote.Success -and -not $future -and -not $knownCust -and $text -match '\d' -and $text -match $fxWordRx)) {
         $dt = ConvertFrom-SpokenDate $text; $t2 = $dt.text
         # "… med frakt 30 euro" / "… toll 10 prosent" for the import calculation
         $ship = $null; $duty = $null
@@ -675,7 +726,8 @@ function Read-VoiceCommand($raw) {
         # A shop name makes it a purchase: "Bambu 1500 euro", "1500 euro fra Bambu Lab". Question words
         # ("hvor mye er 100 euro") are not a shop, so that stays a plain conversion.
         $seller = $null
-        $sm = [regex]::Match($t2, "(?i)$wb(?:fra|from|från|hos)\s+([\p{L}\p{N}&'.-]+(?:\s+[\p{Lu}\p{N}][\p{L}\p{N}&'.-]*)?)")
+        # (no (?i) here: a second word only belongs to the name when it is capitalised, "Bambu Lab" but not "BambuLab med")
+        $sm = [regex]::Match($t2, "$wb(?:[Ff]ra|[Ff]rom|[Ff]rån|[Hh]os)\s+([\p{L}\p{N}&'.-]+(?:\s+[\p{Lu}\p{N}][\p{L}\p{N}&'.-]*)?)")
         if ($sm.Success) { $seller = $sm.Groups[1].Value }
         else {
             $rest = if ($m.Success) { $t2.Remove($m.Index, $m.Length) } else { $t2 }
@@ -698,19 +750,17 @@ function Read-VoiceCommand($raw) {
     $noteFirst = $hasNote.Success -and (-not $hasTask.Success -or $hasNote.Index -lt $hasTask.Index)
     $isTask = -not $noteFirst -and ($hasTask.Success -or ($dt.date -and $dt.date -ne (Get-Date).Date))
     if ($isTask) {
-        $date = if ($dt.date) { $dt.date } else { (Get-Date).Date }
-        $label = Format-Cap (Remove-Fillers $dt.text); $body = $label
-        if (-not $dt.numeric) { $body = "$body " + $date.ToString($(if ($date.Year -eq (Get-Date).Year) { 'd.M' } else { 'd.M.yyyy' })) }
-        return @{ kind = 'task'; customer = $c.customer; body = $body.Trim(); label = $label; date = $date }
+        $b = Build-Task $c.text $c.customer
+        return @{ kind = 'task'; customer = $c.customer; body = $b.body; label = $b.label; date = $b.date; time = $b.time }
     }
-    @{ kind = 'note'; customer = $c.customer; body = Format-Cap (Remove-Fillers $c.text -NoteOnly) }
+    @{ kind = 'note'; customer = $c.customer; body = Format-Cap (Remove-Fillers (Remove-LeadingCustomer (Remove-Fillers $c.text -NoteOnly) $c.customer) -NoteOnly) }
 }
 
 function Get-CommandText($cmd) {
     if (-not $cmd) { return '' }
     $who = if ($cmd.customer) { (T 'pvFor') -f $cmd.customer } else { T 'pvLoose' }
     switch ($cmd.kind) {
-        'task' { '{0} {1} · {2}: {3}' -f (T 'pvTask'), $who, $cmd.date.ToString('ddd d.M.'), $cmd.label }
+        'task' { '{0} {1} · {2}{3}: {4}' -f (T 'pvTask'), $who, $cmd.date.ToString('ddd d.M.'), $(if ($cmd.time) { ' ' + $cmd.time.ToString('hh\:mm') } else { '' }), $cmd.label }
         'note' { '{0} {1}: {2}' -f (T 'pvNote'), $who, $cmd.body }
         'fx'   {
             $amt = if ($null -ne $cmd.amount) { '{0:N2} {1}' -f $cmd.amount, $(if ($cmd.code) { $cmd.code } else { '' }) } else { '' }
@@ -906,6 +956,8 @@ function Save-Input {
     if ($script:editId -and ($note = Get-Note $script:editId)) {
         $note.text = $text; $note.updated = Now-Iso
     } else {
+        # Task lines ("Oppgave - ringe Asgeir i morgen kl. 12") get a checkbox and a real date
+        $text = (@($text -split "`n" | ForEach-Object { Convert-TypedLine $_ }) -join "`n")
         # A note written in a customer tab without naming any customer belongs to that customer
         if ($cfg.tab -and $cfg.tab -notin $fxTab, $tasksTab -and -not $custRx.IsMatch($text)) {
             $name = @($script:notes | ForEach-Object { Get-Customers $_.text } | Where-Object { $_.ToLower() -eq $cfg.tab })[0]
@@ -995,7 +1047,7 @@ function Get-Tasks {
             $content = if ($m.Success) { $m.Groups[2].Value } else { $lines[$i] }
             $date = Get-TaskDate $content; if (-not $date) { continue }
             $flag = if ($m.Success) { $m.Groups[1].Value.Trim() } else { '' }
-            [pscustomobject]@{ id = $n.id; line = $i; text = $content; date = $date; checked = [bool]$flag; archived = $flag -eq 'a'
+            [pscustomobject]@{ id = $n.id; line = $i; text = $content; date = $date; time = (Get-TaskTime $content); checked = [bool]$flag; archived = $flag -eq 'a'
                                created = $n.created; customers = @(Get-Customers $n.text) }
         }
     }
@@ -1007,7 +1059,7 @@ function Get-LineTasks($notes) {
         for ($i = 0; $i -lt $lines.Count; $i++) {
             $m = $lineRx.Match($lines[$i]); if (-not $m.Success) { continue }
             $flag = $m.Groups[1].Value.Trim()
-            [pscustomobject]@{ id = $n.id; line = $i; text = $m.Groups[2].Value; date = (Get-TaskDate $m.Groups[2].Value); checked = [bool]$flag
+            [pscustomobject]@{ id = $n.id; line = $i; text = $m.Groups[2].Value; date = (Get-TaskDate $m.Groups[2].Value); time = (Get-TaskTime $m.Groups[2].Value); checked = [bool]$flag
                                archived = $flag -eq 'a'; created = $n.created; customers = @(Get-Customers $n.text) }
         }
     }
@@ -1026,6 +1078,7 @@ function New-TaskRow($t) {
     $dl = New-Object Windows.Controls.TextBlock; $dl.FontSize = 11; $dl.HorizontalAlignment = 'Right'
     $dl.Text = if (-not $t.date) { '' } elseif (-not $t.checked -and $days -lt 0) { '{0} · {1}' -f (T 'dOverdue'), $t.date.ToString('d.M.') }
                elseif ($days -eq 0) { T 'dToday' } elseif ($days -eq 1) { T 'dTomorrow' } else { $t.date.ToString('ddd d.M.') }
+    if ($t.date -and $t.time) { $dl.Text += ' ' + $t.time.ToString('hh\:mm') }
     $dl.Foreground = Brush $(if ($t.checked) { '#666' } elseif ($days -lt 0) { '#E06C5A' } elseif ($days -eq 0) { '#D97757' } else { '#999' })
     [void]$right.Children.Add($dl)
     if ($t.customers.Count -and -not ($cfg.tab -and $cfg.tab -notin $fxTab, $tasksTab)) {   # no need to repeat the customer inside its own tab
@@ -1047,7 +1100,7 @@ function New-TaskRow($t) {
 }
 function Render-Tasks {
     $all = @(Get-Tasks)
-    $open = @($all | Where-Object { -not $_.archived } | Sort-Object { $_.date }, { $_.created })
+    $open = @($all | Where-Object { -not $_.archived } | Sort-Object { $_.date }, { if ($_.time) { $_.time } else { [TimeSpan]::Zero } }, { $_.created })
     $arch = @($all | Where-Object { $_.archived } | Sort-Object { $_.date } -Descending)
     $done = @($open | Where-Object { $_.checked })
     $el.list.Children.Clear()

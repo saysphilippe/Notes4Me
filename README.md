@@ -97,7 +97,9 @@ Any line in any note that contains a date is a task and is listed in the **Tasks
 = Order new boards 2026-10-20
 ```
 
-- **Date formats:** `16.10`, `16.10.`, `16/10`, `16.10.2026`, `16.10.26`, `16-10-2026` and `2026-10-16`. Without a year the nearest sensible year is used (`3.1` written in October means next January). Times such as `kl 12.10` are not treated as dates. A version number like `version 1.2` is read as 1 February; write `v1.2` to avoid that.
+- **Date formats:** `16.10`, `16.10.`, `16/10`, `16.10.2026`, `16.10.26`, `16-10-2026` and `2026-10-16`.
+- **Times:** "kl. 12", "kl 12:30", "klokka 9" or "12:30" are stored as `kl. 12:00`, shown next to the date (for example "Tomorrow 12:00") and used to sort tasks on the same day.
+- **Typing a task:** a new line with a task word ("Task – call Asgeir tomorrow at 12", "Oppgave - ringe Asgeir i morgen kl. 12", "husk å …", "jeg må …") or a future date in words ("tomorrow", "on Friday") is saved as a task with a real date, just like a voice command: `= Ringe Asgeir 7.10 kl. 12:00`. Without a year the nearest sensible year is used (`3.1` written in October means next January). Times such as `kl 12.10` are not treated as dates. A version number like `version 1.2` is read as 1 February; write `v1.2` to avoid that.
 - **Order:** soonest first. Overdue tasks are marked in red, and **Today** and **Tomorrow** are labelled. The customer is shown under the date.
 - **Tick the box** to strike a task through (clicking the text does nothing, so double-click always edits). A ticked plain line (without `=`) becomes a ticked checkbox in its note.
 - **Archive done (n)** moves the ticked tasks to the archive (they are stored as `=a` in the note and still show as ticked there). **Show archive** lists them; untick one to make it an open task again.

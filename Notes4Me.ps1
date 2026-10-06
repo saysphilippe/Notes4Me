@@ -26,6 +26,8 @@ $strings = @{
         custLink = 'Delete customer…'; custTip = 'Right-click to delete the customer'; custDelAll = 'Delete customer "{0}" and its notes ({1})'; custRemoveTag = 'Remove customer "{0}", keep the notes'
         confirmCustDel = 'Delete the customer "{0}"? {1} note(s) will be deleted. Notes that also belong to other customers are kept there. This cannot be undone.'
         confirmCustRemove = 'Remove the customer "{0}" from {1} note(s)? The notes are kept under All.'
+        tabTasks = 'Tasks'; archiveBtn = 'Archive done ({0})'; showArchive = 'Show archive ({0})'; hideArchive = 'Hide archive'; archiveHdr = 'Archive'
+        tasksEmpty = 'No tasks with a date yet. Write a line with a date, e.g. "= Send offer 16.10".'; dToday = 'Today'; dTomorrow = 'Tomorrow'; dOverdue = 'Overdue'
         tabFx = 'Currency'; fxAmtTo = 'Amount in foreign currency'; fxAmtFrom = 'Amount in NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Foreign'
         fxSource = 'Norges Bank rates, {0}'; fxFetching = 'Fetching rates…'; fxOffline = 'Could not fetch new rates – showing rates from {0}'
         fxNone = 'No rates yet – check the internet connection'; fxDate = 'Rate date'; fxLatest = 'Latest rates'; fxHistNone = 'No rates found for this date'; fxRefresh = 'Refresh'; fxCopy = 'Click to copy'; fxCopied = 'Copied {0}'
@@ -41,6 +43,8 @@ $strings = @{
         custLink = 'Slett kunde…'; custTip = 'Høyreklikk for å slette kunden'; custDelAll = 'Slett kunden «{0}» og notatene ({1})'; custRemoveTag = 'Fjern kunden «{0}», behold notatene'
         confirmCustDel = 'Slette kunden «{0}»? {1} notat(er) slettes. Notater som også gjelder andre kunder, beholdes der. Dette kan ikke angres.'
         confirmCustRemove = 'Fjerne kunden «{0}» fra {1} notat(er)? Notatene beholdes under Alle.'
+        tabTasks = 'Oppgaver'; archiveBtn = 'Arkiver utførte ({0})'; showArchive = 'Vis arkiv ({0})'; hideArchive = 'Skjul arkiv'; archiveHdr = 'Arkiv'
+        tasksEmpty = 'Ingen oppgaver med dato ennå. Skriv en linje med dato, f.eks. «= Sende tilbud 16.10».'; dToday = 'I dag'; dTomorrow = 'I morgen'; dOverdue = 'Forfalt'
         tabFx = 'Valuta'; fxAmtTo = 'Beløp i valuta'; fxAmtFrom = 'Beløp i kroner'; fxRate = '1 {0} = {1} kr'; fxNok = 'kr'; fxForeign = 'Valuta'
         fxSource = 'Kurser fra Norges Bank, {0}'; fxFetching = 'Henter kurser…'; fxOffline = 'Fikk ikke hentet nye kurser – viser kurser fra {0}'
         fxNone = 'Ingen kurser ennå – sjekk internettforbindelsen'; fxDate = 'Kursdato'; fxLatest = 'Siste kurser'; fxHistNone = 'Fant ingen kurser for denne datoen'; fxRefresh = 'Oppdater'; fxCopy = 'Klikk for å kopiere'; fxCopied = 'Kopierte {0}'
@@ -56,6 +60,8 @@ $strings = @{
         custLink = 'Ta bort kund…'; custTip = 'Högerklicka för att ta bort kunden'; custDelAll = 'Ta bort kunden ”{0}” och anteckningarna ({1})'; custRemoveTag = 'Ta bort kunden ”{0}”, behåll anteckningarna'
         confirmCustDel = 'Ta bort kunden ”{0}”? {1} anteckning(ar) tas bort. Anteckningar som även hör till andra kunder behålls där. Det går inte att ångra.'
         confirmCustRemove = 'Ta bort kunden ”{0}” från {1} anteckning(ar)? Anteckningarna finns kvar under Alla.'
+        tabTasks = 'Uppgifter'; archiveBtn = 'Arkivera klara ({0})'; showArchive = 'Visa arkiv ({0})'; hideArchive = 'Dölj arkiv'; archiveHdr = 'Arkiv'
+        tasksEmpty = 'Inga uppgifter med datum ännu. Skriv en rad med datum, t.ex. ”= Skicka offert 16.10”.'; dToday = 'I dag'; dTomorrow = 'I morgon'; dOverdue = 'Försenad'
         tabFx = 'Valuta'; fxAmtTo = 'Belopp i utländsk valuta'; fxAmtFrom = 'Belopp i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Valuta'
         fxSource = 'Kurser från Norges Bank, {0}'; fxFetching = 'Hämtar kurser…'; fxOffline = 'Kunde inte hämta nya kurser – visar kurser från {0}'
         fxNone = 'Inga kurser ännu – kontrollera internetanslutningen'; fxDate = 'Kursdatum'; fxLatest = 'Senaste kurser'; fxHistNone = 'Hittade inga kurser för det datumet'; fxRefresh = 'Uppdatera'; fxCopy = 'Klicka för att kopiera'; fxCopied = 'Kopierade {0}'
@@ -71,6 +77,8 @@ $strings = @{
         custLink = 'Slet kunde…'; custTip = 'Højreklik for at slette kunden'; custDelAll = 'Slet kunden »{0}« og noterne ({1})'; custRemoveTag = 'Fjern kunden »{0}«, behold noterne'
         confirmCustDel = 'Slet kunden »{0}«? {1} note(r) slettes. Noter, der også hører til andre kunder, beholdes der. Det kan ikke fortrydes.'
         confirmCustRemove = 'Fjern kunden »{0}« fra {1} note(r)? Noterne beholdes under Alle.'
+        tabTasks = 'Opgaver'; archiveBtn = 'Arkivér udførte ({0})'; showArchive = 'Vis arkiv ({0})'; hideArchive = 'Skjul arkiv'; archiveHdr = 'Arkiv'
+        tasksEmpty = 'Ingen opgaver med dato endnu. Skriv en linje med dato, f.eks. »= Send tilbud 16.10«.'; dToday = 'I dag'; dTomorrow = 'I morgen'; dOverdue = 'Forfalden'
         tabFx = 'Valuta'; fxAmtTo = 'Beløb i udenlandsk valuta'; fxAmtFrom = 'Beløb i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Valuta'
         fxSource = 'Kurser fra Norges Bank, {0}'; fxFetching = 'Henter kurser…'; fxOffline = 'Kunne ikke hente nye kurser – viser kurser fra {0}'
         fxNone = 'Ingen kurser endnu – tjek internetforbindelsen'; fxDate = 'Kursdato'; fxLatest = 'Seneste kurser'; fxHistNone = 'Fandt ingen kurser for denne dato'; fxRefresh = 'Opdater'; fxCopy = 'Klik for at kopiere'; fxCopied = 'Kopierede {0}'
@@ -109,14 +117,16 @@ function Now-Iso { (Get-Date).ToUniversalTime().ToString('yyyy-MM-ddTHH:mm:ss.ff
 
 # --- Parsing ----------------------------------------------------------------
 $custRx = [regex]'\(([^()\r\n]{1,40})\)'
-$lineRx = [regex]'^=(x\s)?\s*(.*)$'
+$lineRx = [regex]'^=([xa]\s)?\s*(.*)$'   # '= ' open, '=x ' done, '=a ' done and archived (Tasks tab)
 function Get-Customers($text) { foreach ($m in $custRx.Matches($text)) { $c = $m.Groups[1].Value.Trim(); if ($c) { $c } } }
 function Test-Customer($note, $key) { foreach ($c in Get-Customers $note.text) { if ($c.ToLower() -eq $key) { return $true } }; $false }
 function Set-LineChecked($id, $index, $checked) {
     $note = Get-Note $id; if (-not $note) { return }
     $lines = $note.text -split "`n"
-    $m = $lineRx.Match($lines[$index]); if (-not $m.Success) { return }
-    $lines[$index] = $(if ($checked) { '=x ' } else { '= ' }) + $m.Groups[2].Value
+    $m = $lineRx.Match($lines[$index])
+    if ($m.Success) { $lines[$index] = $(if ($checked) { '=x ' } else { '= ' }) + $m.Groups[2].Value }
+    elseif ($checked) { $lines[$index] = '=x ' + $lines[$index].Trim() }   # a plain dated line ticked in the Tasks tab
+    else { return }
     $note.text = $lines -join "`n"; $note.updated = Now-Iso
     Save-Notes; Render
 }
@@ -215,9 +225,11 @@ function Set-LineChecked($id, $index, $checked) {
         </DockPanel>
         <DockPanel Name="toolbar" DockPanel.Dock="Top" Margin="0,0,0,4">
           <Button Name="delBtn" DockPanel.Dock="Right" Background="#B5523B" Padding="8,2" FontSize="11" Visibility="Collapsed"/>
+          <Button Name="archBtn" DockPanel.Dock="Right" Background="#5E7F4A" Padding="8,2" FontSize="11" Visibility="Collapsed"/>
           <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
             <TextBlock Name="selAll" Foreground="#888" FontSize="11" Cursor="Hand"/>
             <TextBlock Name="custLink" Foreground="#888" FontSize="11" Cursor="Hand" Margin="14,0,0,0" Visibility="Collapsed"/>
+            <TextBlock Name="archLink" Foreground="#888" FontSize="11" Cursor="Hand" Visibility="Collapsed"/>
           </StackPanel>
         </DockPanel>
         <TextBlock Name="emptyLbl" DockPanel.Dock="Top" Foreground="#777" FontSize="11" Margin="0,4,0,0"/>
@@ -243,7 +255,7 @@ $win = [Windows.Markup.XamlReader]::Load((New-Object System.Xml.XmlNodeReader $x
 $el = @{}
 'title','tabs','input','hint','cancelBtn','saveBtn','editLbl','toolbar','delBtn','selAll','list','emptyLbl','micBtn','micIcon',
 'notesPanel','fxPanel','fxDir','fxAmountLbl','fxAmount','fxResults','fxRefresh','fxStatus','fxLatest','fxDateLbl','fxDate',
-'resetSize','grip','listScroll','custLink' | ForEach-Object { $el[$_] = $win.FindName($_) }
+'resetSize','grip','listScroll','custLink','archBtn','archLink' | ForEach-Object { $el[$_] = $win.FindName($_) }
 $win.Left = $cfg.left; $win.Top = $cfg.top; $win.Topmost = [bool]$cfg.topmost
 
 $brushConv = New-Object Windows.Media.BrushConverter
@@ -303,7 +315,7 @@ function New-NoteCard($note) {
         $tb = New-Object Windows.Controls.TextBlock
         $tb.TextWrapping = 'Wrap'; $tb.FontSize = 12; $tb.Foreground = Brush '#DDD'
         $m = $lineRx.Match($line)
-        if ($line.Trim() -ne '' -and -not (Get-DisplayText ($line -replace '^=(x\s)?', ''))) { continue }  # line held only (Customer)
+        if ($line.Trim() -ne '' -and -not (Get-DisplayText ($line -replace '^=([xa]\s)?', ''))) { continue }  # line held only (Customer)
         if ($m.Success) {
             $checked = $m.Groups[1].Success
             $tb.Text = Get-DisplayText $m.Groups[2].Value
@@ -335,24 +347,26 @@ function Render {
         }
         foreach ($key in @(Get-Customers $n.text | ForEach-Object { $_.ToLower() } | Sort-Object -Unique)) { $counts[$key]++ }
     }
-    if ($cfg.tab -and $cfg.tab -ne $fxTab -and -not $cust.Contains([string]$cfg.tab)) { $cfg.tab = ''; Save-Config }
+    if ($cfg.tab -and $cfg.tab -notin $fxTab, $tasksTab -and -not $cust.Contains([string]$cfg.tab)) { $cfg.tab = ''; Save-Config }
     $script:custNames = $cust
 
     # Tabs
     $el.tabs.Children.Clear()
-    $tabList = @(@{ key = $fxTab; name = T 'tabFx'; count = $null }) +
+    $openTasks = @(Get-Tasks | Where-Object { -not $_.checked }).Count
+    $tabList = @(@{ key = $tasksTab; name = T 'tabTasks'; count = $openTasks }) +
+               @(@{ key = $fxTab; name = T 'tabFx'; count = $null }) +
                @(@{ key = ''; name = T 'all'; count = $sorted.Count }) +
                @($cust.Keys | Sort-Object { $cust[$_] } | ForEach-Object { @{ key = $_; name = $cust[$_]; count = $counts[$_] } })
     foreach ($t in $tabList) {
-        $active = $t.key -eq [string]$cfg.tab; $isFx = $t.key -eq $fxTab
+        $active = $t.key -eq [string]$cfg.tab; $isFx = $t.key -eq $fxTab; $isTasks = $t.key -eq $tasksTab
         $chip = New-Object Windows.Controls.Border
         $chip.CornerRadius = New-Object Windows.CornerRadius 12; $chip.Padding = Thick 10 3 10 4; $chip.Margin = Thick 0 0 5 5; $chip.Cursor = 'Hand'
-        $chip.Background = Brush $(if ($active -and $isFx) { '#6A9BCC' } elseif ($active) { '#D97757' } else { '#2B2B2B' }); $chip.Tag = $t.key
+        $chip.Background = Brush $(if ($active -and $isFx) { '#6A9BCC' } elseif ($active -and $isTasks) { '#5E7F4A' } elseif ($active) { '#D97757' } else { '#2B2B2B' }); $chip.Tag = $t.key
         $tx = New-Object Windows.Controls.TextBlock
         $tx.Text = $(if ($isFx) { $t.name } else { "$($t.name)  $($t.count)" }); $tx.FontSize = 13
-        $tx.Foreground = Brush $(if ($active) { '#FFF' } elseif ($isFx) { '#9DBEE0' } else { '#BBB' })
+        $tx.Foreground = Brush $(if ($active) { '#FFF' } elseif ($isFx) { '#9DBEE0' } elseif ($isTasks) { '#B5D19E' } else { '#BBB' })
         $chip.Child = $tx
-        if ($t.key -and -not $isFx) { $chip.ContextMenu = New-CustomerMenu $t.key; $chip.ToolTip = T 'custTip' }
+        if ($t.key -and -not $isFx -and -not $isTasks) { $chip.ContextMenu = New-CustomerMenu $t.key; $chip.ToolTip = T 'custTip' }
         $chip.Add_MouseLeftButtonDown({
             param($s, $e)
             $cfg.tab = [string]$s.Tag; Save-Config; $script:selected.Clear(); Render; $e.Handled = $true
@@ -366,6 +380,8 @@ function Render {
     $el.fxPanel.Visibility = $(if ($fx) { 'Visible' } else { 'Collapsed' })
     $el.notesPanel.Visibility = $(if ($fx) { 'Collapsed' } else { 'Visible' })
     if ($fx) { Render-Fx; Update-Rates; return }
+    if ($cfg.tab -eq $tasksTab) { Render-Tasks; return }
+    $el.selAll.Visibility = 'Visible'; $el.archBtn.Visibility = 'Collapsed'; $el.archLink.Visibility = 'Collapsed'
 
     # Notes in the active tab, newest first
     $vis = if ($cfg.tab) { @($sorted | Where-Object { Test-Customer $_ ([string]$cfg.tab) }) } else { $sorted }
@@ -437,7 +453,7 @@ function Save-Input {
         $note.text = $text; $note.updated = Now-Iso
     } else {
         # A note written in a customer tab without naming any customer belongs to that customer
-        if ($cfg.tab -and $cfg.tab -ne $fxTab -and -not $custRx.IsMatch($text)) {
+        if ($cfg.tab -and $cfg.tab -notin $fxTab, $tasksTab -and -not $custRx.IsMatch($text)) {
             $name = @($script:notes | ForEach-Object { Get-Customers $_.text } | Where-Object { $_.ToLower() -eq $cfg.tab })[0]
             $lines = $text -split "`n"; $lines[0] = "$($lines[0]) ($name)"; $text = $lines -join "`n"
         }
@@ -497,6 +513,102 @@ $el.custLink.Add_MouseLeftButtonDown({
     $m = New-CustomerMenu ([string]$cfg.tab); $m.PlacementTarget = $s; $m.Placement = 'Bottom'; $m.IsOpen = $true
     $e.Handled = $true
 })
+
+# --- Tasks tab ----------------------------------------------------------------
+# Every line with a date is a task: "= Send offer 16.10", "Meeting agreed 16/10".
+# Shown soonest first; ticked tasks are struck through and can be archived ("=a ").
+$tasksTab = '::tasks'
+$script:showArchive = $false
+# 16.10  16.10.  16/10  16.10.2026  16.10.26  16-10-2026  2026-10-16
+$dateRx = [regex]'(?<![\w./-])(?:(?<y>\d{4})-(?<m>\d{1,2})-(?<d>\d{1,2})|(?<d>\d{1,2})[./](?<m>\d{1,2})(?:[./](?<y>\d{4}|\d{2}))?\.?|(?<d>\d{1,2})-(?<m>\d{1,2})-(?<y>\d{4}|\d{2}))(?![\d/-]|\.\d)'
+function Get-TaskDate($text) {
+    $today = (Get-Date).Date
+    foreach ($m in $dateRx.Matches($text)) {
+        if ($text.Substring(0, $m.Index) -match '(?i)\bkl\.?\s*$') { continue }   # "kl 12.10" is a time
+        $hasYear = $m.Groups['y'].Success
+        $y = if ($hasYear) { [int]$m.Groups['y'].Value } else { $today.Year }; if ($y -lt 100) { $y += 2000 }
+        try { $date = New-Object DateTime $y, ([int]$m.Groups['m'].Value), ([int]$m.Groups['d'].Value) } catch { continue }
+        if (-not $hasYear -and $date -lt $today.AddDays(-180)) { $date = $date.AddYears(1) }   # "3.1" written in October = next January
+        return $date
+    }
+    $null
+}
+function Get-Tasks {
+    foreach ($n in $script:notes) {
+        $lines = $n.text -split "`n"
+        for ($i = 0; $i -lt $lines.Count; $i++) {
+            $m = $lineRx.Match($lines[$i])
+            $content = if ($m.Success) { $m.Groups[2].Value } else { $lines[$i] }
+            $date = Get-TaskDate $content; if (-not $date) { continue }
+            $flag = if ($m.Success) { $m.Groups[1].Value.Trim() } else { '' }
+            [pscustomobject]@{ id = $n.id; line = $i; text = $content; date = $date; checked = [bool]$flag; archived = $flag -eq 'a'
+                               created = $n.created; customers = @(Get-Customers $n.text) }
+        }
+    }
+}
+function New-TaskRow($t) {
+    $today = (Get-Date).Date; $days = ($t.date - $today).Days
+    $row = New-Object Windows.Controls.Border
+    $row.CornerRadius = New-Object Windows.CornerRadius 6; $row.Padding = Thick 8 5 8 6; $row.Margin = Thick 0 0 0 5
+    $row.Background = Brush '#2B2B2B'; $row.Tag = $t.id; $row.ToolTip = T 'edit'
+    [Windows.Controls.ToolTipService]::SetInitialShowDelay($row, 1500)
+    $row.Add_MouseLeftButtonDown({ param($s, $e) if ($e.ClickCount -ge 2) { Start-Edit $s.Tag }; $e.Handled = $true })
+    $dp = New-Object Windows.Controls.DockPanel
+
+    $right = New-Object Windows.Controls.StackPanel; $right.Margin = Thick 8 0 0 0; $right.VerticalAlignment = 'Center'
+    [Windows.Controls.DockPanel]::SetDock($right, 'Right')
+    $dl = New-Object Windows.Controls.TextBlock; $dl.FontSize = 11; $dl.HorizontalAlignment = 'Right'
+    $dl.Text = if (-not $t.checked -and $days -lt 0) { '{0} · {1}' -f (T 'dOverdue'), $t.date.ToString('d.M.') }
+               elseif ($days -eq 0) { T 'dToday' } elseif ($days -eq 1) { T 'dTomorrow' } else { $t.date.ToString('ddd d.M.') }
+    $dl.Foreground = Brush $(if ($t.checked) { '#666' } elseif ($days -lt 0) { '#E06C5A' } elseif ($days -eq 0) { '#D97757' } else { '#999' })
+    [void]$right.Children.Add($dl)
+    if ($t.customers.Count) {
+        $ct = New-Object Windows.Controls.TextBlock; $ct.FontSize = 10; $ct.Foreground = Brush '#D97757'; $ct.HorizontalAlignment = 'Right'
+        $ct.Text = (@($t.customers | ForEach-Object { $k = $_.ToLower(); if ($script:custNames[$k]) { $script:custNames[$k] } else { $_ } }) | Sort-Object -Unique) -join ', '
+        [void]$right.Children.Add($ct)
+    }
+
+    $tb = New-Object Windows.Controls.TextBlock
+    $tb.TextWrapping = 'Wrap'; $tb.FontSize = 12; $tb.Foreground = Brush '#DDD'; $tb.Text = Get-DisplayText $t.text
+    if ($t.checked) { $tb.TextDecorations = [Windows.TextDecorations]::Strikethrough; $tb.Foreground = Brush '#777' }
+    $cb = New-Object Windows.Controls.CheckBox
+    $cb.IsChecked = $t.checked; $cb.Content = $tb; $cb.VerticalAlignment = 'Center'; $cb.Tag = @{ id = $t.id; line = $t.line }
+    $cb.Add_Click({ param($s, $e) Set-LineChecked $s.Tag.id $s.Tag.line ([bool]$s.IsChecked) })
+    [void]$dp.Children.Add($right); [void]$dp.Children.Add($cb)
+    $row.Child = $dp
+    $row
+}
+function Render-Tasks {
+    $all = @(Get-Tasks)
+    $open = @($all | Where-Object { -not $_.archived } | Sort-Object { $_.date }, { $_.created })
+    $arch = @($all | Where-Object { $_.archived } | Sort-Object { $_.date } -Descending)
+    $done = @($open | Where-Object { $_.checked })
+    $el.list.Children.Clear()
+    foreach ($t in $open) { [void]$el.list.Children.Add((New-TaskRow $t)) }
+    if ($script:showArchive -and $arch.Count) {
+        $h = New-Object Windows.Controls.TextBlock; $h.Text = T 'archiveHdr'; $h.Foreground = Brush '#888'; $h.FontSize = 11; $h.Margin = Thick 0 8 0 4
+        [void]$el.list.Children.Add($h)
+        foreach ($t in $arch) { $r = New-TaskRow $t; $r.Opacity = 0.7; [void]$el.list.Children.Add($r) }
+    }
+    $el.emptyLbl.Text = T 'tasksEmpty'
+    $el.emptyLbl.Visibility = $(if ($open.Count -or ($script:showArchive -and $arch.Count)) { 'Collapsed' } else { 'Visible' })
+    $el.toolbar.Visibility = $(if ($done.Count -or $arch.Count) { 'Visible' } else { 'Collapsed' })
+    $el.selAll.Visibility = 'Collapsed'; $el.custLink.Visibility = 'Collapsed'; $el.delBtn.Visibility = 'Collapsed'
+    $el.archLink.Text = $(if ($script:showArchive) { T 'hideArchive' } else { (T 'showArchive') -f $arch.Count })
+    $el.archLink.Visibility = $(if ($arch.Count) { 'Visible' } else { 'Collapsed' })
+    $el.archBtn.Content = (T 'archiveBtn') -f $done.Count
+    $el.archBtn.Visibility = $(if ($done.Count) { 'Visible' } else { 'Collapsed' })
+}
+function Save-ArchiveDone {
+    foreach ($t in @(Get-Tasks | Where-Object { $_.checked -and -not $_.archived })) {
+        $n = Get-Note $t.id; $lines = $n.text -split "`n"
+        $lines[$t.line] = '=a ' + $lineRx.Match($lines[$t.line]).Groups[2].Value
+        $n.text = $lines -join "`n"; $n.updated = Now-Iso
+    }
+    Save-Notes; Render
+}
+$el.archBtn.Add_Click({ Save-ArchiveDone })
+$el.archLink.Add_MouseLeftButtonDown({ param($s, $e) $script:showArchive = -not $script:showArchive; Render; $e.Handled = $true })
 
 # --- Currency tab -------------------------------------------------------------
 # Daily mid rates from Norges Bank (published around 16:00 CET on business days).
@@ -801,5 +913,6 @@ $el.resetSize.Add_MouseLeftButtonDown({ param($s, $e) Reset-Size; $e.Handled = $
 if ($cfg.width -and $cfg.height) { Set-CustomSize ([double]$cfg.width) ([double]$cfg.height) }
 
 Set-Texts
+$cfg.tab = $tasksTab   # the widget always opens on the Tasks tab
 Render
 [void]$win.ShowDialog()

@@ -1,7 +1,10 @@
 # Notes4Me
 
-A small always-on-top Windows desktop widget for quick notes, with a tab per customer, simple checklists, voice notes and a currency calculator. The title in the widget is **My notes** (Mine notater / Mina anteckningar / Mine noter).
+A small always-on-top Windows desktop widget for quick notes, with a task overview, a tab per customer, simple checklists, voice notes and a currency calculator. The title in the widget is **My notes** (Mine notater / Mina anteckningar / Mine noter).
 
+The tabs are, in order: **Tasks**, **Currency**, **All** and one tab per customer. The widget always opens on **Tasks**.
+
+- **Tasks tab:** every line with a date (for example `= Send offer 16.10`) appears here, soonest first, with overdue tasks in red. Tick to strike through, then archive the ticked ones.
 - **Customer tabs:** write a customer name in parentheses in a note, for example `(Equinor)`. A tab for that customer appears automatically and lists its notes, newest first. **All** shows every note.
 - **Checkboxes:** start a line with `=` to turn it into a checkbox. Ticking it strikes the line through.
 - **Voice notes:** click the microphone and speak. The first word you say becomes the customer.
@@ -64,6 +67,23 @@ Right-click a customer tab, or open the tab and click **Delete customer…** abo
 
 - **Delete customer "X" and its notes** – deletes the notes that belong only to this customer. Notes that also mention other customers are kept there; only this customer is removed from them.
 - **Remove customer "X", keep the notes** – removes the customer from its notes, so they stay under **All**. A note that contained nothing but `(X)` is removed.
+
+## Tasks
+
+Any line in any note that contains a date is a task and is listed in the **Tasks** tab:
+
+```
+(Equinor) Meeting agreed 16/10 on Teams
+= Send offer 8.10
+= Order new boards 2026-10-20
+```
+
+- **Date formats:** `16.10`, `16.10.`, `16/10`, `16.10.2026`, `16.10.26`, `16-10-2026` and `2026-10-16`. Without a year the nearest sensible year is used (`3.1` written in October means next January). Times such as `kl 12.10` are not treated as dates. A version number like `version 1.2` is read as 1 February; write `v1.2` to avoid that.
+- **Order:** soonest first. Overdue tasks are marked in red, and **Today** and **Tomorrow** are labelled. The customer is shown under the date.
+- **Tick** a task to strike it through. A ticked plain line (without `=`) becomes a ticked checkbox in its note.
+- **Archive done (n)** moves the ticked tasks to the archive (they are stored as `=a` in the note and still show as ticked there). **Show archive** lists them; untick one to make it an open task again.
+- **Double-click** a task to edit the note it belongs to.
+- The number on the tab is the count of open tasks.
 
 ## Voice notes
 

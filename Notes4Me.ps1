@@ -221,17 +221,17 @@ function Set-LineChecked($id, $index, $checked) {
       <DockPanel DockPanel.Dock="Top">
         <TextBlock Name="resetSize" DockPanel.Dock="Right" FontFamily="Segoe MDL2 Assets" Text="&#xE73F;" FontSize="14"
                    Foreground="#888" Cursor="Hand" VerticalAlignment="Center" Visibility="Collapsed" Margin="10,0,0,0"/>
-        <TextBlock Name="titleMic" DockPanel.Dock="Right" FontFamily="Segoe MDL2 Assets" Text="&#xE720;" FontSize="17"
+        <TextBlock Name="titleMic" DockPanel.Dock="Right" FontFamily="Segoe MDL2 Assets" Text="&#xE720;" FontSize="18"
                    Foreground="#BBB" Cursor="Hand" VerticalAlignment="Center"/>
-        <TextBlock Name="title" Foreground="#D97757" FontWeight="SemiBold" FontSize="15" TextTrimming="CharacterEllipsis"/>
+        <TextBlock Name="title" Foreground="#D97757" FontWeight="SemiBold" FontSize="20" MinHeight="27" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"/>
       </DockPanel>
       <Border Name="cmdBar" DockPanel.Dock="Top" Visibility="Collapsed" Background="#262A30" CornerRadius="6" Padding="6"
               Margin="0,6,0,2" BorderBrush="#6A9BCC" BorderThickness="1">
         <StackPanel>
           <Grid>
-            <TextBox Name="cmdBox" FontSize="15" Background="#2B2B2B" Foreground="#EEE" CaretBrush="#EEE" BorderThickness="0"
+            <TextBox Name="cmdBox" FontSize="14" Background="#2B2B2B" Foreground="#EEE" CaretBrush="#EEE" BorderThickness="0"
                      Padding="4,3" TextWrapping="Wrap" MinHeight="26"/>
-            <TextBlock Name="cmdHint" Foreground="#777" FontSize="13" TextWrapping="Wrap" Margin="7,4,7,0" IsHitTestVisible="False"/>
+            <TextBlock Name="cmdHint" Foreground="#777" FontSize="14" TextWrapping="Wrap" Margin="7,4,7,0" IsHitTestVisible="False"/>
           </Grid>
           <DockPanel Margin="0,5,0,0">
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" VerticalAlignment="Top">
@@ -248,7 +248,7 @@ function Set-LineChecked($id, $index, $checked) {
         <DockPanel Margin="0,0,0,8">
           <TextBlock Name="fxLatest" DockPanel.Dock="Right" Foreground="#888" FontSize="13" Cursor="Hand" VerticalAlignment="Center"/>
           <TextBlock Name="fxDateLbl" DockPanel.Dock="Left" Foreground="#999" FontSize="13" VerticalAlignment="Center" Margin="0,0,8,0"/>
-          <DatePicker Name="fxDate" Width="130" HorizontalAlignment="Left" FontSize="13" Foreground="#EEE" Background="#2B2B2B" BorderBrush="#444"/>
+          <DatePicker Name="fxDate" Width="130" HorizontalAlignment="Left" FontSize="14" Foreground="#EEE" Background="#2B2B2B" BorderBrush="#444"/>
         </DockPanel>
         <TextBlock Name="fxAmountLbl" Foreground="#999" FontSize="13"/>
         <TextBox Name="fxAmount" FontSize="20" Margin="0,3,0,8" Background="#2B2B2B" Foreground="#EEE" CaretBrush="#EEE"
@@ -263,11 +263,11 @@ function Set-LineChecked($id, $index, $checked) {
                 <Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="10"/><ColumnDefinition/></Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
                   <TextBlock Name="impShipLbl" Foreground="#999" FontSize="13"/>
-                  <TextBox Name="impShip" FontSize="15" Background="#232323" Foreground="#EEE" CaretBrush="#EEE" BorderBrush="#444" Padding="4,2"/>
+                  <TextBox Name="impShip" FontSize="14" Background="#232323" Foreground="#EEE" CaretBrush="#EEE" BorderBrush="#444" Padding="4,2"/>
                 </StackPanel>
                 <StackPanel Grid.Column="2">
                   <TextBlock Name="impDutyLbl" Foreground="#999" FontSize="13"/>
-                  <TextBox Name="impDuty" FontSize="15" Background="#232323" Foreground="#EEE" CaretBrush="#EEE" BorderBrush="#444" Padding="4,2"/>
+                  <TextBox Name="impDuty" FontSize="14" Background="#232323" Foreground="#EEE" CaretBrush="#EEE" BorderBrush="#444" Padding="4,2"/>
                 </StackPanel>
               </Grid>
               <CheckBox Name="impVoec" Foreground="#BBB" FontSize="13" Margin="0,0,0,8"/>
@@ -284,10 +284,10 @@ function Set-LineChecked($id, $index, $checked) {
       </StackPanel>
       <DockPanel Name="notesPanel">
         <Grid DockPanel.Dock="Top">
-          <TextBox Name="input" MinHeight="58" MaxHeight="160" AcceptsReturn="True" TextWrapping="Wrap"
+          <TextBox Name="input" MinHeight="76" MaxHeight="160" AcceptsReturn="True" TextWrapping="Wrap"
                    VerticalScrollBarVisibility="Auto" Background="#2B2B2B" Foreground="#EEE" CaretBrush="#EEE"
                    BorderBrush="#444" BorderThickness="1" Padding="4,3" FontSize="14"/>
-          <TextBlock Name="hint" Foreground="#777" FontSize="13" TextWrapping="Wrap" Margin="7,5,7,0" IsHitTestVisible="False"/>
+          <TextBlock Name="hint" Foreground="#777" FontSize="14" TextWrapping="Wrap" Margin="7,5,7,0" IsHitTestVisible="False"/>
         </Grid>
         <DockPanel DockPanel.Dock="Top" Margin="0,4,0,8">
           <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
@@ -815,10 +815,10 @@ function Invoke-VoiceCommand {
 # Shows a short confirmation in place of the title for a few seconds
 $script:titleTimer = New-Object Windows.Threading.DispatcherTimer
 $script:titleTimer.Interval = [TimeSpan]::FromSeconds(6)
-$script:titleTimer.Add_Tick({ $script:titleTimer.Stop(); $el.title.Text = T 'title'; $el.title.Foreground = Brush '#D97757'; $el.title.FontWeight = 'SemiBold'; $el.title.ToolTip = $null })
+$script:titleTimer.Add_Tick({ $script:titleTimer.Stop(); $el.title.Text = T 'title'; $el.title.Foreground = Brush '#D97757'; $el.title.FontWeight = 'SemiBold'; $el.title.FontSize = 20; $el.title.ToolTip = $null })
 function Show-TitleMessage($text) {
     $el.title.Text = $text; $el.title.ToolTip = $text
-    $el.title.Foreground = Brush '#B5D19E'; $el.title.FontWeight = 'Normal'
+    $el.title.Foreground = Brush '#B5D19E'; $el.title.FontWeight = 'Normal'; $el.title.FontSize = 14   # messages are smaller than the title
     $script:titleTimer.Stop(); $script:titleTimer.Start()
 }
 

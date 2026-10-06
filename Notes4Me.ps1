@@ -32,7 +32,7 @@ $strings = @{
         cmdHint = 'Just say it, e.g. "Remember to send the offer to Equinor on Friday", "Talked to Statkraft about the sensors" or "How much is 100 euro". Enter runs it, Esc closes.'; cmdRun = 'Run'
         pvTask = 'Task'; pvNote = 'Note'; pvFor = 'for {0}'; pvLoose = '(no customer/project)'; pvAuto = 'runs in {0} s – Enter now, Esc to cancel'
         impToggle = 'Import cost via Posten (VAT and fee)'; impShip = 'Shipping'; impDuty = 'Duty %'; impVoec = 'VAT paid at checkout (VOEC, under 3000 kr per item)'
-        mWake = 'Listen for "Notater" / "Notes4Me"'; wakeTip = ' – or say "Notater" / "Notes4Me"'; wakeErr = 'Could not start listening: {0}'
+        mCorrections = 'Voice corrections…'; mWake = 'Listen for "Notater" / "Notes4Me"'; wakeTip = ' – or say "Notater" / "Notes4Me"'; wakeErr = 'Could not start listening: {0}'
         impGoods = 'Goods'; impFrom = 'from {0}'; impDutyL = 'Duty ({0} %)'; impVat = 'VAT 25 %'; impFee = 'Posten fee'; impTotal = 'Total'; pvImport = 'import, total {0}'
         impNote = 'Posten 2026: 46 kr (value 0–500), 78 kr (500–3000), 278 kr (over 3000); no fee for VOEC. VAT is 25 % of goods + shipping + duty.'
         tabFx = 'Currency'; fxAmtTo = 'Amount in foreign currency'; fxAmtFrom = 'Amount in NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Foreign'
@@ -55,7 +55,7 @@ $strings = @{
         cmdHint = 'Si det med egne ord, f.eks. «Husk å sende tilbud til Equinor på fredag», «Snakket med Statkraft om sensorene» eller «Hvor mye er 100 euro». Enter utfører, Esc lukker.'; cmdRun = 'Utfør'
         pvTask = 'Oppgave'; pvNote = 'Notat'; pvFor = 'for {0}'; pvLoose = '(uten kunde/prosjekt)'; pvAuto = 'utføres om {0} s – Enter nå, Esc avbryter'
         impToggle = 'Importkostnad via Posten (mva og gebyr)'; impShip = 'Frakt'; impDuty = 'Toll %'; impVoec = 'Mva betalt i nettbutikken (VOEC, under 3000 kr per vare)'
-        mWake = 'Lytt etter «Notater» / «Notes4Me»'; wakeTip = ' – eller si «Notater» / «Notes4Me»'; wakeErr = 'Kunne ikke starte lytting: {0}'
+        mCorrections = 'Rettelser for tale…'; mWake = 'Lytt etter «Notater» / «Notes4Me»'; wakeTip = ' – eller si «Notater» / «Notes4Me»'; wakeErr = 'Kunne ikke starte lytting: {0}'
         impGoods = 'Varepris'; impFrom = 'fra {0}'; impDutyL = 'Toll ({0} %)'; impVat = 'Mva 25 %'; impFee = 'Postens gebyr'; impTotal = 'Sluttsum'; pvImport = 'import, sluttsum {0}'
         impNote = 'Posten 2026: 46 kr (verdi 0–500), 78 kr (500–3000), 278 kr (over 3000); ingen gebyr ved VOEC. Mva er 25 % av varepris + frakt + toll.'
         tabFx = 'Valuta'; fxAmtTo = 'Beløp i valuta'; fxAmtFrom = 'Beløp i kroner'; fxRate = '1 {0} = {1} kr'; fxNok = 'kr'; fxForeign = 'Valuta'
@@ -78,7 +78,7 @@ $strings = @{
         cmdHint = 'Säg det med egna ord, t.ex. ”Kom ihåg att skicka offert till Equinor på fredag”, ”Pratade med Statkraft om sensorerna” eller ”Hur mycket är 100 euro”. Enter kör, Esc stänger.'; cmdRun = 'Kör'
         pvTask = 'Uppgift'; pvNote = 'Anteckning'; pvFor = 'för {0}'; pvLoose = '(utan kund/projekt)'; pvAuto = 'körs om {0} s – Enter nu, Esc avbryter'
         impToggle = 'Importkostnad via Posten (moms och avgift)'; impShip = 'Frakt'; impDuty = 'Tull %'; impVoec = 'Moms betald i webbutiken (VOEC, under 3000 kr per vara)'
-        mWake = 'Lyssna efter ”Notater” / ”Notes4Me”'; wakeTip = ' – eller säg ”Notater” / ”Notes4Me”'; wakeErr = 'Kunde inte börja lyssna: {0}'
+        mCorrections = 'Rättelser för tal…'; mWake = 'Lyssna efter ”Notater” / ”Notes4Me”'; wakeTip = ' – eller säg ”Notater” / ”Notes4Me”'; wakeErr = 'Kunde inte börja lyssna: {0}'
         impGoods = 'Varupris'; impFrom = 'från {0}'; impDutyL = 'Tull ({0} %)'; impVat = 'Moms 25 %'; impFee = 'Postens avgift'; impTotal = 'Totalt'; pvImport = 'import, totalt {0}'
         impNote = 'Posten 2026: 46 kr (värde 0–500), 78 kr (500–3000), 278 kr (över 3000); ingen avgift vid VOEC. Momsen är 25 % av varupris + frakt + tull.'
         tabFx = 'Valuta'; fxAmtTo = 'Belopp i utländsk valuta'; fxAmtFrom = 'Belopp i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Valuta'
@@ -101,7 +101,7 @@ $strings = @{
         cmdHint = 'Sig det med dine egne ord, f.eks. »Husk at sende tilbud til Equinor på fredag«, »Talte med Statkraft om sensorerne« eller »Hvor meget er 100 euro«. Enter udfører, Esc lukker.'; cmdRun = 'Udfør'
         pvTask = 'Opgave'; pvNote = 'Note'; pvFor = 'for {0}'; pvLoose = '(uden kunde/projekt)'; pvAuto = 'udføres om {0} s – Enter nu, Esc annullerer'
         impToggle = 'Importomkostning via Posten (moms og gebyr)'; impShip = 'Fragt'; impDuty = 'Told %'; impVoec = 'Moms betalt i webshoppen (VOEC, under 3000 kr pr. vare)'
-        mWake = 'Lyt efter »Notater« / »Notes4Me«'; wakeTip = ' – eller sig »Notater« / »Notes4Me«'; wakeErr = 'Kunne ikke starte lytning: {0}'
+        mCorrections = 'Rettelser for tale…'; mWake = 'Lyt efter »Notater« / »Notes4Me«'; wakeTip = ' – eller sig »Notater« / »Notes4Me«'; wakeErr = 'Kunne ikke starte lytning: {0}'
         impGoods = 'Varepris'; impFrom = 'fra {0}'; impDutyL = 'Told ({0} %)'; impVat = 'Moms 25 %'; impFee = 'Postens gebyr'; impTotal = 'I alt'; pvImport = 'import, i alt {0}'
         impNote = 'Posten 2026: 46 kr (værdi 0–500), 78 kr (500–3000), 278 kr (over 3000); intet gebyr ved VOEC. Momsen er 25 % af varepris + fragt + told.'
         tabFx = 'Valuta'; fxAmtTo = 'Beløb i udenlandsk valuta'; fxAmtFrom = 'Beløb i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Valuta'
@@ -597,8 +597,40 @@ function Find-Customer($text) {
     @{ customer = $null; text = $text }
 }
 
+# Corrections for words voice typing gets wrong, e.g. "Bambull ab" -> "BambuLab".
+# corrections.txt in the notes folder, one "wrong => right" per line; read on every command
+# so edits work at once. Longer phrases are replaced first; matching ignores case.
+$correctionsPath = Join-Path $dir 'corrections.txt'
+if (-not (Test-Path $correctionsPath)) {
+    [IO.File]::WriteAllText($correctionsPath, (@(
+        '# Rettelser for talekommandoer / Corrections for voice commands'
+        '# En per linje / one per line:   feil => riktig   (store/små bokstaver spiller ingen rolle)'
+        'Bambull ab => BambuLab'
+        'Bambu lab => BambuLab'
+        'Bamboo lab => BambuLab'
+        'Bambu Lap => BambuLab'
+        'Bambulab => BambuLab'
+        'Bambu => BambuLab'
+    ) -join "`r`n") + "`r`n", (New-Object Text.UTF8Encoding $true))
+}
+function Get-Corrections {
+    $list = foreach ($l in [IO.File]::ReadAllLines($correctionsPath, [Text.Encoding]::UTF8)) {
+        if ($l -match '^\s*#' -or $l -notmatch '=>') { continue }
+        $p = $l -split '=>', 2; $from = $p[0].Trim(); $to = $p[1].Trim()
+        if ($from) { [pscustomobject]@{ from = $from; to = $to } }
+    }
+    @($list | Sort-Object { $_.from.Length } -Descending)
+}
+function Repair-Spoken($text) {
+    try { $fixes = Get-Corrections } catch { return $text }
+    foreach ($f in $fixes) {
+        $text = [regex]::Replace($text, "(?i)$wb$([regex]::Escape($f.from))$we", $f.to.Replace('$', '$$'))
+    }
+    $text
+}
+
 function Read-VoiceCommand($raw) {
-    $text = Clear-Spoken $raw
+    $text = Clear-Spoken (Repair-Spoken $raw)
     if (-not $text) { return $null }
     $hasTask = [regex]::Match($text, $taskRx); $hasNote = [regex]::Match($text, $noteRx)
     # Currency: starts with Valuta/Currency, or an amount with a currency and no task/note words
@@ -1309,6 +1341,7 @@ $menu = New-Object Windows.Controls.ContextMenu
 $menuItems = @{}
 function AddItem($key, $action, $parent = $menu) { $mi = New-Object Windows.Controls.MenuItem; $mi.Add_Click($action); [void]$parent.Items.Add($mi); if ($key) { $menuItems[$key] = $mi }; $mi }
 AddItem 'mFolder' { Start-Process explorer.exe $dir } | Out-Null
+AddItem 'mCorrections' { Start-Process notepad.exe "`"$correctionsPath`"" } | Out-Null
 $top = AddItem 'mTopmost' { $win.Topmost = -not $win.Topmost; $this.IsChecked = $win.Topmost; $cfg.topmost = $win.Topmost; Save-Config }
 $top.IsChecked = $win.Topmost
 $script:wakeItem = AddItem 'mWake' { Set-WakeWord (-not $script:wake) }

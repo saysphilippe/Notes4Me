@@ -120,6 +120,8 @@ How the sentence is read (in English, Norwegian, Swedish and Danish):
 
 Voice typing is provided by Windows. If your language isn't supported there, Windows will tell you.
 
+**Words voice typing gets wrong** can be fixed automatically: right-click the widget, choose **Voice corrections…** and add a line such as `Bambull ab => BambuLab`. The file (`corrections.txt` in the notes folder) is read on every command, so changes work at once. It already contains a few spellings of BambuLab.
+
 ### Wake word: "Notater" or "Notes4Me"
 
 Right-click the widget and tick **Listen for "Notater" / "Notes4Me"**. Then you don't need to click the microphone – just say **"Notater"** (Norwegian pronunciation works) or **"Notes4Me"**, wait a moment for the command box to open, and say your command. The microphone icon is green while the widget is listening and blue while the command box is open.

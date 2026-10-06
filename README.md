@@ -106,7 +106,7 @@ How the sentence is read (in English, Norwegian, Swedish and Danish):
 - **Filler words** such as "remember to", "I need to", "create a task about", "husk å", "jeg må" are removed, so the task text is short.
 - **Dates:** today, tomorrow, the day after tomorrow, weekdays ("on Friday"), "next week", "in 3 days", "16 October" and written dates. A task without a date gets today's date.
 - **Currency:** an amount with a currency ("100 euro", "250 dollars") or a sentence starting with "Currency"/"Valuta". An amount in a foreign currency gives foreign → NOK, an amount in kroner gives NOK → foreign. A date gives that day's rates.
-- After a task, the widget switches to **Tasks**; after a note, to the customer's tab; after a currency question, to **Currency**. The box stays open for the next command.
+- After a task, the widget switches to **Tasks**; after a note, to the customer's tab; after a currency question, to **Currency**. The command box then closes and the microphone stops; a confirmation is shown in the title for a few seconds. Click the microphone again for the next command.
 
 Voice typing is provided by Windows. If your language isn't supported there, Windows will tell you.
 

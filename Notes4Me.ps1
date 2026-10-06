@@ -210,7 +210,7 @@ function Set-LineChecked($id, $index, $checked) {
                    Foreground="#888" Cursor="Hand" VerticalAlignment="Center" Visibility="Collapsed" Margin="10,0,0,0"/>
         <TextBlock Name="titleMic" DockPanel.Dock="Right" FontFamily="Segoe MDL2 Assets" Text="&#xE720;" FontSize="15"
                    Foreground="#BBB" Cursor="Hand" VerticalAlignment="Center"/>
-        <TextBlock Name="title" Foreground="#D97757" FontWeight="SemiBold" FontSize="13"/>
+        <TextBlock Name="title" Foreground="#D97757" FontWeight="SemiBold" FontSize="13" TextTrimming="CharacterEllipsis"/>
       </DockPanel>
       <Border Name="cmdBar" DockPanel.Dock="Top" Visibility="Collapsed" Background="#262A30" CornerRadius="6" Padding="6"
               Margin="0,6,0,2" BorderBrush="#6A9BCC" BorderThickness="1">
@@ -682,9 +682,19 @@ function Invoke-VoiceCommand {
     }
     Save-Config; $script:selected.Clear(); Render
     if ($cmd.kind -eq 'fx' -and $cmd.import -and $null -ne $script:impTotal) { $done += ' · ' + ((T 'pvImport') -f ('{0:N2} {1}' -f $script:impTotal, (T 'fxNok'))) }
-    $script:cmdDone = $true; $el.cmdBox.Text = ''; $script:cmdLast = ''
-    $el.cmdPreview.Text = [char]0x2713 + ' ' + $done; $el.cmdPreview.Foreground = Brush '#B5D19E'
-    $el.cmdBox.Focus() | Out-Null
+    # Done: close the box (which also stops voice typing) and confirm briefly in the title bar
+    Close-CommandBar
+    Show-TitleMessage ([string][char]0x2713 + ' ' + $done)
+}
+
+# Shows a short confirmation in place of the title for a few seconds
+$script:titleTimer = New-Object Windows.Threading.DispatcherTimer
+$script:titleTimer.Interval = [TimeSpan]::FromSeconds(6)
+$script:titleTimer.Add_Tick({ $script:titleTimer.Stop(); $el.title.Text = T 'title'; $el.title.Foreground = Brush '#D97757'; $el.title.FontWeight = 'SemiBold'; $el.title.ToolTip = $null })
+function Show-TitleMessage($text) {
+    $el.title.Text = $text; $el.title.ToolTip = $text
+    $el.title.Foreground = Brush '#B5D19E'; $el.title.FontWeight = 'Normal'
+    $script:titleTimer.Stop(); $script:titleTimer.Start()
 }
 
 function Open-CommandBar {
@@ -696,8 +706,12 @@ function Open-CommandBar {
     [Notes4Me.Keys]::keybd_event(0x48, 0, 2, [UIntPtr]::Zero); [Notes4Me.Keys]::keybd_event(0x5B, 0, 2, [UIntPtr]::Zero)
 }
 function Close-CommandBar {
-    $script:cmdTimer.Stop(); $el.cmdBox.Text = ''; $el.cmdPreview.Text = ''
+    $script:cmdTimer.Stop(); $script:cmdDone = $true; $el.cmdBox.Text = ''; $el.cmdPreview.Text = ''; $script:cmdLast = ''
     $el.cmdBar.Visibility = 'Collapsed'; $el.titleMic.Foreground = Brush '#BBB'
+    # Take the keyboard focus away from any text box: Windows voice typing stops listening
+    # when no text field has focus, so the microphone is turned off.
+    [Windows.Input.Keyboard]::ClearFocus()
+    [Windows.Input.FocusManager]::SetFocusedElement($win, $win)
 }
 
 # While the box is open, its text is checked four times a second (voice typing does not always

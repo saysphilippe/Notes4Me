@@ -1221,27 +1221,33 @@ function Sync-Outlook {
         $desired = Get-SyncTasks
         $created = 0; $updated = 0; $removed = 0; $gone = New-Object System.Collections.Generic.List[string]; $moved = @()
         $remember = { param($k, $item, $hash) $map[$k] = @{ id = $item.EntryID; hash = $hash; start = $item.Start.ToString('yyyy-MM-dd HH:mm'); allDay = [bool]$item.AllDayEvent } }
+        # Every appointment object is released right after use (finally): Outlook does not refresh an object
+        # that is still referenced, so a kept reference would hide changes coming from the server.
         foreach ($k in @($map.Keys)) {
-            $item = $null; try { $item = $ns.GetItemFromID($map[$k].id) } catch {}
-            if (-not $item -or $item.Parent.EntryID -ne $calId) {   # deleted (or moved away) in Outlook
-                if ($desired.Contains($k)) { $gone.Add($k) }
-                $map.Remove($k); continue
-            }
-            if (-not $desired.Contains($k)) { $item.Delete(); $map.Remove($k); $removed++; continue }   # task deleted here
-            $olStart = $item.Start.ToString('yyyy-MM-dd HH:mm'); $olAllDay = [bool]$item.AllDayEvent
-            if (-not $map[$k].start) { $map[$k].start = $olStart; $map[$k].allDay = $olAllDay }   # entry from an older version
-            if (($olStart -ne $map[$k].start -or $olAllDay -ne $map[$k].allDay) -and $map[$k].hash -eq $desired[$k].hash) {
-                # moved in Outlook (and not changed here) -> move the task here
-                $moved += @{ key = $k; date = $item.Start.Date; time = $(if ($olAllDay) { $null } else { $item.Start.TimeOfDay }) }
-                $map[$k].start = $olStart; $map[$k].allDay = $olAllDay; continue
-            }
-            if ($map[$k].hash -ne $desired[$k].hash) { Set-Appointment $item $desired[$k]; & $remember $k $item $desired[$k].hash; $updated++ }
+            $item = $null; $parent = $null
+            try {
+                try { $item = $ns.GetItemFromID($map[$k].id) } catch {}
+                if ($item) { $parent = $item.Parent }
+                if (-not $item -or $parent.EntryID -ne $calId) {   # deleted (or moved away) in Outlook
+                    if ($desired.Contains($k)) { $gone.Add($k) }
+                    $map.Remove($k); continue
+                }
+                if (-not $desired.Contains($k)) { $item.Delete(); $map.Remove($k); $removed++; continue }   # task deleted here
+                $olStart = $item.Start.ToString('yyyy-MM-dd HH:mm'); $olAllDay = [bool]$item.AllDayEvent
+                if (-not $map[$k].start) { $map[$k].start = $olStart; $map[$k].allDay = $olAllDay }   # entry from an older version
+                if (($olStart -ne $map[$k].start -or $olAllDay -ne $map[$k].allDay) -and $map[$k].hash -eq $desired[$k].hash) {
+                    # moved in Outlook (and not changed here) -> move the task here
+                    $moved += @{ key = $k; date = $item.Start.Date; time = $(if ($olAllDay) { $null } else { $item.Start.TimeOfDay }) }
+                    $map[$k].start = $olStart; $map[$k].allDay = $olAllDay; continue
+                }
+                if ($map[$k].hash -ne $desired[$k].hash) { Set-Appointment $item $desired[$k]; & $remember $k $item $desired[$k].hash; $updated++ }
+            } finally { Remove-ComRef $parent; Remove-ComRef $item }
         }
         foreach ($k in $desired.Keys) {
             $d = $desired[$k]
             if ($map.ContainsKey($k) -or $d.done -or $gone.Contains($k)) { continue }
-            $item = $cal.Items.Add(1); Set-Appointment $item $d
-            & $remember $k $item $d.hash; $created++
+            $item = $cal.Items.Add(1)
+            try { Set-Appointment $item $d; & $remember $k $item $d.hash; $created++ } finally { Remove-ComRef $item }
         }
         if ($moved.Count) {
             foreach ($mv in $moved) { $d = $desired[$mv.key]; Set-TaskLineDate $d.id $d.line $mv.date $mv.time }
@@ -1265,8 +1271,12 @@ function Sync-Outlook {
     } catch {
         $script:ol = $null
         Show-TitleMessage ((T 'olErr') -f $_.Exception.Message)
+    } finally {
+        Remove-ComRef $cal; Remove-ComRef $ns
+        [GC]::Collect(); [GC]::WaitForPendingFinalizers()   # also frees temporary COM objects (e.g. item.Parent)
     }
 }
+function Remove-ComRef($o) { if ($o -and [Runtime.InteropServices.Marshal]::IsComObject($o)) { try { [void][Runtime.InteropServices.Marshal]::FinalReleaseComObject($o) } catch {} } }
 function Set-OutlookSync([bool]$on) {
     $cfg.outlookSync = $on; Save-Config
     $script:outlookItem.IsChecked = $on

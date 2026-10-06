@@ -110,6 +110,15 @@ How the sentence is read (in English, Norwegian, Swedish and Danish):
 
 Voice typing is provided by Windows. If your language isn't supported there, Windows will tell you.
 
+### Wake word: "Notater" or "Notes4Me"
+
+Right-click the widget and tick **Listen for "Notater" / "Notes4Me"**. Then you don't need to click the microphone – just say **"Notater"** (Norwegian pronunciation works) or **"Notes4Me"**, wait a moment for the command box to open, and say your command. The microphone icon is green while the widget is listening and blue while the command box is open.
+
+- Listening runs **offline on your PC** with Windows' built-in speech recognizer, which only listens for these two words. Nothing is recorded or sent anywhere.
+- Windows shows the microphone as in use while listening is switched on. Untick the menu item to stop.
+- Pause briefly after the wake word: Windows voice typing needs a second to start before it writes what you say.
+- If the wake word is triggered by accident, press **Esc** or **Cancel**.
+
 ## Currency tab
 
 Click **Currency** (Valuta) in the tab row.

@@ -9,7 +9,7 @@ $notesPath = Join-Path $dir 'notes.json'
 $utf8      = New-Object Text.UTF8Encoding $false
 
 $cfg = [ordered]@{ topmost = $true; left = 120; top = 120; language = 'en'; tab = ''; fxAmount = '100'; fxDir = 'toNok'; width = $null; height = $null
-         fxImport = $false; fxImpCur = 'EUR'; fxShip = '0'; fxDuty = '0'; fxVoec = $false; fxSeller = '' }
+         fxImport = $false; fxImpCur = 'EUR'; fxShip = '0'; fxDuty = '0'; fxVoec = $false; fxSeller = ''; wakeWord = $false }
 if (Test-Path $cfgPath) {
     try { (Get-Content $cfgPath -Raw | ConvertFrom-Json).psobject.Properties | ForEach-Object { $cfg[$_.Name] = $_.Value } } catch {}
 }
@@ -32,6 +32,7 @@ $strings = @{
         cmdHint = 'Just say it, e.g. "Remember to send the offer to Equinor on Friday", "Talked to Statkraft about the sensors" or "How much is 100 euro". Enter runs it, Esc closes.'; cmdRun = 'Run'
         pvTask = 'Task'; pvNote = 'Note'; pvFor = 'for {0}'; pvLoose = '(no customer)'; pvAuto = 'runs in {0} s – Enter now, Esc to cancel'
         impToggle = 'Import cost via Posten (VAT and fee)'; impShip = 'Shipping'; impDuty = 'Duty %'; impVoec = 'VAT paid at checkout (VOEC, under 3000 kr per item)'
+        mWake = 'Listen for "Notater" / "Notes4Me"'; wakeTip = ' – or say "Notater" / "Notes4Me"'; wakeErr = 'Could not start listening: {0}'
         impGoods = 'Goods'; impFrom = 'from {0}'; impDutyL = 'Duty ({0} %)'; impVat = 'VAT 25 %'; impFee = 'Posten fee'; impTotal = 'Total'; pvImport = 'import, total {0}'
         impNote = 'Posten 2026: 46 kr (value 0–500), 78 kr (500–3000), 278 kr (over 3000); no fee for VOEC. VAT is 25 % of goods + shipping + duty.'
         tabFx = 'Currency'; fxAmtTo = 'Amount in foreign currency'; fxAmtFrom = 'Amount in NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Foreign'
@@ -54,6 +55,7 @@ $strings = @{
         cmdHint = 'Si det med egne ord, f.eks. «Husk å sende tilbud til Equinor på fredag», «Snakket med Statkraft om sensorene» eller «Hvor mye er 100 euro». Enter utfører, Esc lukker.'; cmdRun = 'Utfør'
         pvTask = 'Oppgave'; pvNote = 'Notat'; pvFor = 'for {0}'; pvLoose = '(uten kunde)'; pvAuto = 'utføres om {0} s – Enter nå, Esc avbryter'
         impToggle = 'Importkostnad via Posten (mva og gebyr)'; impShip = 'Frakt'; impDuty = 'Toll %'; impVoec = 'Mva betalt i nettbutikken (VOEC, under 3000 kr per vare)'
+        mWake = 'Lytt etter «Notater» / «Notes4Me»'; wakeTip = ' – eller si «Notater» / «Notes4Me»'; wakeErr = 'Kunne ikke starte lytting: {0}'
         impGoods = 'Varepris'; impFrom = 'fra {0}'; impDutyL = 'Toll ({0} %)'; impVat = 'Mva 25 %'; impFee = 'Postens gebyr'; impTotal = 'Sluttsum'; pvImport = 'import, sluttsum {0}'
         impNote = 'Posten 2026: 46 kr (verdi 0–500), 78 kr (500–3000), 278 kr (over 3000); ingen gebyr ved VOEC. Mva er 25 % av varepris + frakt + toll.'
         tabFx = 'Valuta'; fxAmtTo = 'Beløp i valuta'; fxAmtFrom = 'Beløp i kroner'; fxRate = '1 {0} = {1} kr'; fxNok = 'kr'; fxForeign = 'Valuta'
@@ -76,6 +78,7 @@ $strings = @{
         cmdHint = 'Säg det med egna ord, t.ex. ”Kom ihåg att skicka offert till Equinor på fredag”, ”Pratade med Statkraft om sensorerna” eller ”Hur mycket är 100 euro”. Enter kör, Esc stänger.'; cmdRun = 'Kör'
         pvTask = 'Uppgift'; pvNote = 'Anteckning'; pvFor = 'för {0}'; pvLoose = '(utan kund)'; pvAuto = 'körs om {0} s – Enter nu, Esc avbryter'
         impToggle = 'Importkostnad via Posten (moms och avgift)'; impShip = 'Frakt'; impDuty = 'Tull %'; impVoec = 'Moms betald i webbutiken (VOEC, under 3000 kr per vara)'
+        mWake = 'Lyssna efter ”Notater” / ”Notes4Me”'; wakeTip = ' – eller säg ”Notater” / ”Notes4Me”'; wakeErr = 'Kunde inte börja lyssna: {0}'
         impGoods = 'Varupris'; impFrom = 'från {0}'; impDutyL = 'Tull ({0} %)'; impVat = 'Moms 25 %'; impFee = 'Postens avgift'; impTotal = 'Totalt'; pvImport = 'import, totalt {0}'
         impNote = 'Posten 2026: 46 kr (värde 0–500), 78 kr (500–3000), 278 kr (över 3000); ingen avgift vid VOEC. Momsen är 25 % av varupris + frakt + tull.'
         tabFx = 'Valuta'; fxAmtTo = 'Belopp i utländsk valuta'; fxAmtFrom = 'Belopp i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Valuta'
@@ -98,6 +101,7 @@ $strings = @{
         cmdHint = 'Sig det med dine egne ord, f.eks. »Husk at sende tilbud til Equinor på fredag«, »Talte med Statkraft om sensorerne« eller »Hvor meget er 100 euro«. Enter udfører, Esc lukker.'; cmdRun = 'Udfør'
         pvTask = 'Opgave'; pvNote = 'Note'; pvFor = 'for {0}'; pvLoose = '(uden kunde)'; pvAuto = 'udføres om {0} s – Enter nu, Esc annullerer'
         impToggle = 'Importomkostning via Posten (moms og gebyr)'; impShip = 'Fragt'; impDuty = 'Told %'; impVoec = 'Moms betalt i webshoppen (VOEC, under 3000 kr pr. vare)'
+        mWake = 'Lyt efter »Notater« / »Notes4Me«'; wakeTip = ' – eller sig »Notater« / »Notes4Me«'; wakeErr = 'Kunne ikke starte lytning: {0}'
         impGoods = 'Varepris'; impFrom = 'fra {0}'; impDutyL = 'Told ({0} %)'; impVat = 'Moms 25 %'; impFee = 'Postens gebyr'; impTotal = 'I alt'; pvImport = 'import, i alt {0}'
         impNote = 'Posten 2026: 46 kr (værdi 0–500), 78 kr (500–3000), 278 kr (over 3000); intet gebyr ved VOEC. Momsen er 25 % af varepris + fragt + told.'
         tabFx = 'Valuta'; fxAmtTo = 'Beløb i udenlandsk valuta'; fxAmtFrom = 'Beløb i NOK'; fxRate = '1 {0} = {1} NOK'; fxNok = 'NOK'; fxForeign = 'Valuta'
@@ -466,10 +470,11 @@ function Render {
 }
 
 function Set-Texts {
-    $el.title.Text = T 'title'; $el.hint.Text = T 'hint'; $el.cancelBtn.Content = T 'cancel'; $el.titleMic.ToolTip = T 'voice'
+    $el.title.Text = T 'title'; $el.hint.Text = T 'hint'; $el.cancelBtn.Content = T 'cancel'; $el.titleMic.ToolTip = T 'voice'   # Set-MicColor adds the wake-word hint
     $el.resetSize.ToolTip = T 'resetSize'; $el.grip.ToolTip = T 'grip'; $el.editLbl.Text = T 'editing'
     $el.saveBtn.Content = T $(if ($script:editId) { 'update' } else { 'save' })
     $el.cmdHint.Text = T 'cmdHint'; $el.cmdRun.Content = T 'cmdRun'; $el.cmdClose.Content = T 'cancel'
+    Set-MicColor
 }
 
 function Start-Edit($id) {
@@ -698,7 +703,7 @@ function Show-TitleMessage($text) {
 }
 
 function Open-CommandBar {
-    $el.cmdBar.Visibility = 'Visible'; $el.titleMic.Foreground = Brush '#6A9BCC'
+    $el.cmdBar.Visibility = 'Visible'; Set-MicColor
     $script:cmdLast = $el.cmdBox.Text; $script:cmdLastChange = Get-Date; $script:cmdTimer.Start()
     $win.Activate() | Out-Null; $el.cmdBox.Focus() | Out-Null
     # Win+H opens Windows voice typing, which types into the focused box
@@ -707,7 +712,7 @@ function Open-CommandBar {
 }
 function Close-CommandBar {
     $script:cmdTimer.Stop(); $script:cmdDone = $true; $el.cmdBox.Text = ''; $el.cmdPreview.Text = ''; $script:cmdLast = ''
-    $el.cmdBar.Visibility = 'Collapsed'; $el.titleMic.Foreground = Brush '#BBB'
+    $el.cmdBar.Visibility = 'Collapsed'; Set-MicColor
     # Take the keyboard focus away from any text box: Windows voice typing stops listening
     # when no text field has focus, so the microphone is turned off.
     [Windows.Input.Keyboard]::ClearFocus()
@@ -747,6 +752,88 @@ $el.cmdBox.Add_PreviewKeyDown({
     if ($e.Key -eq 'Return') { Invoke-VoiceCommand; $e.Handled = $true }
     elseif ($e.Key -eq 'Escape') { Close-CommandBar; $e.Handled = $true }
 })
+
+# --- Wake word ------------------------------------------------------------------
+# Saying "Notater" or "Notes4Me" opens the command box, as if the microphone was clicked.
+# Uses Windows' built-in offline English recognizer with a grammar of only the wake phrases;
+# "notater" is given a Norwegian pronunciation (IPA). Recognition runs in a small C# class
+# so no PowerShell code runs on the recognizer's thread; a UI timer polls its hit counter.
+$wakeSource = @'
+using System;
+using System.Threading;
+using System.Speech.Recognition;
+using System.Speech.Recognition.SrgsGrammar;
+namespace Notes4Me {
+    public class WakeWord : IDisposable {
+        private SpeechRecognitionEngine eng;
+        private int hits;
+        public int Hits { get { return hits; } }
+        public double MinConfidence = 0.8;
+        public double LastConfidence;
+        public string LastText;
+        public string Error;
+        public bool Start(string waveFile) {
+            try {
+                RecognizerInfo ri = null;
+                foreach (RecognizerInfo r in SpeechRecognitionEngine.InstalledRecognizers()) { if (r.Culture.Name.StartsWith("en")) { ri = r; break; } }
+                if (ri == null) { Error = "no English speech recognizer is installed in Windows"; return false; }
+                SrgsDocument doc = new SrgsDocument();
+                doc.Culture = ri.Culture; doc.PhoneticAlphabet = SrgsPhoneticAlphabet.Ipa;
+                SrgsRule rule = new SrgsRule("wake");
+                SrgsOneOf one = new SrgsOneOf();
+                one.Add(new SrgsItem("notes for me"));
+                foreach (string ipa in new string[] { "nuːˈtɑːtəɾ", "nuːˈtɑːtər", "nʊˈtɑːtər", "noʊˈtɑːtər", "nuˈtɑtɚ", "nəˈtɑːtɚ" }) {
+                    SrgsToken t = new SrgsToken("notater"); t.Pronunciation = ipa; one.Add(new SrgsItem(t));
+                }
+                rule.Add(one); doc.Rules.Add(rule); doc.Root = rule;
+                eng = new SpeechRecognitionEngine(ri);
+                eng.LoadGrammar(new Grammar(doc));
+                eng.SpeechRecognized += OnRecognized;
+                if (waveFile != null) eng.SetInputToWaveFile(waveFile); else eng.SetInputToDefaultAudioDevice();
+                eng.RecognizeAsync(RecognizeMode.Multiple);
+                return true;
+            } catch (Exception ex) { Error = ex.Message; Stop(); return false; }
+        }
+        private void OnRecognized(object sender, SpeechRecognizedEventArgs e) {
+            LastConfidence = e.Result.Confidence; LastText = e.Result.Text;
+            if (e.Result.Confidence >= MinConfidence) Interlocked.Increment(ref hits);
+        }
+        public void Stop() {
+            if (eng == null) return;
+            try { eng.RecognizeAsyncCancel(); } catch { }
+            try { eng.Dispose(); } catch { }
+            eng = null;
+        }
+        public void Dispose() { Stop(); }
+    }
+}
+'@
+$script:wake = $null; $script:wakeHits = 0
+function Set-MicColor {
+    $el.titleMic.Foreground = Brush $(if ($el.cmdBar.Visibility -eq 'Visible') { '#6A9BCC' } elseif ($script:wake) { '#8FB573' } else { '#BBB' })
+    $el.titleMic.ToolTip = (T 'voice') + $(if ($script:wake) { T 'wakeTip' } else { '' })
+}
+function Set-WakeWord([bool]$on, $waveFile = $null) {
+    if ($script:wake) { $script:wake.Dispose(); $script:wake = $null }
+    if ($on) {
+        if (-not ('Notes4Me.WakeWord' -as [type])) { Add-Type -TypeDefinition $wakeSource -ReferencedAssemblies System.Speech }
+        $w = New-Object Notes4Me.WakeWord
+        if ($w.Start($waveFile)) { $script:wake = $w; $script:wakeHits = 0 }
+        else { $on = $false; Show-TitleMessage ((T 'wakeErr') -f $w.Error) }
+    }
+    $cfg.wakeWord = $on; Save-Config
+    if ($script:wakeItem) { $script:wakeItem.IsChecked = $on }
+    Set-MicColor
+}
+$wakeTimer = New-Object Windows.Threading.DispatcherTimer
+$wakeTimer.Interval = [TimeSpan]::FromMilliseconds(300)
+$wakeTimer.Add_Tick({
+    if (-not $script:wake -or $script:wake.Hits -eq $script:wakeHits) { return }
+    $script:wakeHits = $script:wake.Hits
+    if ($el.cmdBar.Visibility -ne 'Visible') { Open-CommandBar }
+})
+$wakeTimer.Start()
+$win.Add_Closed({ if ($script:wake) { $script:wake.Dispose() } })
 
 function Save-Input {
     $text = ($el.input.Text -replace "`r`n", "`n").Trim()
@@ -1171,7 +1258,7 @@ foreach ($code in $fxCurrencies.Keys) {
     [void]$el.impCurs.Children.Add($chip)
 }
 $el.impShip.Text = [string]$cfg.fxShip; $el.impDuty.Text = [string]$cfg.fxDuty
-$el.impToggle.Add_Click({ $cfg.fxImport = [bool]$el.impToggle.IsChecked; if (-not $cfg.fxImport) { $cfg.fxSeller = '' }; Save-Config; Render-Fx })
+$el.impToggle.Add_Click({ $cfg.fxImport = [bool]$el.impToggle.IsChecked; if (-not $cfg.fxImport) { $cfg.fxSeller = ''; wakeWord = $false }; Save-Config; Render-Fx })
 $el.impVoec.Add_Click({ $cfg.fxVoec = [bool]$el.impVoec.IsChecked; Save-Config; Render-Import })
 $el.impShip.Add_TextChanged({ $cfg.fxShip = $el.impShip.Text; Render-Import })
 $el.impDuty.Add_TextChanged({ $cfg.fxDuty = $el.impDuty.Text; Render-Import })
@@ -1223,6 +1310,7 @@ function AddItem($key, $action, $parent = $menu) { $mi = New-Object Windows.Cont
 AddItem 'mFolder' { Start-Process explorer.exe $dir } | Out-Null
 $top = AddItem 'mTopmost' { $win.Topmost = -not $win.Topmost; $this.IsChecked = $win.Topmost; $cfg.topmost = $win.Topmost; Save-Config }
 $top.IsChecked = $win.Topmost
+$script:wakeItem = AddItem 'mWake' { Set-WakeWord (-not $script:wake) }
 $langMenu = AddItem 'mLanguage' {}
 $langItems = @{}
 foreach ($code in $langNames.Keys) {
@@ -1279,6 +1367,7 @@ $el.resetSize.Add_MouseLeftButtonDown({ param($s, $e) Reset-Size; $e.Handled = $
 if ($cfg.width -and $cfg.height) { Set-CustomSize ([double]$cfg.width) ([double]$cfg.height) }
 
 Set-Texts
+Set-WakeWord ([bool]$cfg.wakeWord)
 $cfg.tab = $tasksTab   # the widget always opens on the Tasks tab
 Render
 [void]$win.ShowDialog()

@@ -1212,6 +1212,13 @@ function Sync-Outlook {
     try {
         if (-not $script:ol) { $script:ol = New-Object -ComObject Outlook.Application }
         $ns = $script:ol.GetNamespace('MAPI'); $cal = $ns.GetDefaultFolder(9); $calId = $cal.EntryID
+        if (-not $script:categoryOk) {
+            # The Notes4Me category in dark green (closest Outlook color to the widget's green); otherwise it shows grey
+            $cats = $ns.Categories; $has = $false
+            foreach ($c in $cats) { if ($c.Name -eq 'Notes4Me') { $has = $true }; Remove-ComRef $c }
+            if (-not $has) { Remove-ComRef ($cats.Add('Notes4Me', 20)) }   # 20 = olCategoryColorDarkGreen
+            Remove-ComRef $cats; $script:categoryOk = $true
+        }
         $map = @{}
         if (Test-Path $syncMapPath) {
             (Get-Content $syncMapPath -Raw -Encoding UTF8 | ConvertFrom-Json).psobject.Properties | ForEach-Object {
